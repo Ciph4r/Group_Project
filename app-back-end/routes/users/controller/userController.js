@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
-
+const {comparePassword} = require('../middleWare/auth')
+const {createJwtToken} = require('../middleWare/token')
 
 
 module.exports = {
