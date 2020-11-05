@@ -12,14 +12,13 @@ var usersRouter = require('./routes/users/userRouter');
 var app = express();
 
 
-// mongoose
-// .connect(process.env.MONGODB_URI , {
-//     useNewUrlParser : true,
-//     useUnifiedTopology: true,
-//     useCreateIndex: true,
-// })
-// .then(() => {console.log('mongodb connected')})
-// .catch(()=> {console.log('server err')});
+mongoose.connect(process.env.MONGODB_URI , {
+    useNewUrlParser : true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+})
+.then(() => {console.log('mongodb connected')})
+.catch(()=> {console.log('server err')});
 
 
 // view engine setup
