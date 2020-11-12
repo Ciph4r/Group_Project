@@ -1,36 +1,43 @@
-.Main{
-    height: 100vh;
+.Main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: lightpink;
+  .top-bar {
     display: flex;
     flex-direction: column;
-    background-color: lightpink;
-    .top-bar{
-        display: flex;
-        flex-direction: column;
-        .bar{
-            display: flex;
-            flex-direction: row;
-        }
-        .links{
-            .Nav{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                background-color: lightblue;
-            }
-
-        }
-    }
-    .page-item{
+    .bar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 2rem;
+      .top-icons {
         display: flex;
         flex-direction: row;
-        flex : 1 ;
-
-        .page-content{
-            background-color: lightgreen;
-            width: 100%;
-        }
-        .history-bar{
-            width: 300px;
-        }
+        align-items: center;
+      }
     }
+    .links {
+      .Nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: lightblue;
+      }
+    }
+  }
+  .page-item {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+    .page-content {
+      background-color: lightgreen;
+      width: 100%;
+    }
+    .history-bar {
+      width: 300px;
+    }
+  }
 }

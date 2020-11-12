@@ -7,11 +7,11 @@ export default function Header() {
   return (
     <div className="top-bar">
       <div className="bar">
-        <div>
-          <h1>GroundRnR</h1>
+        <h1>GroundRnR</h1>
+        <div className='top-icons'>
+          <Account />
+          <Inbox />
         </div>
-        <Account />
-        <Inbox />
       </div>
       <div className="links">
         <LeftNav />
