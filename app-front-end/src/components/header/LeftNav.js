@@ -39,7 +39,7 @@ export default function LeftNav () {
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
         // How low you want it
-        style = {{marginTop: '500px' , fontSize: '30px'}}
+        style = {{marginTop: '100px' , fontSize: '30px'}}
       >
         <List>
         <Link to="/listing">Listing</Link>
@@ -49,15 +49,6 @@ export default function LeftNav () {
           <Link to="/favorites">Favorties</Link>
         </List>
 
-        {/* <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
 
       </div>
     );

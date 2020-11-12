@@ -8,6 +8,9 @@ export default function Header () {
     return (
         <div>
             <LeftNav/>
+            <div>
+                <h1>GroundRnR</h1>
+            </div>
             <Account/>
             <Inbox/>
         </div>
