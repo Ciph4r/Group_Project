@@ -1,15 +1,23 @@
 import React from 'react'
 import Header from './header/Header'
 import HistoryBar from './historyBar/HistoryBar'
+import '../css/layout.scss'
+
+
 
 export default function Layout (props) {
     return (
-        <div>
+        <div className='Main'>
             <Header/>
-            <HistoryBar/>
-            <div className={'page-item'}>
-            {props.children}
+            <div>
+                <div className='page-item'>
+                    <HistoryBar/>
+                    <div className='page-content'>
+                        {props.children}
+                    </div> 
+                </div>
             </div>
+
         </div>
     )
 }

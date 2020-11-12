@@ -1,5 +1,6 @@
 const intstate = {
     num:['1','2','3','4'],
+    sting: 'ddd'
   }
 
   export const tempReducer = (state = intstate , action) => {
