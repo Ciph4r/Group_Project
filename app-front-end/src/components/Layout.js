@@ -7,7 +7,7 @@ import '../css/layout.scss'
 
 export default function Layout (props) {
     return (
-        <div classNme='main'>
+        <div className='Main'>
             <Header/>
             <div>
                 <div className='page-item'>

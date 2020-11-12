@@ -1,0 +1,20 @@
+.Main{
+    color: red;
+    .top-bar{
+        display: flex;
+        flex-direction: column;
+        .bar{
+            display: flex;
+            flex-direction: row;
+        }
+        .links{
+            .Nav{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                background-color: lightblue;
+            }
+
+        }
+    }
+}

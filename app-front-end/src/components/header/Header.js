@@ -6,13 +6,17 @@ import LeftNav from './LeftNav'
 
 export default function Header () {
     return (
-        <div>
-            <LeftNav/>
-            <div>
-                <h1>GroundRnR</h1>
+        <div className = 'top-bar'>
+            <div className = 'bar'>
+                <div>
+                    <h1>GroundRnR</h1>
+                </div>
+                    <Account/>
+                    <Inbox/>
             </div>
-            <Account/>
-            <Inbox/>
+            <div className = 'links'>
+                <LeftNav/>
+            </div>
         </div>
     )
 }
