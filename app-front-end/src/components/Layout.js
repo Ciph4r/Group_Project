@@ -6,10 +6,15 @@ export default function Layout (props) {
     return (
         <div>
             <Header/>
-            <HistoryBar/>
-            <div className={'page-item'}>
-            {props.children}
+            <div>
+                <div className={'page-item'}>
+                    <HistoryBar/>
+                    <div className={'page-content'}>
+                        {props.children}
+                    </div> 
+                </div>
             </div>
+
         </div>
     )
 }
