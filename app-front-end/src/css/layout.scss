@@ -1,5 +1,8 @@
 .Main{
-    color: red;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: lightpink;
     .top-bar{
         display: flex;
         flex-direction: column;
@@ -15,6 +18,15 @@
                 background-color: lightblue;
             }
 
+        }
+    }
+    .page-item{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        .page-content{
+            background-color: lightgreen;
+            width: 90%;
         }
     }
 }
