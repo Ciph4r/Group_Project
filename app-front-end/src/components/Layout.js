@@ -9,15 +9,12 @@ export default function Layout (props) {
     return (
         <div className='Main'>
             <Header/>
-            <div>
                 <div className='page-item'>
                     <div className='page-content'>
                         {props.children}
                     </div> 
                     <HistoryBar/>
                 </div>
-            </div>
-
         </div>
     )
 }

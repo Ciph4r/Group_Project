@@ -23,10 +23,14 @@
     .page-item{
         display: flex;
         flex-direction: row;
-        height: 100%;
+        flex : 1 ;
+
         .page-content{
             background-color: lightgreen;
             width: 100%;
+        }
+        .history-bar{
+            width: 300px;
         }
     }
 }
