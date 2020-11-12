@@ -25,11 +25,10 @@ export default function LeftNav () {
 return (
   <div className = 'Nav'>
     <Link to="/listing">Listing</Link>
-        <Divider />
+    <div className = 'spacers'></div>
     <Link to="/booking">Booking</Link>
-        <Divider />
+    <div className = 'spacers'></div>
     <Link to="/favorites">Favorties</Link>
-
   </div>
 )
 
