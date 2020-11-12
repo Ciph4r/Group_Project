@@ -15,7 +15,7 @@ import NotFound from './NotFound';
 
   export default function GroundRnR (){
         return (
-            <div className='todo-app'>
+            <div className='app'>
                 <Router>
                     <Switch>
 
