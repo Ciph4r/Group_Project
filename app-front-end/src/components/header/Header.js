@@ -10,6 +10,10 @@ export default function Header() {
         <div className = 'name'>
           <h1>GroundRnR</h1>
         </div>
+        <div>
+          <Account/>
+          <Inbox/>
+        </div>
       </div>
       <div className="links">
         <LeftNav />
