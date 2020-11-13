@@ -3,28 +3,36 @@
   display: flex;
   flex-direction: column;
   background-color: lightpink;
-  .top-bar {
+
+  .bar {
     display: flex;
-    flex-direction: column;
-    .bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2rem;
+
+    .top-icons {
       display: flex;
-      flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      margin: 0 2rem;
-      .top-icons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+
+      .links {
+        a {
+          color: black;
+        }
+        a:hover {
+          color: white;
+        }
+        font-size: 26px;
+        .spacers {
+          width: 5%;
+        }
       }
-    }
-    .links {
-      .Nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        background-color: lightblue;
-      }
+        .Nav {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          background-color: lightblue;
+        }
     }
   }
   .page-item {
