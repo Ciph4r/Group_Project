@@ -17,7 +17,7 @@ export default function HistoryBar () {
             <div className = 'content' onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover}>
                 <ExpandLessIcon style={{ fontSize: '90' , visibility: hover ? 'visible' : 'hidden' }} />
                 <div className= 'items'>
-                    <h1>hover over me</h1>
+                    <h1> Side Bar History <br/>hover over me</h1>
                 </div>
                 <ExpandMoreIcon style={{ fontSize: '90' , visibility: hover ? 'visible' : 'hidden'}} />
             </div>

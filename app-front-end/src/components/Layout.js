@@ -13,7 +13,7 @@ export default function Layout (props) {
                     <div className='page-content'>
                         {props.children}
                     </div> 
-                    <hr/>
+                    
                     <HistoryBar/>
                 </div>
         </div>
