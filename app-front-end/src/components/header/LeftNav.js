@@ -8,7 +8,9 @@ import List from '@material-ui/core/List';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ReorderIcon from '@material-ui/icons/Reorder';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 // mobile view
 // const useStyles = makeStyles({
@@ -24,11 +26,11 @@ export default function LeftNav () {
 
 return (
   <div className = 'Nav'>
-    <Link to="/listing">Listing</Link>
+    <Link to="/listing"> <ReorderIcon/> Listing</Link>
     <div className = 'spacers'></div>
-    <Link to="/booking">Booking</Link>
+    <Link to="/booking"> <MenuBookIcon/> Booking</Link>
     <div className = 'spacers'></div>
-    <Link to="/favorites">Favorties</Link>
+    <Link to="/favorites"> <FavoriteIcon/> Favorties</Link>
   </div>
 )
 

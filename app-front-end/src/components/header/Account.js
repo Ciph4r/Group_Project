@@ -3,6 +3,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 export default function Account () {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,7 +21,7 @@ export default function Account () {
     return (
             <div>
               <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                <AccountCircleIcon/>
+                <AccountCircleIcon style={{ color: '#d9d9d9' }} />
               </Button>
               <Menu
                 id="simple-menu"
@@ -28,9 +30,9 @@ export default function Account () {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>My Account</MenuItem>
+                <MenuItem onClick={handleClose}> <SettingsIcon/> My Account</MenuItem>
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleClose}> <ExitToAppIcon/> Logout</MenuItem>
               </Menu>
             </div>
     )

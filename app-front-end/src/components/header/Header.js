@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className="top-bar">
       <div className="bar">
-        <div>
+        <div className = 'name'>
           <h1>GroundRnR</h1>
         </div>
         <Account />
