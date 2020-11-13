@@ -56,6 +56,13 @@
                     background-color: pink;
                     width: 260px;
                     height: 1000px;
+                    .box{
+                        display: flex;
+                        flex-direction: row;
+                        img{
+                            width: 50%;   
+                        }
+                    }
                 }
             }
         }
