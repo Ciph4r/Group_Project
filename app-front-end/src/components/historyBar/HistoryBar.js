@@ -42,9 +42,8 @@ export default function HistoryBar () {
                         <img src={data.img} alt="Thumbnail" />
                         <div className='info'>
                         <h2>{data.name}</h2>
+                        </div >  
                         </div>
-                        </div>
-    
                     ))}
 
                     {/* <div className= 'box'>
