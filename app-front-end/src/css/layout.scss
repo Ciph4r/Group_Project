@@ -1,64 +1,71 @@
-.Main{
-    height: 100vh;
+.Main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #293d3d;
+  .top-bar {
     display: flex;
     flex-direction: column;
-    background-color: #293d3d;
-    .top-bar{
+    .bar {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 2rem;
+      .name {
+        color: #d9d9d9;
+        text-decoration: none;
+      }
+      .name:hover {
+        color: white;
+      }
+      .top-icons {
         display: flex;
-        flex-direction: column;
-        .bar{
-            display: flex;
-            flex-direction: row;
-            .name{
-                color: #d9d9d9;
-            }
-        }
-        .links{
-            .Nav{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                background-color: #d9d9d9;
-                 a{
-                    color: black;
-                    text-decoration: none;
-                    font-weight: bold;
-                  }
-                  a:hover {
-                    color:  white;
-                  }
-                  font-size: 26px;
-                  .spacers{
-                      width: 5%;
-                  }
-            }
-
-        }
+        align-items: center;
+      }
     }
-    .page-item{
+    .links {
+      .Nav {
         display: flex;
         flex-direction: row;
-        flex : 1 ;
-
-        .page-content{
-            background-color: white;
-            width: 100%;
+        justify-content: center;
+        background-color: #d9d9d9;
+        a {
+          color: black;
+          text-decoration: none;
+          font-weight: bold;
         }
-        .history-bar{
-            background-color: white;
-            width: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            .content{
-                .items{
-                    background-color: pink;
-                    width: 260px;
-                    height: 1000px;
-                }
-            }
+        a:hover {
+          color: white;
         }
-
+        font-size: 26px;
+        .spacers {
+          width: 5%;
+        }
+      }
     }
+  }
+  .page-item {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+    .page-content {
+      background-color: white;
+      width: 100%;
+    }
+    .history-bar {
+      background-color: white;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .content {
+        .items {
+          background-color: pink;
+          width: 260px;
+          height: 1000px;
+        }
+      }
+    }
+  }
 }
