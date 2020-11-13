@@ -7,10 +7,8 @@ export default function Header() {
   return (
     <div className="top-bar">
       <div className="bar">
-        <h1>GroundRnR</h1>
-        <div className='top-icons'>
-          <Account />
-          <Inbox />
+        <div className = 'name'>
+          <h1>GroundRnR</h1>
         </div>
       </div>
       <div className="links">
