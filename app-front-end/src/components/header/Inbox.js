@@ -17,7 +17,7 @@ export default function Inbox () {
             <MailModal closeMailHandler= {closeMailHandler} openMail={openMail}>
 
             </MailModal>
-            <EmailIcon style={{ color: '#d9d9d9' }} onClick={openMailHandler} />
+            <EmailIcon style={{ color: '#d9d9d9',cursor: 'pointer' }} onClick={openMailHandler} />
         </div>
 
     )

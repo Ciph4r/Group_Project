@@ -1,61 +1,80 @@
 import {React , useState} from 'react'
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Modal from 'react-modal'
+
 
 
 export default function HistoryBar () {
     const dummyData = [
         {
             name:'Mercades',
-            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'
+            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
+            ppd:'$100',
         },
         {
             name:'Mercades',
-            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'
+            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
+            ppd:'$100',
         },
         {
             name:'Mercades',
-            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'
+            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
+            ppd:'$100',
         },
         {
             name:'Mercades',
-            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'
+            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
+            ppd:'$100',
+        },
+        {
+            name:'Mercades',
+            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
+            ppd:'$100',
+        },
+        {
+            name:'Mercades',
+            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
+            ppd:'$100',
+        },
+        {
+            name:'Mercades',
+            img:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
+            ppd:'$100',
         }
     ]
 
 
-    const [hover , setHover] = useState(false)
 
-    const handleMouseHover = () => setHover(!hover)
-      
-      
+
+    const [openModal,setOpenModal] = useState(false)
+
+    const closeModalHandler = () => setOpenModal(false)
+    const openModalHandler = () => setOpenModal(true)
 
 
     return (
         <div className= 'history-bar'>
             
-            <div className= 'content' onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover}>
-                <ExpandLessIcon style={{ fontSize: '90' , visibility: hover ? 'visible' : 'hidden' }} />
+            <div className= 'content' >
+ 
                 <div className= 'items'>
+                    <h3>You've Viewed</h3>
                     {dummyData.map((data,key)=>(
-                        <div className= 'box' key={key}>
+                        <div className= 'box' key={key} onClick= {openModalHandler}>
                         <img src={data.img} alt="Thumbnail" />
                         <div className='info'>
-                        <h2>{data.name}</h2>
+                        <h3>{data.name}</h3>
+                        <h5>PPD: {data.ppd}</h5>
                         </div >  
                         </div>
                     ))}
-
-                    {/* <div className= 'box'>
-                    <img src='https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg' alt="Thumbnail" />
-                    <div className='info'>
-                        <h2>Mercades</h2>
-                    </div>
-                    </div> */}
-
                 </div>
-                <ExpandMoreIcon style={{ fontSize: '90' , visibility: hover ? 'visible' : 'hidden'}} />
             </div>
+            <Modal isOpen={openModal}>
+                <button onClick ={closeModalHandler}>
+                    close
+                </button>
+            </Modal>
         </div>
+
     )
 }

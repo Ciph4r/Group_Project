@@ -1,7 +1,7 @@
 .modal{
     background-color: white;
     width: 500px;
-    background-color: grey;
+    background-color: lightgrey;
     
     margin: 4rem auto;
     .modal-header{
@@ -52,6 +52,7 @@
                 align-items: center;
                 background-color: green;
                 height: 70px;
+                cursor: pointer;
                 .msg-content{
                    flex: 1;
                    color: white;
@@ -68,6 +69,7 @@
             }
             .read{
                 background-color: red;
+                cursor: pointer;
             }
         }
     }
