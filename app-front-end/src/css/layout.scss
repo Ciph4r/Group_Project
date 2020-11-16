@@ -58,6 +58,9 @@
     display: flex;
     flex-direction: row;
     flex: 1;
+    margin: auto;
+    max-width: 1300px;
+    min-width: 1300px;
 
     .page-content {
       background-color: white;
@@ -74,9 +77,10 @@
 
       .content {
         .items {
-          background-color: pink;
+          background-color: lightgrey;
           width: 260px;
           height: 1000px;
+          cursor: pointer;
 
           .box {
             display: flex;
