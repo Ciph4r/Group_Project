@@ -33,6 +33,24 @@
       .top-icons {
         display: flex;
         align-items: center;
+        .login-register{
+            display: flex;
+            justify-content: space-between;
+            width: 210px;
+            .btn{
+                font-size: 20px;
+                background-color: #555;
+                height: 50px;
+                width: 100px;
+                color: white;
+                outline: none;
+            }
+            .btn:hover {
+                background: darkgreen;
+                cursor: pointer;
+                }
+            
+        }
         .notification{
             background-color: #555;
             color: white;
@@ -125,3 +143,5 @@
     }
   }
 }
+
+

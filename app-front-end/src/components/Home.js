@@ -1,7 +1,8 @@
-import React from 'react';
+import { React, useState } from 'react';
 import Card from './Card';
 import Search from './Search';
 import Filter from './Filter';
+import CardModal from './CardModal';
 import '../css/home.scss';
 
 export default function Home() {
@@ -44,18 +45,31 @@ export default function Home() {
 
   const closeModalHandler = () => setOpenModal(false);
   const openModalHandler = () => setOpenModal(true);
+  const [data, setData] = useState({});
 
   return (
-    <>
+    <div className="home">
       <Search />
       <Filter />
       <div className="home-content">
         {tempData.map((data, key) => (
-          <div className="box" key={key} onClick={openModalHandler}>
+          <div
+            className="box"
+            key={key}
+            onClick={() => {
+              setData(data);
+              openModalHandler();
+            }}
+          >
             <Card key={key} data={data} />
           </div>
         ))}
       </div>
-    </>
+      <CardModal
+        closeModal={closeModalHandler}
+        data={data}
+        openModal={openModal}
+      />
+    </div>
   );
 }

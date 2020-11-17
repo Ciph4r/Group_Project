@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-export default function Account () {
+export default function Account ({logoutHandler}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -35,7 +35,7 @@ export default function Account () {
               >
                 <MenuItem onClick={handleClose}> <SettingsIcon/> My Account</MenuItem>
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
-                <MenuItem onClick={handleClose}> <ExitToAppIcon/> Logout</MenuItem>
+                <MenuItem onClick={() => logoutHandler()}> <ExitToAppIcon/> Logout</MenuItem>
               </Menu>
             </div>
     )

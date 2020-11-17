@@ -16,7 +16,7 @@ export default function Card(props) {
         <IconButton className="card-fav-icon">
           <FavoriteIcon />
         </IconButton>
-        <img src={img} />
+        <img src={img} alt="..." />
       </div>
       <div className="card-body">
         <div className="car-info">
