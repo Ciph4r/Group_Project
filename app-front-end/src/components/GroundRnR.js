@@ -9,6 +9,7 @@ import {
 import Booking from './Booking';
 import Listing from './Listing';
 import Favorties from './Favorites';
+import User from './User'
 import NotFound from './NotFound';
 
 
@@ -39,6 +40,13 @@ import NotFound from './NotFound';
                         <Route path="/favorites">
                             <Layout>
                                 <Favorties/>
+                            </Layout>
+                        </Route>
+
+                        
+                        <Route path="/user">
+                            <Layout>
+                                <User/>
                             </Layout>
                         </Route>
 

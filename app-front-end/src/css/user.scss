@@ -1,0 +1,23 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    .user-info{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        padding: 50px;
+        .name-input{
+        }
+    }
+    .user-img{
+        .img{
+            height: 400px;
+            width: 400px;
+        }
+        .img:hover {
+            cursor: pointer;
+          }
+    }
+
+}

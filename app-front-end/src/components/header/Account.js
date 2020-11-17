@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -7,6 +8,9 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 export default function Account ({logoutHandler}) {
+  const history = useHistory();
+
+
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -22,7 +26,7 @@ export default function Account ({logoutHandler}) {
             <div>
               <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
               <div class="notification">
-              <AccountCircleIcon style={{ color: '#d9d9d9' }} />
+              <AccountCircleIcon style={{ color: '#d9d9d9' }}  />
               </div>
                 
               </Button>
@@ -33,7 +37,7 @@ export default function Account ({logoutHandler}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}> <SettingsIcon/> My Account</MenuItem>
+                <MenuItem onClick={()=> history.push("/user")}> <SettingsIcon/> My Account</MenuItem>
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
                 <MenuItem onClick={() => logoutHandler()}> <ExitToAppIcon/> Logout</MenuItem>
               </Menu>
