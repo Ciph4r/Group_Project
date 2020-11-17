@@ -1,8 +1,16 @@
+.App{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
 .Main {
-  height: 100vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
   background-color: #293d3d;
+  
 
   .top-bar {
     display: flex;
@@ -44,7 +52,7 @@
             }
         }
         .notification:hover {
-            background: red;
+            background: darkgreen;
             cursor: pointer;
             }
       }

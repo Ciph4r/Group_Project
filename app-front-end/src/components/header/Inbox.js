@@ -3,7 +3,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import {MailModal} from './MailModal'
 
 
-const tempData = [
+let tempData = [
     {
          name:'Dave',
          date:'11:45 PM',
@@ -57,22 +57,28 @@ export default function Inbox () {
     const [openMail,setOpenMail] = useState(false)
     const closeMailHandler = () => setOpenMail(false)
     const openMailHandler = () => setOpenMail(true)
+    const messageHandler = (idx) => {
+        tempData[idx].read = true
+    }
 
-    
-    useEffect(() => {
+    const loadNotification = () => {
         let num = 0
         for (let i = 0; i < tempData.length; i++) {
-            if (tempData[i].read === true){
+            if (tempData[i].read === false){
                 num++
             }
           }
           setMailCount(num)
+    }
+    
+    useEffect(() => {
+        loadNotification()
       });
 
 
     return (
         <div>
-            <MailModal closeMailHandler= {closeMailHandler} openMail={openMail} tempData = {tempData}>
+            <MailModal closeMailHandler= {closeMailHandler} openMail={openMail} tempData = {tempData} messageHandler= {messageHandler}>
 
             </MailModal>
             <div class="notification" onClick={openMailHandler}>

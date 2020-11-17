@@ -15,7 +15,6 @@ import NotFound from './NotFound';
 
   export default function GroundRnR (){
         return (
-            <div className='app'>
                 <Router>
                     <Switch>
 
@@ -51,6 +50,5 @@ import NotFound from './NotFound';
 
                     </Switch>
                 </Router>
-            </div>
         )
     }

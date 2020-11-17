@@ -5,19 +5,22 @@ import {InboxItem} from './InboxItem'
 
 
 
-export const MailModal = ({openMail, closeMailHandler , tempData}) => {
+export const MailModal = ({openMail, closeMailHandler , tempData ,messageHandler }) => {
     return (
             <Modal isOpen={openMail} className='modal' 
-            shouldCloseOnOverlayClick={true}
+            ariaHideApp={false}
             >
                 <div className='modal-header'>
                      <h2>Inbox</h2>
-                     <span className='close-modla-btn' onClick={closeMailHandler}><h2>x</h2></span>
+                     <span className='close-modal-btn' onClick={closeMailHandler}><h2>x</h2></span>
                 </div>
                 <div className='modal-content'>
-                         {tempData.map((data, key) => (
-                             <InboxItem key = {key}
+                         {tempData.map((data, idx) => (
+                             <InboxItem 
+                              onClick = {() => messageHandler(idx)}
+                              key = {idx} 
                               data = {data}
+                              idx = {idx}
                              />
                          ))}
                  </div>

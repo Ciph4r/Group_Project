@@ -23,12 +23,11 @@ export const InboxItem = (props ) => {
     };
 
 
-
     
     const {img, name , date, message ,read } = props.data
 
     return (
-        <div className= 'inbox-item'>
+        <div className= 'inbox-item' onClick = {props.onClick}>
             <div className = 'info'>
                 <div className= 'sender'>
                      <h2>{name}</h2>
@@ -38,13 +37,13 @@ export const InboxItem = (props ) => {
                 </div>
             </div>
 
-            <div className={read ? 'content read' : 'content'}>
-                <img  src={img} alt="Thumbnail" />
+            <div className={read ? 'content' : 'content read'}  >
+                <img  src={img} alt="Thumbnail"  />
                 <div className= 'msg-content'>
                     <h4>{message.length > 30 ? message.slice(0,30) + ' ...' : message}</h4>
                 </div>
                 <div className='msg-options'>
-                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    {/* <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                         <MoreHorizIcon fontSize="large"/>
                     </Button>
                     <Menu
@@ -57,7 +56,7 @@ export const InboxItem = (props ) => {
                         <MenuItem onClick={handleClose}>Delete</MenuItem>
                         <MenuItem onClick={handleClose}>...</MenuItem>
                         <MenuItem onClick={handleClose}>...</MenuItem>
-                    </Menu>
+                    </Menu> */}
                             
                 </div>
             </div>

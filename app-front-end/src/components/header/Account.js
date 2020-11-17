@@ -21,7 +21,10 @@ export default function Account () {
     return (
             <div>
               <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                <AccountCircleIcon style={{ color: '#d9d9d9' }} />
+              <div class="notification">
+              <AccountCircleIcon style={{ color: '#d9d9d9' }} />
+              </div>
+                
               </Button>
               <Menu
                 id="simple-menu"
