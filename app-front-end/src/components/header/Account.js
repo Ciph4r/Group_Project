@@ -37,7 +37,10 @@ export default function Account ({logoutHandler}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={()=> history.push("/user")}> <SettingsIcon/> My Account</MenuItem>
+                <MenuItem onClick={()=> {
+                  handleClose()
+                  history.push("/user")
+                }}> <SettingsIcon/> My Account</MenuItem>
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
                 <MenuItem onClick={() => logoutHandler()}> <ExitToAppIcon/> Logout</MenuItem>
               </Menu>
