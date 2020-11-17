@@ -11,7 +11,24 @@ export default function Layout (props) {
     const loginHandler = () => setLogIn(true)
     const logoutHandler = () => setLogIn(false)
 
-    if(logIn){
+
+    
+  let sideBar
+
+  if (logIn){
+    sideBar = (    
+      <React.Fragment>
+          <HistoryBar/>
+      </React.Fragment>
+      )
+    }else{
+        sideBar = (
+        <React.Fragment>
+        </React.Fragment>
+      )
+    }
+
+ 
         return (
             <div className='Main'>
                 <Header 
@@ -23,24 +40,8 @@ export default function Layout (props) {
                         <div className='page-content'>
                             {props.children}
                         </div> 
-                        <HistoryBar/>
+                        {sideBar}
                     </div>
             </div>
         )
-    }
-    return (
-        <div className='Main'>
-            <Header 
-            logIn={logIn}
-            loginHandler={loginHandler}
-            />
-                <div className='page-item'>
-                    <div className='page-content'>
-                        {props.children}
-                    </div> 
-                    
-                </div>
-        </div>
-    )
-
 }
