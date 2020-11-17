@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from './Card';
-import '../css/home.scss'
+import Search from './Search';
+import Filter from './Filter';
+import '../css/home.scss';
 
 const tempData = [
   {
@@ -40,7 +42,8 @@ const tempData = [
 export default function Home() {
   return (
     <>
-      <h1>Home</h1>
+      <Search />
+      <Filter />
       <div className="home-content">
         {tempData.map((data, key) => (
           <Card key={key} data={data} />
