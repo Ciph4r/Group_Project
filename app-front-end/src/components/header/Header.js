@@ -7,12 +7,10 @@ import LoginRegister from './LoginRegister';
 
 
 
-export default function Header() {
+export default function Header({logIn , loginHandler,logoutHandler}) {
 
   /////temp switch for component
-  const [logIn , setLogIn] = useState(false)
-  const loginHandler = () => setLogIn(true)
-  const logoutHandler = () => setLogIn(false)
+
 
   if (logIn){
     return (
