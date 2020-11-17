@@ -12,9 +12,7 @@ export default function Header() {
           <h1>GroundRnR</h1>
         </Link>
         <div className="top-icons">
-          <Link to=''>
-            <Account />
-          </Link>
+          <Account />
           <Inbox />
         </div>
       </div>
