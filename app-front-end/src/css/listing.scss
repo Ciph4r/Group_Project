@@ -69,6 +69,11 @@
         display: flex;
         flex-direction: column;
         padding: 1.5rem 1rem;
+        .car-option{
+            display: flex;
+            flex-direction: row;
+ 
+        }
     }
     .login-btn{
         background-color: #293d3d;
