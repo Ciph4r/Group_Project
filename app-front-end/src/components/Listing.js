@@ -42,13 +42,12 @@ const tempData = [
 
 
 
-
 const ListingCard = (data) => {
     const [value, onChange] = useState(new Date());
     let {img,year,make,model,price} =data
 
     return(
-        <div className='card'>
+        <div className='listing-card card'>
             <div className='calender'>
                 <Calendar onChange={onChange}value={value}/>
             </div>
