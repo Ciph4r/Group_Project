@@ -17,11 +17,11 @@ export default function LoginRegister({loginHandler}) {
             <LoginModal closeLoginHandler = {closeLoginHandler} openLogin ={openLogin} loginHandler= {loginHandler}/>
             <button
             onClick={openLoginHandler}
-            class="btn"
+            className="btn"
             >Login</button>
             <RegisterModal closeRegisterHandler = {closeRegisterHandler} openRegister ={openRegister}/>
             <button 
-            class="btn"
+            className="btn"
             onClick={openRegisterHandler}
             >Register</button>
         </div>

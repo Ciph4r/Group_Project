@@ -25,7 +25,7 @@ export default function Account ({logoutHandler}) {
     return (
             <div>
               <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-              <div class="notification">
+              <div className="notification">
               <AccountCircleIcon style={{ color: '#d9d9d9' }}  />
               </div>
                 

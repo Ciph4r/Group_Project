@@ -81,9 +81,9 @@ export default function Inbox () {
             <MailModal closeMailHandler= {closeMailHandler} openMail={openMail} tempData = {tempData} messageHandler= {messageHandler}>
 
             </MailModal>
-            <div class="notification" onClick={openMailHandler}>
+            <div className="notification" onClick={openMailHandler}>
                 <EmailIcon style={{ color: '#d9d9d9' }} />
-                 <span class="badge">{mailCount}</span>
+                 <span className="badge">{mailCount}</span>
             </div>
             {/* <EmailIcon style={{ color: '#d9d9d9',cursor: 'pointer' }} onClick={openMailHandler} /> */}
         </div>
