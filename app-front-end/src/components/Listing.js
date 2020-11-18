@@ -84,7 +84,7 @@ export default function Listing(props) {
                 <Divider />
                 <div className='create-listing'>
                     <button onClick={()=> setShowCreateModal(true)}>Create New Listing</button>
-                    <CreateListingModal showCreateModal={showCreateModal}/>
+                    <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal}/>
                 </div>
                 <div className='main-content'>
                     {tempData.map((data, key) => (
