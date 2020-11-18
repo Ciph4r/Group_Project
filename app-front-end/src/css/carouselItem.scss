@@ -1,0 +1,16 @@
+// .Carousel-root-1 {
+//   display: inline-block;
+// }
+
+  .carousel-item {
+    display: inline-block;
+
+    img {
+      width: 25%;
+      border-radius: 6px;
+    }
+    h2,
+    h4 {
+      margin: 0.5rem;
+    }
+  }

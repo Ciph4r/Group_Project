@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import Card from './Card';
 import Search from './Search';
 import Filter from './Filter';
+import CarCarousel from './carousel/CarCarousel';
 import CardModal from './CardModal';
 import '../css/home.scss';
 
@@ -49,6 +50,7 @@ export default function Home() {
 
   return (
     <div className="home">
+      <CarCarousel />
       <Search />
       <Filter />
       <div className="home-content">
