@@ -29,19 +29,33 @@
     align-items: center;
     justify-content: space-between;
 
-    .car-info {
+    .car-info-left {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
 
-      h3,
-      h4 {
+      h3 {
         margin: 0;
         padding: 0;
       }
 
       .price {
         padding-top: 2px;
+      }
+    }
+
+    .car-info-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      h4 {
+        margin: 0;
+        padding: 0;
+      }
+
+      span {
+        font-weight: bold;
       }
     }
   }
