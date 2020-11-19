@@ -19,14 +19,14 @@ export default function User(){
             </div>
             <div className='user-info'>
                 <div className='name-input'>
-                <TextField id="standard-basic" label="First Name" value= {firstName} onChange={(e) => setFirstName(e.target.value)}/>
-                <TextField id="standard-basic" label="Last Name"  value= {lastName} onChange={(e) => setLastName(e.target.value)}/>
+                <TextField  label="First Name" value= {firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                <TextField  label="Last Name"  value= {lastName} onChange={(e) => setLastName(e.target.value)}/>
                 </div>
                 <TextField id="filled-read-only-input" label="Email" defaultValue="JOHNDOE@GOOGLE.COM" variant="filled"InputProps={{readOnly:true}}/>
-                <TextField id="standard-basic" type="number" label="Phone #" />
-                <TextField id="standard-basic" label="State" />
-                <TextField id="standard-basic" type="password" label="Password" value= {password} onChange={(e) => setPasswordName(e.target.value)}/>
-                <TextField id="standard-basic" type="password" label="New Password" value= {newPassword} onChange={(e) => setNewPasswordName(e.target.value)}/>
+                <TextField  type="number" label="Phone #" />
+                <TextField  label="State" />
+                <TextField  type="password" label="Password" value= {password} onChange={(e) => setPasswordName(e.target.value)}/>
+                <TextField  type="password" label="New Password" value= {newPassword} onChange={(e) => setNewPasswordName(e.target.value)}/>
             </div>
             <div className ='submit-btn'>
 

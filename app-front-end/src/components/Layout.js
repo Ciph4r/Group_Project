@@ -54,7 +54,6 @@ export default function Layout (props) {
                     <div className='page-item'>
                         <div className='page-content'>
                             {props.children}
-                            {/* <ArrowForwardIosIcon onClick={() => console.log('gg')}/> */}
                             <div className='sidebar-toggle'>
                                 {sidebarToggle ? <ArrowForwardIosIcon className='arrow' onClick={() => setSidebarToggle(false)}/> :<ArrowBackIosIcon className='arrow' onClick={() => setSidebarToggle(true)}/>}
                             </div>

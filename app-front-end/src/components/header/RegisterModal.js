@@ -16,12 +16,12 @@ export const RegisterModal = ({openRegister , closeRegisterHandler}) => {
                      <span className='close-modal-btn' onClick={closeRegisterHandler}><h2>x</h2></span>
             </div>
             <div className='modal-content'>
-                <TextField id="standard-basic" label="FirstName" />
-                <TextField id="standard-basic" label="LastName" />
+                <TextField  label="FirstName" />
+                <TextField  label="LastName" />
                 <hr/>
-                <TextField id="standard-basic" label="Email" />
+                <TextField  label="Email" />
                 <hr/>
-                <TextField id="standard-basic" label="Password" />
+                <TextField  label="Password" />
             </div>
             <div className='login-btn' onClick = {() =>{}}>
                 <h2>Register</h2>
