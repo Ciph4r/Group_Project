@@ -48,7 +48,12 @@ export default function CarCarousel(props) {
   ];
 
   return (
-    <Carousel>
+    <Carousel
+      animation="slide"
+      navButtonsAlwaysVisible="true"
+      interval="6000"
+      timeout={800}
+    >
       {items.map((item, i) => (
         <CarouselItem key={i} item={item} />
       ))}
