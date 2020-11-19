@@ -34,10 +34,16 @@
         width: 50%;
         height: 40px;
         margin: auto;
-        color: white;
+        color: lightgrey;
+        border-radius: 180px 180px 180px 180px;
         h2{
             text-align: center;
-            cursor: pointer;
+            
     }   
+        }
+        .login-btn:hover{
+            background: white;
+            color: #293d3d;
+            cursor: pointer;
         }
 }
