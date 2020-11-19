@@ -56,7 +56,7 @@ export default function Layout (props) {
                             {props.children}
                             {/* <ArrowForwardIosIcon onClick={() => console.log('gg')}/> */}
                             <div className='sidebar-toggle'>
-                                {sidebarToggle ? <ArrowForwardIosIcon onClick={() => setSidebarToggle(false)}/> :<ArrowBackIosIcon onClick={() => setSidebarToggle(true)}/>}
+                                {sidebarToggle ? <ArrowForwardIosIcon className='arrow' onClick={() => setSidebarToggle(false)}/> :<ArrowBackIosIcon className='arrow' onClick={() => setSidebarToggle(true)}/>}
                             </div>
                         </div> 
                         {sideBar}

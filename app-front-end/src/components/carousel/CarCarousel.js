@@ -50,7 +50,6 @@ export default function CarCarousel(props) {
   return (
     <Carousel
       animation="slide"
-      navButtonsAlwaysVisible="true"
       interval="6000"
       timeout={800}
     >

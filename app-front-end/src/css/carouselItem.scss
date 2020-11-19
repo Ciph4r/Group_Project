@@ -3,9 +3,30 @@
 //   display: inline-block;
 // }
 
+.carousel {
+  // background-color: #d9d9d9;
+  border-radius: 90px 90px 90px 90px;
+  background: rgb(217, 217, 217);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(217, 217, 217, 1) 41%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(217, 217, 217, 1) 41%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(217, 217, 217, 1) 41%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d9d9d9",endColorstr="#ffffff",GradientType=1);
+}
+
 .carousel-item {
   display: inline-block;
-  margin-top: 1rem;
 
   img {
     width: 25%;
@@ -15,4 +36,8 @@
   h4 {
     margin: 0.5rem;
   }
+}
+h2,
+h4 {
+  margin: 0.5rem;
 }

@@ -3,7 +3,6 @@
     width: 500px;
     background-color: lightgrey;
     margin: 4rem auto;
-    margin-top: 400px;
     .modal-header{
         background-color: #293d3d;
         color: #d9d9d9;
@@ -15,6 +14,13 @@
         h2{
             text-align: center;
             font-size: 1.8rem;
+        }
+        .close-modal-btn{
+            cursor: pointer;
+        }
+        .close-modal-btn:hover{
+            cursor: pointer;
+            color: red;
         }
 
     }
@@ -28,10 +34,16 @@
         width: 50%;
         height: 40px;
         margin: auto;
-        color: white;
+        color: lightgrey;
+        border-radius: 180px 180px 180px 180px;
         h2{
             text-align: center;
-            cursor: pointer;
+            
     }   
+        }
+        .login-btn:hover{
+            background: white;
+            color: #293d3d;
+            cursor: pointer;
         }
 }

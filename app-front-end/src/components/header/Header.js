@@ -31,8 +31,8 @@ export default function Header({logIn , loginHandler,logoutHandler}) {
     return (
       <div className="top-bar">
       <div className="bar">
-        <Link to="/" className="name">
-          <h1>GroundRnR</h1>
+        <Link to="/" className="logo">
+        <img className='img' src='https://www.freelogoservices.com/api/main/images/1j+ojFVDOMkX9Wytexe43D6kifGErhZOmBrNwXs1M3EMoAJtliAogfRt...fU7PExevg9C3ktKMcs8' alt="LOGO"  />
         </Link>      
         <div className="top-icons">
           {main}

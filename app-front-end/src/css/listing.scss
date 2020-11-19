@@ -65,7 +65,7 @@
             
         }
         .close-modal-btn{
-            cursor: pointer;
+            
         }
         .close-modal-btn:hover{
             cursor: pointer;
@@ -115,11 +115,16 @@
         height: 40px;
         margin: auto;
         color: white;
+        border-radius: 180px 180px 180px 180px;
         h2{
             text-align: center;
-            cursor: pointer;
     }   
         }
+    .create-btn:hover{
+        background: white;
+        color: #293d3d;
+        cursor: pointer;
+    }    
 }
 
 .MuiMenu-paper {
