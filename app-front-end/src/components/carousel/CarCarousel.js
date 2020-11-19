@@ -48,10 +48,13 @@ export default function CarCarousel(props) {
   ];
 
   return (
-    <Carousel>
-      {items.map((item, i) => (
-        <CarouselItem key={i} item={item} />
-      ))}
-    </Carousel>
+    <div className='carousel'>
+      <Carousel>
+        {items.map((item, i) => (
+          <CarouselItem key={i} item={item} />
+        ))}
+      </Carousel>
+    </div>
+
   );
 }

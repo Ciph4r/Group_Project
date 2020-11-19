@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: column;
   background-color: #293d3d;
-
   
  
   
@@ -24,14 +23,16 @@
       justify-content: space-between;
       margin: 0 2rem;
 
-      .name {
-        color: #d9d9d9;
-        text-decoration: none;
+      .logo {
+        .img{
+          height: 80px;
+          margin-left: 50px;
+        }
       }
 
-      .name:hover {
-        color: white;
-      }
+      // .name:hover {
+      //   color: white;
+      // }
 
       .top-icons {
         display: flex;
@@ -49,7 +50,8 @@
                 outline: none;
             }
             .btn:hover {
-                background: darkgreen;
+                background: rgb(214, 214, 214);
+                color: #293d3d;
                 cursor: pointer;
                 }
             
@@ -120,6 +122,12 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
+          .arrow{
+            cursor: pointer;
+          }
+          .arrow:hover {
+            color: red;
+          }
 
       }
     }
@@ -136,16 +144,32 @@
         .items {
           background-color: lightgrey;
           width: 260px;
-          height: 1000px;
-          cursor: pointer;
+          height: 950px;
+          border-radius: 15px 0 0 15px;
+          border: 1px solid black;
 
           .box {
             display: flex;
             flex-direction: row;
-            padding-bottom: 20px;
+            margin-top: 20px;
+            background-color: white;
+            
+            border-radius: 60px 0 0 60px;
             img {
+              border-radius: 45px 0px 0px 45px;
               width: 50%;
             }
+          }
+          .box:hover{
+            cursor: pointer;
+            box-shadow:
+            0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+            0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+            0 12.5px 10px rgba(0, 0, 0, 0.06),
+            0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+            0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+            0 100px 80px rgba(0, 0, 0, 0.12)
+          ;
           }
         }
       }

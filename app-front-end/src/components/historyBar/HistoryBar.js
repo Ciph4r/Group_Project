@@ -40,12 +40,7 @@ export default function HistoryBar() {
         'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
       ppd: '$100',
     },
-    {
-      name: 'Mercades',
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      ppd: '$100',
-    },
+
   ];
 
   const [openModal, setOpenModal] = useState(false);

@@ -50,9 +50,10 @@ export default function Home() {
 
   return (
     <div className="home">
-      <CarCarousel />
       <Search />
       <Filter />
+      <CarCarousel />
+ 
       <div className="home-content">
         {tempData.map((data, key) => (
           <div
