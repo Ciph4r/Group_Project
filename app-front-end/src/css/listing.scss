@@ -6,19 +6,25 @@
     min-width: 840px;
     
     .calender{
- 
+        
+        margin: auto;
     }
-    .img{
-        img{
-            max-width: 100%;
-            min-height: 100%;
-            
+    .card-group{
+        display: flex;
+        flex-direction: row;
+        .img{
+            img{
+                max-width: 100%;
+                min-height: 100%;
+                
+            }
+        }
+        .card-content{
+        text-align: center;
+        width: 100%;
         }
     }
-    .card-content{
-    text-align: center;
-    width: 100%;
-    }
+
 }
 
 
@@ -26,6 +32,14 @@
 .listing{
     .content{
         padding-top: 100px;
+        .header{
+            border-radius: 90px 90px 90px 90px;
+            background: rgb(217,217,217);
+            background: -moz-radial-gradient(circle, rgba(217,217,217,1) 41%, rgba(255,255,255,0) 100%);
+            background: -webkit-radial-gradient(circle, rgba(217,217,217,1) 41%, rgba(255,255,255,0) 100%);
+            background: radial-gradient(circle, rgba(217,217,217,1) 41%, rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d9d9d9",endColorstr="#ffffff",GradientType=1);
+        }
         .main-content{
 
         }
@@ -38,6 +52,16 @@
 
 .create-listing{
     margin-top: 100px;
+    button{
+        background-color: #293d3d;
+        color: #d9d9d9;
+        width: 8rem;
+        height: 3rem;
+    }
+    button:hover{
+        background-color: lightgrey;
+        color: #293d3d ;
+    }
 }
 .main-content{
     padding-top: 100px;
