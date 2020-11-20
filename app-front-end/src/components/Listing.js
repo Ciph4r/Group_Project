@@ -7,7 +7,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { useSelector, useDispatch, connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 
@@ -75,6 +75,7 @@ const ListingCard = (data , prefillModal,key) => {
 
 export default function Listing(props) {
     const carData = useSelector((state) => state.car)
+
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [dataState , setData]= useState({img:[]})
 

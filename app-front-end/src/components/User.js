@@ -1,15 +1,44 @@
 import {React , useState} from 'react'
 import '../css/user.scss'
 import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MaskedInput from 'react-text-mask';
+import PropTypes from 'prop-types';
+
+function TextMaskCustom(props) {
+    const { inputRef, ...other } = props;
+  
+    return (
+      <MaskedInput
+        {...other}
+        ref={(ref) => {
+          inputRef(ref ? ref.inputElement : null);
+        }}
+        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+        placeholderChar={'\u2000'}
+        showMask
+      />
+    );
+  }
 
 
+TextMaskCustom.propTypes = {
+    inputRef: PropTypes.func.isRequired,
+  };
 
 export default function User(){
 
-    const [firstName , setFirstName] = useState('')
-    const [lastName , setLastName] = useState('')
-    const [password , setPasswordName] = useState('')
-    const [newPassword , setNewPasswordName] = useState('')
+    const [userData,setUserData] = useState({})
+
+    const setDataHandler = (e) => {
+        let newUserData = userData
+        newUserData[e.name] = e.value
+        setUserData({
+           ...userData,newUserData
+        })
+    }
 
 
     return (
@@ -19,18 +48,26 @@ export default function User(){
             </div>
             <div className='user-info'>
                 <div className='name-input'>
-                <TextField  label="First Name" value= {firstName} onChange={(e) => setFirstName(e.target.value)}/>
-                <TextField  label="Last Name"  value= {lastName} onChange={(e) => setLastName(e.target.value)}/>
+                <TextField  label="First Name" name='firstName' value= {userData.firstName} onChange={(e)=>{setDataHandler(e.target)}}/>
+                <TextField  label="Last Name"  name='lastName' value= {userData.lastName} onChange={(e)=>{setDataHandler(e.target)}}/>
                 </div>
-                <TextField id="filled-read-only-input" label="Email" defaultValue="JOHNDOE@GOOGLE.COM" variant="filled"InputProps={{readOnly:true}}/>
-                <TextField  type="number" label="Phone #" />
-                <TextField  label="State" />
-                <TextField  type="password" label="Password" value= {password} onChange={(e) => setPasswordName(e.target.value)}/>
-                <TextField  type="password" label="New Password" value= {newPassword} onChange={(e) => setNewPasswordName(e.target.value)}/>
+                <TextField id="filled-read-only-input" name='email' label="Email" defaultValue="JOHNDOE@GOOGLE.COM" variant="filled"InputProps={{readOnly:true}}/>
+                
+                <FormControl>
+                    <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
+                    <Input
+                    value={userData.phone}
+                    onChange={(e)=>{setDataHandler(e.target)}}
+                    name="phone"
+                    inputComponent={TextMaskCustom}
+                    />
+                </FormControl>
+
+                <TextField  label="State" value= {userData.state} name='state' onChange={(e)=>{setDataHandler(e.target)}}/>
+                <TextField  type="password" label="Password" name='password' value= {userData.password} onChange={(e)=>{setDataHandler(e.target)}}/>
+                <TextField  type="password" label="New Password" name='newPassword' value= {userData.newPassword} onChange={(e)=>{setDataHandler(e.target)}}/>
             </div>
             <div className ='submit-btn'>
-
-
             </div>
         </div>
     )

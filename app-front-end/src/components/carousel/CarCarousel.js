@@ -2,55 +2,16 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import CarouselItem from './CarouselItem';
 import '../../css/carouselItem.scss';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 export default function CarCarousel(props) {
-  const items = [
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-  ];
+  const carData = useSelector((state) => state.car)
 
   return (
     <div className="carousel">
       <Carousel animation="slide" interval="8000" timeout={800}>
-        {items.map((item, i) => (
+        {carData.map((item, i) => (
           <CarouselItem key={i} item={item} />
         ))}
       </Carousel>

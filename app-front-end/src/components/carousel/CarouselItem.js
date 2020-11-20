@@ -3,7 +3,7 @@ import React from 'react';
 export default function CarouselItem(props) {
   return (
     <div className="carousel-item">
-      <img src={props.item.img} alt="..." />
+      <img src={props.item.img[0]} alt="..." />
       <div className="carousel-item-body">
         <div className="carousel-item-header">
           <div className="carousel-item-info">

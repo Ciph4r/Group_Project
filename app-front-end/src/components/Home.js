@@ -5,45 +5,14 @@ import Filter from './Filter';
 import CarCarousel from './carousel/CarCarousel';
 import CardModal from './CardModal';
 import '../css/home.scss';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 export default function Home() {
-  const tempData = [
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-  ];
+
+  const carData = useSelector((state) => state.car)
 
   const [openModal, setOpenModal] = useState(false);
-
   const closeModalHandler = () => setOpenModal(false);
   const openModalHandler = () => setOpenModal(true);
   const [data, setData] = useState({});
@@ -55,7 +24,7 @@ export default function Home() {
       <CarCarousel />
  
       <div className="home-content">
-        {tempData.map((data, key) => (
+        {carData.map((data, key) => (
           <div
             className="box"
             key={key}

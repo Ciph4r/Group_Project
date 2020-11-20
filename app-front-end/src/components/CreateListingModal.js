@@ -44,12 +44,11 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
 
    
     const setDataHandler = (e) => {
-    
         let newData = data
         newData[e.name] = e.value
-       setData({
+        setData({
            ...data,newData
-       })
+        })
     }
 
 

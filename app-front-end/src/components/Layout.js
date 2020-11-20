@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from './header/Header'
 import HistoryBar from './historyBar/HistoryBar'
 import '../css/layout.scss'
@@ -9,25 +9,18 @@ export default function Layout (props) {
     const [logIn , setLogIn] = useState(false)
     const loginHandler = () => setLogIn(true)
     const logoutHandler = () => setLogIn(false)
-    const [sidebarToggle,setSidebarToggle]=useState(false)
+    const [sidebarToggle,setSidebarToggle] =useState(false)
+ 
     
-
+///////////////////// side bar arrow switch
     let sideBar
     let arrowToggle
-    
-
-
   if (sidebarToggle){
     sideBar = (    
       <React.Fragment>
           <HistoryBar/>
       </React.Fragment>
       )
-    //   arrowToggle = (    
-    //     <React.Fragment>
-    //           <ArrowForwardIosIcon onClick={(handleSidebarToggle)}/>
-    //     </React.Fragment>
-    //   )
     }else{
         sideBar = (
         <React.Fragment>
@@ -35,14 +28,8 @@ export default function Layout (props) {
             </div>
         </React.Fragment>
       )
-    //   arrowToggle = (
-    //     <React.Fragment>
-    //         <ArrowBackIosIcon onClick={(handleSidebarToggle)}/>
-    //     </React.Fragment>
-    //   )
-    }
-
-
+        }
+////////////////////////
  
         return (
             <div className='Main'>
@@ -50,6 +37,7 @@ export default function Layout (props) {
                 logIn={logIn}
                 loginHandler={loginHandler}
                 logoutHandler={logoutHandler}
+
                 />
                     <div className='page-item'>
                         <div className='page-content'>
