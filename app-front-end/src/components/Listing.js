@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 
-const ListingCard = (data , prefillModal,key) => {
+const ListingCard = (data , modalType,key ,setShowCreateModal) => {
     const [value, onChange] = useState(new Date());
     // const [showCreateModal, setShowCreateModal] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -24,7 +24,7 @@ const ListingCard = (data , prefillModal,key) => {
       setAnchorEl(null);
     };
 
-    let {img,year,make,model,price} = data
+    let {img,year,make,model,price,id} = data
 
     return(
         <div className='listing-card card' key={key}>
@@ -62,7 +62,7 @@ const ListingCard = (data , prefillModal,key) => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={()=> prefillModal(key)}>Edit</MenuItem>
+                        <MenuItem onClick={()=> modalType(id)}>Edit</MenuItem>
                         <MenuItem onClick={handleClose}>Delete</MenuItem>
                     </Menu>    
                 </div>
@@ -77,16 +77,34 @@ export default function Listing(props) {
     const carData = useSelector((state) => state.car)
 
     const [showCreateModal, setShowCreateModal] = useState(false);
-    const [dataState , setData]= useState({img:[]})
+    const [dataState , setData]= useState()
+    // const [modalType , setModalType] = useState()
+    
+    // let modal = <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} listingData={dataState} type = {'Create'} />
 
-    const prefillModal = (key) => {
-      setData(carData[key])
+
+    // const modalType = (key) => {
+    //   if (key ===false){
+    //     setData({img:[]})
+    //     modal = (
+    //       <>
+    //       <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} listingData={dataState} type = {'Create'} />
+    //       </>
+    //     )
+    //   }else{
+    //     setData(carData[key])
+    //     modal = (
+    //       <>
+    //       <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} listingData={dataState} type = {'Edit'} />
+    //       </>
+    //     )
+    //   }
+    //   setShowCreateModal(true)
+    // }
+    const modalType = (id) => {
+      setData(id)
       setShowCreateModal(true)
     }
-
-
-    
-
 
     return (
         <div className='listing'>
@@ -95,12 +113,12 @@ export default function Listing(props) {
                   <h1> My Listing</h1>
                 </div>           
                 <div className='create-listing'>
-                    <button onClick={()=> prefillModal({img:[]})}>Create New Listing</button>
-                    <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} listingData={dataState} />
+                    <button onClick={()=> modalType(false)}>Create New Listing</button>
+                    <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} id={dataState}  />
                 </div>
                 <div className='main-content'>
                     {carData.map((data, key) => (
-                    ListingCard(data ,prefillModal,key)
+                    ListingCard(data ,modalType ,key ,setShowCreateModal)
                     ))}
                 </div>
             </div>

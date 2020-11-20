@@ -4,34 +4,18 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import MaskedInput from 'react-text-mask';
 import PropTypes from 'prop-types';
+import TextMaskCustom from '../helperFunctions/textMaskCuston'
 
-function TextMaskCustom(props) {
-    const { inputRef, ...other } = props;
-  
-    return (
-      <MaskedInput
-        {...other}
-        ref={(ref) => {
-          inputRef(ref ? ref.inputElement : null);
-        }}
-        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-        placeholderChar={'\u2000'}
-        showMask
-      />
-    );
-  }
 
 
 TextMaskCustom.propTypes = {
     inputRef: PropTypes.func.isRequired,
   };
 
+
 export default function User(){
-
     const [userData,setUserData] = useState({})
-
     const setDataHandler = (e) => {
         let newUserData = userData
         newUserData[e.name] = e.value

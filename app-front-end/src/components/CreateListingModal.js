@@ -11,8 +11,8 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
   } from '@material-ui/pickers';
-  import DateFnsUtils from '@date-io/date-fns';
-
+import DateFnsUtils from '@date-io/date-fns';
+import { useSelector, useDispatch } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -32,17 +32,24 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingData}) => {
+export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
+    const initialStateData={
+        model:'',
+        make:'',
+        year:1950,
+        door:2,
+        vehicle:'Sedan',
+        color:10,
+        img:[]
+    }
 
+    const carData = useSelector((state) => state.car)
     const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
-    const [data,setData] = useState({img:[]})
-
-    useEffect(()=> {
-        setData({...listingData})    
-    },[listingData])
+    const [data,setData] = useState({...initialStateData})
+    
 
 
-   
+  
     const setDataHandler = (e) => {
         let newData = data
         newData[e.name] = e.value
@@ -67,18 +74,15 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
       const classes = useStyles();
 
 
-    //   let modal = <div></div>;
 
-    //   if(listingData){
-    //       modal = (
-    //           <React.Fragment>
-
-    //           </React.Fragment>
-    //       )
-    //   }
-
-
-
+      useEffect(()=> {
+            if(id){
+            let editData = carData.find((car) =>{return car.id === id})
+            setData({...editData})  
+          }else{
+            setData({...initialStateData})
+          }
+     },[id])
 
 
     return (
@@ -86,7 +90,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
         ariaHideApp={false}
         >
             <div className='modal-header'>
-                     <h2>Create Listing</h2>
+                    <h2>{id ? 'Edit Listing' :'Create Listing'}</h2>
                      <span className='close-modal-btn' onClick={() => {setShowCreateModal(false)}}><h2>x</h2></span>
             </div>
             <div className='modal-content'>
@@ -215,18 +219,17 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
                     <TextField  type="number" label="Price Per Day" value={data.price}  name='price' onChange={(e)=>{setDataHandler(e.target)}}  />
                 </div>
                 <div className='img-upload'>
-                <img className='img' src= {data.img.length > 0 ? data.img[0] : placeholderImg} alt="Thumbnail"  />
-                <img className='img' src= {data.img.length > 1 ? data.img[1] : placeholderImg} alt="Thumbnail"  />
-                <img className='img' src= {data.img.length > 2 ? data.img[2] : placeholderImg}  alt="Thumbnail"  />
-                <img className='img' src= {data.img.length > 3 ? data.img[3] : placeholderImg}  alt="Thumbnail"  />
-
+                    <img className='img' src= {data.img.length > 0 ? data.img[0] : placeholderImg} alt="Thumbnail"  />
+                    <img className='img' src= {data.img.length > 1 ? data.img[1] : placeholderImg} alt="Thumbnail"  />
+                    <img className='img' src= {data.img.length > 2 ? data.img[2] : placeholderImg}  alt="Thumbnail"  />
+                    <img className='img' src= {data.img.length > 3 ? data.img[3] : placeholderImg}  alt="Thumbnail"  />
                 </div>
             </div>
 
 
 
             <div className='create-btn' onClick = {() =>{}}>
-                <h2>Create</h2>
+                        <h2>{id ? 'Edit' : 'Create'}</h2>
             </div>
         </Modal>
     )
