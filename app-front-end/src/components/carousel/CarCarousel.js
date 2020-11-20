@@ -48,14 +48,12 @@ export default function CarCarousel(props) {
   ];
 
   return (
-    <Carousel
-      animation="slide"
-      interval="6000"
-      timeout={800}
-    >
-      {items.map((item, i) => (
-        <CarouselItem key={i} item={item} />
-      ))}
-    </Carousel>
+    <div className="carousel">
+      <Carousel animation="slide" interval="8000" timeout={800}>
+        {items.map((item, i) => (
+          <CarouselItem key={i} item={item} />
+        ))}
+      </Carousel>
+    </div>
   );
 }

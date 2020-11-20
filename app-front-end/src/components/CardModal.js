@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import ModalCarousel from './ModalCarousel';
 import ChatIcon from '@material-ui/icons/Chat';
 import IconButton from '@material-ui/core/IconButton';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
@@ -11,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     width: '70%',
     backgroundColor: 'white',
     boxShadow: theme.shadows[5],
+    outline: 'none',
   },
 }));
 
@@ -26,7 +28,7 @@ export default function CardModal({ openModal, closeModal, data }) {
       <div className="card-modal">
         <div className="card-modal-main">
           <div className="card-modal-col1">
-            <img src={img} alt="..." />
+            <ModalCarousel />
             <div className="info-body">
               <div className="car-info-left">
                 <h2 className="year-make">
