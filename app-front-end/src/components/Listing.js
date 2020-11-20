@@ -1,57 +1,20 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import '../css/listing.scss';
-import Divider from '@material-ui/core/Divider';
 import 'react-calendar/dist/Calendar.css';
 import {CreateListingModal} from './CreateListingModal'
-
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
-
-const tempData = [
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-    {
-      img:
-        'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: '$150',
-    },
-  ];
+import { useSelector, useDispatch, connect } from 'react-redux'
 
 
 
-const ListingCard = (data) => {
+const ListingCard = (data , prefillModal,key) => {
     const [value, onChange] = useState(new Date());
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    // const [showCreateModal, setShowCreateModal] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -61,16 +24,16 @@ const ListingCard = (data) => {
       setAnchorEl(null);
     };
 
-    let {img,year,make,model,price} =data
+    let {img,year,make,model,price} = data
 
     return(
-        <div className='listing-card card'>
+        <div className='listing-card card' key={key}>
             <div className='calender'>
                 <Calendar onChange={onChange}value={value}/>
             </div>
             <div className='card-group'>
               <div className='img'>
-                  <img src={img} alt="..." />
+                  <img src={img[0]} alt="..." />
               </div>
               <div className='card-content'>
                   <div className="car-info">
@@ -87,9 +50,11 @@ const ListingCard = (data) => {
             </div>
        
             <div className='msg-options'>
-                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                        <MoreHorizIcon fontSize="large"/>
-                    </Button>
+              <div className='option-btn'>
+                  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                        <MoreVertIcon fontSize="large"/>
+                  </Button>
+              </div>
                     <Menu
                         id="simple-menu"
                         anchorEl={anchorEl}
@@ -97,12 +62,11 @@ const ListingCard = (data) => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
+                        <MenuItem onClick={()=> prefillModal(key)}>Edit</MenuItem>
                         <MenuItem onClick={handleClose}>Delete</MenuItem>
-                        {/* <MenuItem onClick={handleClose}>...</MenuItem>
-                        <MenuItem onClick={handleClose}>...</MenuItem> */}
                     </Menu>    
                 </div>
-
+                {/* <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} listingData={data}/> */}
         </div>
     )
 }
@@ -110,8 +74,18 @@ const ListingCard = (data) => {
 
 
 export default function Listing(props) {
-
+    const carData = useSelector((state) => state.car)
     const [showCreateModal, setShowCreateModal] = useState(false);
+    const [dataState , setData]= useState({img:[]})
+
+    const prefillModal = (key) => {
+      setData(carData[key])
+      setShowCreateModal(true)
+    }
+
+
+    
+
 
     return (
         <div className='listing'>
@@ -120,12 +94,12 @@ export default function Listing(props) {
                   <h1> My Listing</h1>
                 </div>           
                 <div className='create-listing'>
-                    <button onClick={()=> setShowCreateModal(true)}>Create New Listing</button>
-                    <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal}/>
+                    <button onClick={()=> prefillModal({img:[]})}>Create New Listing</button>
+                    <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} listingData={dataState} />
                 </div>
                 <div className='main-content'>
-                    {tempData.map((data, key) => (
-                    ListingCard(data)
+                    {carData.map((data, key) => (
+                    ListingCard(data ,prefillModal,key)
                     ))}
                 </div>
             </div>

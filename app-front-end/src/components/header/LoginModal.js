@@ -16,9 +16,9 @@ export const LoginModal = ({openLogin , closeLoginHandler , loginHandler}) => {
                      <span className='close-modal-btn' onClick={closeLoginHandler}><h2>x</h2></span>
             </div>
             <div className='modal-content'>
-                <TextField id="standard-basic" label="Email" />
+                <TextField  label="Email" />
                 <hr/>
-                <TextField id="standard-basic" label="Password" />
+                <TextField  label="Password" />
             </div>
             <div className='login-btn' onClick = {() => loginHandler()}>
                 <h2>Login</h2>

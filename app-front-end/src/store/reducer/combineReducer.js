@@ -1,9 +1,9 @@
-import {tempReducer} from './tempReducer'
+import {userReducer} from './userReducer'
 import {combineReducers} from 'redux'
-import {tempReducer2} from './anotherTempReducer'
+import {carReducer} from './carReducer'
 
 
-export const allReducers = combineReducers({temp: tempReducer , anotherState: tempReducer2})
+export const allReducers = combineReducers({user: userReducer , car: carReducer})
 
 
 
