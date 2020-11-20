@@ -1,48 +1,13 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import '../css/listing.scss';
-import Divider from '@material-ui/core/Divider';
 import 'react-calendar/dist/Calendar.css';
 import {CreateListingModal} from './CreateListingModal'
-
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
-
-const tempData = [
-    {
-      img:['https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
-      'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'
-    ],
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: 150,
-    },
-    {
-      img:['https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'],
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: 150,
-    },
-    {
-      img:['https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'],
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: 150,
-    },
-    {
-      img:['https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'],
-      year: '2011',
-      make: 'Dodge',
-      model: 'Charger',
-      price: 150,
-    },
-  ];
+import { useSelector, useDispatch, connect } from 'react-redux'
 
 
 
@@ -66,7 +31,7 @@ const ListingCard = (data , prefillModal,key) => {
             <div className='calender'>
                 <Calendar onChange={onChange}value={value}/>
             </div>
-            <div className='card-group' onClick={handleClick}>
+            <div className='card-group'>
               <div className='img'>
                   <img src={img[0]} alt="..." />
               </div>
@@ -97,7 +62,7 @@ const ListingCard = (data , prefillModal,key) => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={()=> prefillModal(data)}>Edit</MenuItem>
+                        <MenuItem onClick={()=> prefillModal(key)}>Edit</MenuItem>
                         <MenuItem onClick={handleClose}>Delete</MenuItem>
                     </Menu>    
                 </div>
@@ -109,14 +74,18 @@ const ListingCard = (data , prefillModal,key) => {
 
 
 export default function Listing(props) {
-
+    const carData = useSelector((state) => state.car)
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [dataState , setData]= useState({img:[]})
 
-    const prefillModal = (data) => {
-      setData(data)
+    const prefillModal = (key) => {
+      setData(carData[key])
       setShowCreateModal(true)
     }
+
+
+    
+
 
     return (
         <div className='listing'>
@@ -126,11 +95,11 @@ export default function Listing(props) {
                 </div>           
                 <div className='create-listing'>
                     <button onClick={()=> prefillModal({img:[]})}>Create New Listing</button>
-                    <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} listingData={dataState}/>
+                    <CreateListingModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} listingData={dataState} />
                 </div>
                 <div className='main-content'>
-                    {tempData.map((data, key) => (
-                    ListingCard(data ,prefillModal , key)
+                    {carData.map((data, key) => (
+                    ListingCard(data ,prefillModal,key)
                     ))}
                 </div>
             </div>

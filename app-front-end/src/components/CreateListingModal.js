@@ -38,15 +38,13 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
     const [data,setData] = useState({img:[]})
 
     useEffect(()=> {
-        setData(listingData)
-    })
-    // if(showCreateModal){
-    //     setData(listingData ? listingData : {img:[]})
-    // }
-    
+        setData({...listingData})    
+    },[listingData])
+
 
    
     const setDataHandler = (e) => {
+    
         let newData = data
         newData[e.name] = e.value
        setData({
@@ -79,7 +77,8 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
     //           </React.Fragment>
     //       )
     //   }
-  
+
+
 
 
 
@@ -97,9 +96,9 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
                 <hr/>
                 <div className='car-option'>
                     <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label">Year</InputLabel>
+                        <InputLabel >Year</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
+                            
                             className='year-select'
                             name='year'
                             id="Year"
@@ -112,9 +111,9 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
                     </FormControl>
                     
                     <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label">Door #</InputLabel>
+                        <InputLabel>Door #</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
+                            
                             id="Door"
                             name='door'
                             value={data.door}
@@ -128,9 +127,9 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
                     </FormControl>
 
                     <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label">Vehicle</InputLabel>
+                        <InputLabel>Vehicle</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
+                            
                             id="VehicleClass"
                             value={data.vehicle}
                             onChange={(e)=>{setDataHandler(e.target)}}
@@ -148,7 +147,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,listingDa
                     <FormControl className={classes.formControl}>
                         <InputLabel id="demo-simple-select-label">Color</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
+                            
                             id="Color"
                             value={data.color}
                             onChange={(e)=>{setDataHandler(e.target)}}
