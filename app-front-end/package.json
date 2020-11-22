@@ -18,6 +18,8 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-calendar": "^3.2.1",
+    "react-chat-widget": "^3.0.5",
+    "react-chat-window": "^1.2.1",
     "react-dom": "^17.0.1",
     "react-material-ui-carousel": "^2.1.1",
     "react-modal": "^3.11.2",

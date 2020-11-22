@@ -1,11 +1,16 @@
-import {React , useState} from 'react'
+import {React} from 'react'
 import Modal from 'react-modal'
 import '../../css/mailModal.scss'
 import {InboxItem} from './InboxItem'
+import {changetoRead} from '../../store/actions/inbox'
+import {useDispatch} from 'react-redux'
+
+
+export const MailModal = ({openMail, closeMailHandler , inbox,OpenMessageHandler}) => {
+    const dispatch = useDispatch()
 
 
 
-export const MailModal = ({openMail, closeMailHandler , tempData ,messageHandler }) => {
     return (
             <Modal isOpen={openMail} className='modal' 
             ariaHideApp={false}
@@ -15,12 +20,11 @@ export const MailModal = ({openMail, closeMailHandler , tempData ,messageHandler
                      <span className='close-modal-btn' onClick={closeMailHandler}><h2>x</h2></span>
                 </div>
                 <div className='modal-content'>
-                         {tempData.map((data, idx) => (
+                         {inbox.map((inbox, idx) => (
                              <InboxItem 
-                              onClick = {() => messageHandler(idx)}
+                              onClick = {() => OpenMessageHandler(inbox)}
                               key = {idx} 
-                              data = {data}
-                              idx = {idx}
+                              data = {inbox}
                              />
                          ))}
                  </div>

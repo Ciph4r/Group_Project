@@ -9,8 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 
 
-
-export const InboxItem = (props ) => {
+export const InboxItem = ({data,onClick} ) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -24,13 +23,13 @@ export const InboxItem = (props ) => {
 
 
     
-    const {img, name , date, message ,read } = props.data
+    const {img, receiver , date, messages ,read } = data
 
     return (
-        <div className= 'inbox-item' onClick = {props.onClick}>
+        <div className= 'inbox-item' onClick = {onClick}>
             <div className = 'info'>
                 <div className= 'sender'>
-                     <h2>{name}</h2>
+                     <h2>{receiver}</h2>
                 </div>
                 <div className = 'time'>
                     <h2>{date}</h2>
@@ -40,7 +39,7 @@ export const InboxItem = (props ) => {
             <div className={read ? 'content' : 'content read'}  >
                 <img  src={img} alt="Thumbnail"  />
                 <div className= 'msg-content'>
-                    <h4>{message.length > 30 ? message.slice(0,30) + ' ...' : message}</h4>
+                    <h4>{messages.[messages.length-1].message.length > 30 ? messages.[messages.length -1].message.slice(0,30) + ' ...' : messages.[messages.length -1].message}</h4>
                 </div>
                 <div className='msg-options'>
                     <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
@@ -64,3 +63,5 @@ export const InboxItem = (props ) => {
         </div>
     )
 }
+
+

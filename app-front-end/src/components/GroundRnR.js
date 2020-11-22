@@ -11,6 +11,8 @@ import Listing from './Listing';
 import Favorties from './Favorites';
 import User from './User'
 import NotFound from './NotFound';
+import MessageBox from './messageBox/MessageBox'
+
 
 
 
@@ -23,7 +25,8 @@ import NotFound from './NotFound';
 
                         <Route exact path="/">
                             <Layout>
-                                <Home/>
+                                <MessageBox/>
+                                {/* <Home/> */}
                             </Layout>
                         </Route>
 
