@@ -1,4 +1,4 @@
-const intstate = [
+const initialstate = [
   {
     img:['https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg',
     'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iho0QqgeF4K8/v1/-1x-1.jpg'
@@ -35,6 +35,6 @@ const intstate = [
   },
 ]
 
-  export const carReducer = (state = intstate , action) => {
+  export const carReducer = (state = initialstate , action) => {
     return state
   }

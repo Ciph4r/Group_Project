@@ -31,11 +31,12 @@ export default function Account ({logoutHandler}) {
                 
               </Button>
               <Menu
-                id="simple-menu"
+                id="account-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                // style={{height:'200%'}}
               >
                 <MenuItem onClick={()=> {
                   handleClose()

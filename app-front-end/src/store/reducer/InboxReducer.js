@@ -1,4 +1,4 @@
-const intstate = [
+const initialstate = [
     {   id: 123456789,
         sender:'john',
         receiver:'dave',
@@ -37,7 +37,7 @@ const intstate = [
     }
   ]
   
-    export const inboxReducer = (state = intstate , action) => {
+    export const inboxReducer = (state = initialstate , action) => {
         if(action.type === 'changetoRead'){
             return state.map(item => {
                 if (item.id === action.payload){

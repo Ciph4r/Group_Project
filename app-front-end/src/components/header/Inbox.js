@@ -1,11 +1,13 @@
 import {React , useState ,  useEffect} from 'react'
-import EmailIcon from '@material-ui/icons/Email';
 import {MailModal} from './MailModal'
 import { useSelector} from 'react-redux'
 import MessageBox from '../messageBox/MessageBox'
 import {changetoRead} from '../../store/actions/inbox'
 import {useDispatch} from 'react-redux'
 import { toggleWidget } from 'react-chat-widget';
+import Badge from '@material-ui/core/Badge';
+import MailIcon from '@material-ui/icons/Mail';
+
 
 export default function Inbox () {
     const inboxItem = useSelector((state) => state.inbox)
@@ -43,12 +45,15 @@ export default function Inbox () {
             <MailModal closeMailHandler= {closeMailHandler} openMail={openMail} inbox = {inboxItem} OpenMessageHandler={OpenMessageHandler}>
             </MailModal>
             <div className="notification" onClick={openMailHandler}>
-                <EmailIcon style={{ color: '#d9d9d9' }} />
-                 <span className="badge">{mailCount}</span>
+                <Badge color="secondary" badgeContent={mailCount}>
+                    <MailIcon style={{ color: '#d9d9d9' }}/>
+                </Badge>
             </div>
-            {/* <EmailIcon style={{ color: '#d9d9d9',cursor: 'pointer' }} onClick={openMailHandler} /> */}
             <MessageBox/>
         </div>
 
     )
-}
+    
+    }
+
+
