@@ -13,7 +13,7 @@ export default function CarouselItem(props) {
             <h2>{props.item.model}</h2>
           </div>
           <div className="carousel-item-price">
-            <h4>{props.item.price}</h4>
+            <h4>${props.item.price}</h4>
             <h4>per day</h4>
           </div>
         </div>

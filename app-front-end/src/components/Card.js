@@ -24,7 +24,7 @@ export default function Card(props) {
           <h3 className="model">{model}</h3>
         </div>
         <div className="car-info-right">
-          <h4 className="price">{price}</h4>
+          <h4 className="price">${price}</h4>
           <span>per day</span>
         </div>
       </div>

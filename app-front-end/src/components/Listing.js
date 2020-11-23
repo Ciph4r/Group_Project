@@ -43,7 +43,7 @@ const ListingCard = (data , modalType,key ,setShowCreateModal) => {
                       <h3 className="model">{model}</h3>
                   </div>
                   <div className="car-info">
-                      <h4 className="price">{price}</h4>
+                      <h4 className="price">${price}</h4>
                       <span>per day</span>
                   </div>
               </div>

@@ -37,7 +37,7 @@ export default function CardModal({ openModal, closeModal, data }) {
                 <h2 className="model">{model}</h2>
               </div>
               <div className="car-info-right">
-                <h3 className="price">{price}</h3>
+                <h3 className="price">${price}</h3>
                 <h3>per day</h3>
               </div>
             </div>
