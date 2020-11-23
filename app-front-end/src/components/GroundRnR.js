@@ -25,8 +25,7 @@ import MessageBox from './messageBox/MessageBox'
 
                         <Route exact path="/">
                             <Layout>
-                                <MessageBox/>
-                                {/* <Home/> */}
+                                <Home/>
                             </Layout>
                         </Route>
 
