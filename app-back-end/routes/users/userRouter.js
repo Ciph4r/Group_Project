@@ -9,4 +9,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/register' , register)
 
-  module.exports = router;
+
+
+module.exports = router;
