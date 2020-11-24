@@ -25,10 +25,6 @@ import MessageBox from './messageBox/MessageBox'
 
                         <Route exact path="/">
                             <Layout>
-<<<<<<< HEAD
-                                <MessageBox/>
-=======
->>>>>>> 86b7482a3aeae601d7703c415186416b2e716049
                                 <Home/>
                             </Layout>
                         </Route>
