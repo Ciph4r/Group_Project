@@ -1,19 +1,23 @@
-const User = require('../models/User')
-const bcrypt = require('bcryptjs')
-const {comparePassword} = require('../middleWare/auth')
-const {createJwtToken} = require('../middleWare/token')
-
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const { comparePassword, createUser } = require('../middleWare/auth');
+const { createJwtToken } = require('../middleWare/token');
 
 module.exports = {
-    register: async(req,res,next) => {
-        const {name,email,password} = req.body
-        user = await new User({name ,email , password })
-        
-        await user.save().then((user)=> {
-           return res.status(200).json({message: 'User created' , user,password})
-          })
-
-    },
-
-
-}
+  register: async (req, res) => {
+    try {
+      let newUser = await createUser(req.body);
+      let hashedPassword = await hashPassword(newUser.password);
+      newUser.password = hashedPassword;
+      let savedUser = await newUser.save();
+      res.status(200).json({
+        message: 'Successfully signed up',
+      });
+    } catch (error) {
+      let errorMessage = await errorHandler(error);
+      res.status(409).json({
+        message: errorMessage,
+      });
+    }
+  },
+};
