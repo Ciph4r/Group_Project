@@ -13,7 +13,7 @@ const CarSchema = new mongoose.Schema({
     door: {type:Number , lowercase:true, required:true},
     color: {type:String , lowercase:true, required:true},
     price: {type:Number , required:true},
-    description:{type: String}
+    description:{type: String},
     active : {type:Boolean},
     dateList: {type:Array},
     timestamp: {type:String , default: ()=> moment().format('MMMM Do YYYY, h:mm:ss a')},
