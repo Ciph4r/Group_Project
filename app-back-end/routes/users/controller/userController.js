@@ -29,4 +29,35 @@ module.exports = {
       });
     }
   },
+  login: async (req, res) => {
+    try {
+      let foundUser = await findOneUser(req.body.email);
+
+      if (foundUser === 404) {
+        throw {
+          status: 500,
+          message: 'User not found, please sign up',
+        };
+      }
+      let comparedPassword = await comparePassword(
+        req.body.password,
+        foundUser.password
+      );
+      if (comparedPassword === 409) {
+        throw {
+          status: 409,
+          message: 'Check your email and password',
+        };
+      }
+
+      let jwtToken = await createJwtToken(foundUser);
+      res.status(200).json({
+        token: jwtToken,
+      });
+    } catch (error) {
+      res.status(error.status).json({
+        message: error.message,
+      });
+    }
+  },
 };
