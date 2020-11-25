@@ -1,13 +1,18 @@
-const initialstate = {
-    firstName: 'Dave',
-    lastName: 'doe',
-    email:'davedoe@gmail.com',
-    password:123456
-  }
+import { createSlice } from '@reduxjs/toolkit';
 
-  export const userReducer = (state = initialstate , action) => {
-    if(action.type === 'add'){
-      return [...state , action.num]
-    }
-    return state
-  }
+export const userSlice = createSlice({
+  name: 'auth',
+  initialState: {
+    token: null,
+  },
+  reducers: {
+    setToken: (state, { payload }) => {
+      state.token = payload.token;
+    },
+    logout: (state, { payload }) => {
+      state.token = null;
+    },
+  },
+});
+
+export const { setToken, logout } = userSlice.actions;

@@ -33,7 +33,11 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
+<<<<<<< HEAD
     "redux-thunk": "^2.3.0",
+=======
+    "redux-persist": "^6.0.0",
+>>>>>>> 9158afd18baff4ff3b314950843c9ce37b39117e
     "web-vitals": "^0.2.4"
   },
   "scripts": {
