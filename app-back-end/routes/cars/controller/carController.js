@@ -48,7 +48,7 @@ module.exports = {
         const {make,model,year,vehicleClass,door,color,price,description} = req.body;
         try{
         let newCar = await new Cars({
-            owner: req.user._id,
+            // owner: req.user._id,
             make,
             model,
             year,

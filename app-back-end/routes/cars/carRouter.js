@@ -8,6 +8,6 @@ const {} = require('./middleware/requestValidation')
 router.get('/', allCars)
 router.get('/car/:id',singleCar)
 router.put('/update',updateCar)
-router.post('/create',authenticateToken,createCar)
+router.post('/create',createCar)
 
 module.exports = router;
