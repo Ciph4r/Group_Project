@@ -7,7 +7,7 @@ import '../css/card.scss';
 export default function Card(props) {
   const { img, year, make, model, price } = props.data;
   const [value, setValue] = React.useState(3);
-
+  console.log(img)
   return (
     <div className="card">
       <div className="card-img">

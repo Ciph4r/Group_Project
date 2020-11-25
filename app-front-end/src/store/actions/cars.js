@@ -2,8 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 
 
 
-export default {
-        fetchCars: createAsyncThunk(
+export const fetchCars = createAsyncThunk(
         'fetchCars',
         async (args, thunkAPI) => {
         //   const token = thunkAPI.getState().auth.token;
@@ -19,4 +18,3 @@ export default {
         }
       );
     
-}

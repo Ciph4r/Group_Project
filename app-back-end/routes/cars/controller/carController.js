@@ -45,10 +45,11 @@ module.exports = {
         };
     },
     createCar: async(req,res,next) => {
-        const {make,model,year,vehicleClass,door,color,price,description} = req.body;
+        const {make,model,year,vehicleClass,door,color,price,description,img} = req.body;
         try{
         let newCar = await new Cars({
             // owner: req.user._id,
+            img,
             make,
             model,
             year,

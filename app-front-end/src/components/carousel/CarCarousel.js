@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 export default function CarCarousel(props) {
-  const carData = useSelector((state) => state.car)
+  const carData = useSelector((state) => state.car.cars)
 
   return (
     <div className="carousel">

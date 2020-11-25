@@ -6,28 +6,19 @@ import CarCarousel from './carousel/CarCarousel';
 import CardModal from './CardModal';
 import '../css/home.scss';
 import { useSelector, useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux';
-import { fetchCars } from '../store/reducer/carReducer';
-
+import{fetchCars} from '../store/actions/cars'
 
 export default function Home() {
-  const carData = useSelector((state) => state.car)
+  const carData = useSelector((state) => state.car.cars)
   const [openModal, setOpenModal] = useState(false);
   const closeModalHandler = () => setOpenModal(false);
   const openModalHandler = () => setOpenModal(true);
   const [data, setData] = useState({});
   const dispatch = useDispatch();
 
-  // bindActionCreators(
-  //   {
-  //     fetchCars,
-  //   },
-  //   dispatch
-  // );
-  
   useEffect(()=> {
     dispatch(fetchCars())
-});
+},[]);
 
   return (
     <div className="home">

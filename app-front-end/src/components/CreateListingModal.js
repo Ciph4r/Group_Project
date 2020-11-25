@@ -43,7 +43,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
         img:[]
     }
 
-    const carData = useSelector((state) => state.car)
+    const carData = useSelector((state) => state.car.cars)
     const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
     const [data,setData] = useState({...initialStateData})
     

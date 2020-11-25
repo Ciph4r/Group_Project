@@ -6,7 +6,7 @@ import 'react-chat-widget/lib/styles.css';
 let logo = 'https://i.guim.co.uk/img/media/7a633730f5f90db3c12f6efc954a2d5b475c3d4a/0_138_5544_3327/master/5544.jpg?width=1920&quality=85&auto=format&fit=max&s=28e44fd4e328c9c30918ca277fb38308'
 
 export default function MessageBox() {
-    const carData = useSelector((state) => state.car)
+    const carData = useSelector((state) => state.car.cars)
 
     const [messageList , setMessageList] = useState([
         {John: 'Hi'},

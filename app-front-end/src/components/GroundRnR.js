@@ -15,21 +15,20 @@ import MessageBox from './messageBox/MessageBox'
 
 
 
-
+console.log('gg')
   export default function GroundRnR (){
     
 
         return (
                 <Router>
                     <Switch>
-
                         <Route exact path="/">
                             <Layout>
                                 <Home/>
                             </Layout>
                         </Route>
 
-                        <Route path="/booking">
+                        {/* <Route path="/booking">
                             <Layout>
                                 <Booking/>
                             </Layout>
@@ -58,7 +57,7 @@ import MessageBox from './messageBox/MessageBox'
                             <Layout>
                                 <NotFound/>
                             </Layout>
-                        </Route>
+                        </Route> */}
 
                     </Switch>
                 </Router>

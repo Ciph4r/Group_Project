@@ -74,7 +74,7 @@ const ListingCard = (data , modalType,key ,setShowCreateModal) => {
 
 
 export default function Listing(props) {
-    const carData = useSelector((state) => state.car)
+    const carData = useSelector((state) => state.car.cars)
 
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [dataState , setData]= useState()
