@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const cors = require('cors');
 // const path = require('path');
 // const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -8,20 +9,25 @@ require('dotenv').config();
 
 // const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users/userRouter');
-const carRouter = require('./routes/cars/carRouter')
-const inboxRouter = require('./routes/inbox/inboxRouter')
+const carRouter = require('./routes/cars/carRouter');
+const inboxRouter = require('./routes/inbox/inboxRouter');
 
 const app = express();
 
+app.use(cors());
 
-mongoose.connect(process.env.MONGODB_URI , {
-    useNewUrlParser : true,
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-})
-.then(() => {console.log('mongodb connected')})
-.catch(()=> {console.log('server err')});
-
+  })
+  .then(() => {
+    console.log('mongodb connected');
+  })
+  .catch(() => {
+    console.log('server err');
+  });
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -35,8 +41,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/cars' , carRouter)
-app.use('/inbox' , inboxRouter)
+app.use('/cars', carRouter);
+app.use('/inbox', inboxRouter);
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));
