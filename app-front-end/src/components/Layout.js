@@ -8,7 +8,6 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 export default function Layout (props) {
     const [logIn , setLogIn] = useState(false)
     const loginHandler = () => setLogIn(true)
-    const logoutHandler = () => setLogIn(false)
     const [sidebarToggle,setSidebarToggle] =useState(false)
  
     
@@ -34,9 +33,7 @@ export default function Layout (props) {
         return (
             <div className='Main'>
                 <Header 
-                logIn={logIn}
                 loginHandler={loginHandler}
-                logoutHandler={logoutHandler}
 
                 />
                     <div className='page-item'>
