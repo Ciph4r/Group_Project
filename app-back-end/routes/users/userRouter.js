@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register } = require('./controller/userController');
+const { register, login } = require('./controller/userController');
 const { validateRegister } = require('./middleWare/userRequestValidation');
 
 router.get('/', function (req, res, next) {
@@ -8,5 +8,5 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/register', validateRegister, register);
-
+router.post('/login',login)
 module.exports = router;

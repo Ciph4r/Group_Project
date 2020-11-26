@@ -14,6 +14,32 @@ export const RegisterModal = ({ openRegister, closeRegisterHandler }) => {
   const [errMsg, setErrMsg] = useState('');
   const dispatch = useDispatch();
 
+  const handleRegister = async() => {
+    // validated on client side if field are filled
+    if(!firstName||!lastName||!email||!password){
+      return setErrMsg('All field must be filled')
+    }
+    // send data to backend
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ firstName, lastName, email, password }),
+    });
+    // console.log(response);
+    let jsonData = await response.json();
+    //place error in  message
+    if (jsonData.status === 'error') {
+      setErrMsg(jsonData.message);
+    } else {
+      // set token and auto login 
+      dispatch(setToken({ token: jsonData.token }));
+      closeRegisterHandler();
+    }
+  }
+
+
   return (
     <Modal isOpen={openRegister} className="login-modal" ariaHideApp={false}>
       <div className="modal-header">
@@ -49,23 +75,7 @@ export const RegisterModal = ({ openRegister, closeRegisterHandler }) => {
       </div>
       <div
         className="login-btn"
-        onClick={async () => {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ firstName, lastName, email, password }),
-          });
-          console.log(response);
-          let jsonData = await response.json();
-          if (jsonData.status === 'error') {
-            setErrMsg(jsonData.message);
-          } else {
-            dispatch(setToken({ token: jsonData.token }));
-            closeRegisterHandler();
-          }
-        }}
+        onClick={handleRegister}
       >
         <h2>Register</h2>
       </div>

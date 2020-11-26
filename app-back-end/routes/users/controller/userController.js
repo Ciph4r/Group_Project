@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { comparePassword, createUser } = require('../middleWare/auth');
 const { createJwtToken } = require('../middleWare/token');
@@ -39,33 +38,36 @@ module.exports = {
     }
   },
   login: async (req, res) => {
+    const {email , password} = await req.body
     try {
-      let foundUser = await findOneUser(req.body.email);
-
-      if (foundUser === 404) {
-        throw {
-          status: 500,
-          message: 'User not found, please sign up',
-        };
+      let user = await User.findOne({email})
+      if (!user) {
+        return res.status(500).json({
+          status: 'error',
+          message: 'User Not Found'
+        });
       }
       let comparedPassword = await comparePassword(
-        req.body.password,
-        foundUser.password
+        password,
+        user.password
       );
       if (comparedPassword === 409) {
-        throw {
-          status: 409,
-          message: 'Check your email and password',
-        };
+        return res.status(409).json({
+          status: 'error',
+          message: 'Check your email and password'
+        });
       }
 
-      let jwtToken = await createJwtToken(foundUser);
-      res.status(200).json({
+      let jwtToken = await createJwtToken(user);
+      return res.status(200).json({
+        status: 'success',
+        message: 'Successfully logged in',
         token: jwtToken,
       });
     } catch (error) {
-      res.status(error.status).json({
-        message: error.message,
+      return res.status(500).json({
+        status: 'error',
+        message: error.message
       });
     }
   },
