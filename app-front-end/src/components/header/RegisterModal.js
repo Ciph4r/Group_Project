@@ -50,7 +50,7 @@ export const RegisterModal = ({ openRegister, closeRegisterHandler }) => {
       <div
         className="login-btn"
         onClick={async () => {
-          const response = await fetch('http://localhost:4000/users/register', {
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export const RegisterModal = ({ openRegister, closeRegisterHandler }) => {
           });
           console.log(response);
           let jsonData = await response.json();
-          if (response.status == 409) {
+          if (jsonData.status === 'error') {
             setErrMsg(jsonData.message);
           } else {
             dispatch(setToken({ token: jsonData.token }));

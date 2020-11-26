@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { makeStyles } from '@material-ui/core/styles';
 import '../css/cardModal.scss';
+import { useSelector, useDispatch } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   cardModal: {
@@ -16,9 +17,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CardModal({ openModal, closeModal, data }) {
+
+export default function CardModal({ openModal, closeModal,carId }) {
+  const carData = useSelector((state) => state.car.cars.find(car => car._id === `${carId}`))
   const classes = useStyles();
-  const { img, year, make, model, price } = data;
+
+  const { img, year, make, model, price } = carData;
 
   return (
     <Modal isOpen={openModal} className={classes.cardModal}>

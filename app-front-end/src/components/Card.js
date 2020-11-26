@@ -4,10 +4,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Rating from '@material-ui/lab/Rating';
 import '../css/card.scss';
 
-export default function Card(props) {
-  const { img, year, make, model, price } = props.data;
+
+export default function Card({data}) {
+  const { img, year, make, model, price } = data;
   const [value, setValue] = React.useState(3);
-  console.log(img)
   return (
     <div className="card">
       <div className="card-img">

@@ -7,12 +7,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: true,
+    lowercase: true,
     default: '',
   },
   lastName: {
     type: String,
     trim: true,
     required: true,
+    lowercase: true,
     default: '',
   },
   phone: {
@@ -27,6 +29,16 @@ const UserSchema = new mongoose.Schema({
     require: true,
     lowercase: true,
     default: '',
+  },
+  favorite: {
+    type:Array
+  },
+  profilePic:{
+    type: String,
+  },
+  active:{
+    type:Boolean,
+    default:true
   },
   password: { type: String, min: 6, required: true },
   timestamp: {

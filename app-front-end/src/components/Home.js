@@ -13,8 +13,10 @@ export default function Home() {
   const [openModal, setOpenModal] = useState(false);
   const closeModalHandler = () => setOpenModal(false);
   const openModalHandler = () => setOpenModal(true);
-  const [data, setData] = useState({});
+  const [carId,setCarId] = useState(null)
   const dispatch = useDispatch();
+
+
 
   useEffect(()=> {
     dispatch(fetchCars())
@@ -30,21 +32,22 @@ export default function Home() {
         {carData.map((data, key) => (
           <div
             className="box"
-            key={key}
+            key={data._id}
             onClick={() => {
-              setData(data);
+              setCarId(data._id);
               openModalHandler();
+              /// add fetch update data
             }}
           >
-            <Card key={key} data={data} />
+            <Card key={key} data={data} carId={carId}/>
           </div>
         ))}
       </div>
-      <CardModal
+        {carId !== null && <CardModal
         closeModal={closeModalHandler}
-        data={data}
+        carId={carId}
         openModal={openModal}
-      />
+      />}
     </div>
   );
 }

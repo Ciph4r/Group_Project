@@ -16,17 +16,26 @@ module.exports = {
           expiresIn: 360000,
         }
       );
-      res.status(200).json({
+      return res.status(200).json({
+        status: 'success',
         message: 'Successfully signed up',
         token: jwtToken,
       });
+      // res.status(200).json({
+      //   message: 'Successfully signed up',
+      //   token: jwtToken,
+      // });
     } catch (error) {
-      let errorMessage =
-        error.code == 11000 ? 'Email Already Exist!' : error.message;
-
-      res.status(409).json({
-        message: errorMessage,
+      return res.status(500).json({
+        status: 'error',
+        message: error.message
       });
+      // let errorMessage =
+      //   error.code == 11000 ? 'Email Already Exist!' : error.message;
+
+      // res.status(409).json({
+      //   message: errorMessage,
+      // });
     }
   },
   login: async (req, res) => {
