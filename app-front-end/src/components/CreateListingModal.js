@@ -12,7 +12,9 @@ import {
     KeyboardDatePicker,
   } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import MomentUtils from '@date-io/moment';
 import { useSelector, useDispatch } from 'react-redux'
+import {createCar} from '../store/actions/cars'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -33,23 +35,23 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
+
     const initialStateData={
         model:'',
         make:'',
-        year:1950,
-        door:2,
-        vehicle:'Sedan',
-        color:10,
-        img:[]
+        year:'----',
+        door:'----',
+        vehicleClass:'----',
+        color:'',
+        img:[],
     }
-
-    const carData = useSelector((state) => state.car.cars)
-    const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
-    const [data,setData] = useState({...initialStateData})
     
+    const carData = useSelector((state) => state.car.cars)
+    const [selectedDate, setSelectedDate] = useState(Date.now());
+    const [selectedDateFrom, setSelectedDateFrom] = useState(Date.now());
+    const [data,setData] = useState({...initialStateData})
+    const dispatch = useDispatch();
 
-
-  
     const setDataHandler = (e) => {
         let newData = data
         newData[e.name] = e.value
@@ -62,13 +64,21 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
     const handleDateChange = (date) => {
       setSelectedDate(date);
     };
+    
+    const handleDateFromChange = (date) => {
+        setSelectedDateFrom(date);
+      };
+    const handleSendCarData = async () => {
+        if (!id){
+            dispatch(createCar({data ,selectedDateFrom ,selectedDate}))
+        }
 
-
+    }
 
     //////////create menuitem from 1950 to current year +1
-    const carYear = []
+    const carYear = [<MenuItem key = {0} value={'----'}>{'----'}</MenuItem>]
     for (let i = 1950; i <= new Date().getFullYear() +1; i++) {
-    carYear.push(<MenuItem key = {i} value={i}>{i}</MenuItem>)
+    carYear.push(<MenuItem key = {i+1} value={i}>{i}</MenuItem>)
       }
     
       const classes = useStyles();
@@ -123,6 +133,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             defaultValue={2}
                             onChange={(e)=>{setDataHandler(e.target)}}
                             >
+                            <MenuItem value={'----'}>----</MenuItem>
                             <MenuItem value={2}>2</MenuItem>
                             <MenuItem value={3}>3</MenuItem>
                             <MenuItem value={4}>4</MenuItem>
@@ -134,11 +145,12 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                         <Select
                             
                             id="VehicleClass"
-                            value={data.vehicle}
+                            value={data.vehicleClass}
                             onChange={(e)=>{setDataHandler(e.target)}}
                             name='vehicleclass'
                             defaultValue={'Sedan'}
                             >
+                            <MenuItem value={'----'}>----</MenuItem>
                             <MenuItem value={'Sedan'}>Sedan</MenuItem>
                             <MenuItem value={'Truck'}>Truck</MenuItem>
                             <MenuItem value={'SUV'}>SUV</MenuItem>
@@ -146,8 +158,8 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             <MenuItem value={'Roaster'}>Roaster</MenuItem>
                         </Select>
                     </FormControl>
-
-                    <FormControl className={classes.formControl}>
+                    <TextField  className ='color' style={{marginTop:'8px'}} label="Color" name='color' value={data.color} onChange={(e)=>{setDataHandler(e.target)}}/>
+                    {/* <FormControl className={classes.formControl}>
                         <InputLabel id="demo-simple-select-label">Color</InputLabel>
                         <Select
                             
@@ -161,7 +173,8 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             <MenuItem value={20}>Twenty</MenuItem>
                             <MenuItem value={30}>Thirty</MenuItem>
                         </Select>
-                    </FormControl>
+                    </FormControl> */}
+                    
                    
 
 
@@ -188,10 +201,10 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             variant="inline"
                             format="MM/dd/yyyy"
                             margin="normal"
-                            
+                            name='dateFrom'
                             label="From"
-                            value={selectedDate}
-                            onChange={handleDateChange}
+                            value={selectedDateFrom}
+                            onChange={handleDateFromChange}
                             KeyboardButtonProps={{
                                 'aria-label': 'change date',
                             }}
@@ -228,7 +241,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
 
 
 
-            <div className='create-btn' onClick = {() =>{}}>
+            <div className='create-btn' onClick = {handleSendCarData}>
                         <h2>{id ? 'Edit' : 'Create'}</h2>
             </div>
         </Modal>

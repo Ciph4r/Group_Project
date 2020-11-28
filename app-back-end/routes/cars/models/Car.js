@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 
 const CarSchema = new mongoose.Schema({
-    // owner:{type: Schema.Types.ObjectId , ref: 'User'},
+    owner:{type: Schema.Types.ObjectId , ref: 'User'},
     img: {type:Array},
     make: {type:String , lowercase:true, required:true},
     model: {type:String , lowercase:true, required:true},
@@ -14,7 +14,7 @@ const CarSchema = new mongoose.Schema({
     color: {type:String , lowercase:true, required:true},
     price: {type:Number , required:true},
     description:{type: String},
-    active : {type:Boolean},
+    active : {type:Boolean , default:true},
     dateList: {type:Array},
     timestamp: {type:String , default: ()=> moment().format('MMMM Do YYYY, h:mm:ss a')},
 })

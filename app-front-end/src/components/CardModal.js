@@ -25,7 +25,7 @@ export default function CardModal({ openModal, closeModal,carId }) {
   const { img, year, make, model, price } = carData;
 
   return (
-    <Modal isOpen={openModal} className={classes.cardModal}>
+    <Modal isOpen={openModal} className={classes.cardModal} ariaHideApp={false}>
       <div className="close-modal">
         <button onClick={closeModal}>close</button>
       </div>
@@ -82,3 +82,4 @@ export default function CardModal({ openModal, closeModal,carId }) {
     </Modal>
   );
 }
+// Modal.setAppElement('body')

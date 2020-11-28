@@ -28,7 +28,7 @@ console.log('gg')
                             </Layout>
                         </Route>
 
-                        {/* <Route path="/booking">
+                        <Route path="/booking">
                             <Layout>
                                 <Booking/>
                             </Layout>
@@ -57,7 +57,7 @@ console.log('gg')
                             <Layout>
                                 <NotFound/>
                             </Layout>
-                        </Route> */}
+                        </Route>
 
                     </Switch>
                 </Router>

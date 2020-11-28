@@ -1,6 +1,6 @@
 const Cars = require('../models/Car');
 const User = require('../../users/models/User');
-
+const moment = require('moment')
 
 
 module.exports = {
@@ -45,10 +45,11 @@ module.exports = {
         };
     },
     createCar: async(req,res,next) => {
-        const {make,model,year,vehicleClass,door,color,price,description,img} = req.body;
+        const {make,model,year,vehicleClass,door,color,price,description,img} = req.body.data;
         try{
+            const user = await User.findOne({_id: req.user.id})
         let newCar = await new Cars({
-            // owner: req.user._id,
+            owner: user._id,
             img,
             make,
             model,
@@ -59,18 +60,30 @@ module.exports = {
             price,
             description
         });
-        newCar.save().then((car) => {
+        // PUSH FROM TO DATE TO INTO DATE ARRAY
+        const dateFrom = Date.parse(req.body.selectedDateFrom)
+        const dateTo = Date.parse(req.body.selectedDate)
+        // console.log('s',dateFrom)
+        // console.log('e',dateTo)
+        for (let i = dateFrom; i <= dateTo ; i+= 86400000){
+            newCar.dateList.push({
+                date: i,
+                booked: false
+            })
+        }
+        //
+
+        await newCar.save()
             return res.status(200).json({
                 status: 'success',
                 message: 'Car Created',
-                car: car
+                car: newCar
               });
-        });
         }
         catch(err){
             return res.status(500).json({
                 status: 'error',
-                message: 'Internal Server Error'
+                message: err.message
               });
         };
     },
