@@ -12,9 +12,12 @@ import {
     KeyboardDatePicker,
   } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import MomentUtils from '@date-io/moment';
 import { useSelector, useDispatch } from 'react-redux'
 import {createCar} from '../store/actions/cars'
+import ImageUploading from 'react-images-uploading';
+import { compressImageFile } from 'frontend-image-compress'
+import Alert from '@material-ui/lab/Alert';
+import {createListingValidation} from '../helperFunctions/inputValidation'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -28,10 +31,6 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-  ///////PLACEHOLDER IMAGE
-  const placeholderImg = 'https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png'
-
-
 
 
 export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
@@ -43,23 +42,47 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
         door:'----',
         vehicleClass:'----',
         color:'',
-        img:[],
+        price: '0',
+        // img:[],
     }
+
+    const initalImageState = [
+        {data_url: "https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png", name:'placeholder',file: null},
+        {data_url: "https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png", name:'placeholder',file: null},
+        {data_url: "https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png", name:'placeholder',file: null},
+        {data_url: "https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png", name:'placeholder',file: null},
+    ]
     
     const carData = useSelector((state) => state.car.cars)
     const [selectedDate, setSelectedDate] = useState(Date.now());
     const [selectedDateFrom, setSelectedDateFrom] = useState(Date.now());
     const [data,setData] = useState({...initialStateData})
+    const [images, setImages] = useState(initalImageState);
+    const maxNumber = 4;
+    const [errMsg, setErrMsg] = useState('');
+
     const dispatch = useDispatch();
 
     const setDataHandler = (e) => {
         let newData = data
         newData[e.name] = e.value
         setData({
-           ...data,newData
+           ...data,...newData
         })
     }
 
+    const onChange = async (imageList, addUpdateIndex) => {
+   
+        // data for submit'
+        const oldImageList = [...imageList]
+        const file = oldImageList[addUpdateIndex].file;
+        const compressedFile = await compressImageFile(file,.1)
+        oldImageList[addUpdateIndex].file = compressedFile
+        if (oldImageList.length <4){
+            oldImageList.push({data_url: "https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png", name:'placeholder', file: File})
+        }
+        setImages(oldImageList);
+      };
 
     const handleDateChange = (date) => {
       setSelectedDate(date);
@@ -70,10 +93,37 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
       };
     const handleSendCarData = async () => {
         if (!id){
-            dispatch(createCar({data ,selectedDateFrom ,selectedDate}))
+            let validation = createListingValidation(data ,selectedDateFrom,selectedDate)
+            if(validation === ''){
+                const formData = new FormData();
+                formData.append(
+                    'data',
+                    JSON.stringify(data)
+                )
+                formData.append(
+                    'selectedDateFrom',
+                    selectedDateFrom
+                )
+                formData.append(
+                    'selectedDate',
+                     selectedDate
+                )
+                for (let i = 0; i < images.length; i++){
+                    if(images[i].file !== null){
+                        formData.append(
+                            `images[${i}]`, 
+                            images[i].file,
+                            )
+                    }
+                }
+                dispatch(createCar({data ,selectedDateFrom ,selectedDate,formData}))
+                setImages(initalImageState)
+            }else{
+                setErrMsg(validation)
+            }
         }
-
     }
+
 
     //////////create menuitem from 1950 to current year +1
     const carYear = [<MenuItem key = {0} value={'----'}>{'----'}</MenuItem>]
@@ -87,8 +137,21 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
 
       useEffect(()=> {
             if(id){
-            let editData = carData.find((car) =>{return car.id === id})
-            setData({...editData})  
+            let editData = carData.find((car) =>{return car._id === id})
+            console.log(editData)
+            setData({...editData})
+              let imageData =[]
+              for (let i = 0 ; i< 4 ; i++){
+                  if(editData.img[i]){
+                    // console.log(editData.img[i])
+                    //   imageData.push(editData.img[i])
+                      imageData.push({data_url: editData.img[i], name:`user_Image_${[i]}` , file: null})
+                  }else{
+                    imageData.push({data_url: "https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png", name:'placeholder',file: null})
+                  }
+                  
+              }
+              setImages(imageData)
           }else{
             setData({...initialStateData})
           }
@@ -104,6 +167,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                      <span className='close-modal-btn' onClick={() => {setShowCreateModal(false)}}><h2>x</h2></span>
             </div>
             <div className='modal-content'>
+            {errMsg && <Alert className ='error' severity="error">{errMsg}</Alert>}
                 <TextField  label="Maker" name='make' value={data.make} onChange={(e)=>{setDataHandler(e.target)}}/>
                 <TextField  label="Model" name='model' value={data.model} onChange={(e)=>{setDataHandler(e.target)}}/>
                 <hr/>
@@ -147,7 +211,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             id="VehicleClass"
                             value={data.vehicleClass}
                             onChange={(e)=>{setDataHandler(e.target)}}
-                            name='vehicleclass'
+                            name='vehicleClass'
                             defaultValue={'Sedan'}
                             >
                             <MenuItem value={'----'}>----</MenuItem>
@@ -232,19 +296,49 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                     <TextField  type="number" label="Price Per Day" value={data.price}  name='price' onChange={(e)=>{setDataHandler(e.target)}}  />
                 </div>
                 <div className='img-upload'>
-                    <img className='img' src= {data.img.length > 0 ? data.img[0] : placeholderImg} alt="Thumbnail"  />
+                    {/* <img className='img' src= {data.img.length > 0 ? data.img[0] : placeholderImg} alt="Thumbnail"  />
                     <img className='img' src= {data.img.length > 1 ? data.img[1] : placeholderImg} alt="Thumbnail"  />
                     <img className='img' src= {data.img.length > 2 ? data.img[2] : placeholderImg}  alt="Thumbnail"  />
-                    <img className='img' src= {data.img.length > 3 ? data.img[3] : placeholderImg}  alt="Thumbnail"  />
+                    <img className='img' src= {data.img.length > 3 ? data.img[3] : placeholderImg}  alt="Thumbnail"  /> */}
+                <ImageUploading
+                            multiple
+                            value={images}
+                            onChange={onChange}
+                            maxNumber={maxNumber}
+                            dataURLKey="data_url"
+                        >
+                            {({
+                            imageList,
+                            onImageUpload,
+                            onImageRemoveAll,
+                            onImageUpdate,
+                            onImageRemove,
+                            isDragging,
+                            dragProps,
+                            }) => (
+                            // write your building UI
+                            <div className="upload__image-wrapper">
+                                {imageList.map((image, index) => (
+                                <div key={index} className="image-item">
+                                    <img src={image['data_url']} alt="" />
+                                    <div className="image-item__btn-wrapper">
+                                    <button onClick={() => onImageUpdate(index)}>Update</button>
+                                    {/* <button onClick={() => onImageRemove(index)}>Remove</button> */}
+                                    </div>
+                                </div>
+                                ))}
+                            </div>
+                            )}
+                </ImageUploading>                
                 </div>
             </div>
-
-
-
-            <div className='create-btn' onClick = {handleSendCarData}>
+            <div className='create-btn' onClick = {()=> {handleSendCarData()}}>
                         <h2>{id ? 'Edit' : 'Create'}</h2>
             </div>
         </Modal>
     )
 
 }
+
+
+///NEED TO ADD WAY TO TELL BACKEND WHICH IMAGE TO REPLACE

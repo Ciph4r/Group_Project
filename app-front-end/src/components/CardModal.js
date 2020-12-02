@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { makeStyles } from '@material-ui/core/styles';
 import '../css/cardModal.scss';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector} from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   cardModal: {
@@ -32,7 +32,7 @@ export default function CardModal({ openModal, closeModal,carId }) {
       <div className="card-modal">
         <div className="card-modal-main">
           <div className="card-modal-col1">
-            <ModalCarousel />
+            <ModalCarousel img = {img}/>
             <div className="info-body">
               <div className="car-info-left">
                 <h2 className="year-make">

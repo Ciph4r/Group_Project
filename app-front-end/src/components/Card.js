@@ -5,7 +5,7 @@ import Rating from '@material-ui/lab/Rating';
 import '../css/card.scss';
 
 
-export default function Card({data}) {
+export default function Card({data , carId}) {
   const { img, year, make, model, price } = data;
   const [value, setValue] = React.useState(3);
   return (

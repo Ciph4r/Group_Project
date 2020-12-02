@@ -59,7 +59,10 @@ export const carSlice = createSlice({
     state.cars = action.payload.cars;
     },
     [createCar.fulfilled]: (state, action) => {
-      // state.cars = action.payload.car;
+      const cars = [...state.cars]
+      cars.push(action.payload)
+      state.cars = cars;
+
     },
     // [createCar.rejected]: (state, action) => {
     //   // state = action.payload;

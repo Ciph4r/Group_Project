@@ -21,7 +21,7 @@ export default function Home() {
   useEffect(()=> {
     dispatch(fetchCars())
 },[]);
-
+console.log(carId)
   return (
     <div className="home">
       <Search />
