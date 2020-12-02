@@ -6,7 +6,7 @@ import '../css/card.scss';
 
 
 export default function Card({data , carId}) {
-  const { img, year, make, model, price } = data;
+  const { img, year, make, model, price , description} = data;
   const [value, setValue] = React.useState(3);
   return (
     <div className="card">

@@ -1,6 +1,6 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 
-import{fetchCars,createCar} from '../actions/cars'
+import{fetchCars,createCar,updateCar} from '../actions/cars'
 
 
 // export const fetchCars = createAsyncThunk(
@@ -15,17 +15,17 @@ import{fetchCars,createCar} from '../actions/cars'
 //   }
 // );
 
-export const updateCar = createAsyncThunk(
-  'updateCar',
-  async (args, thunkAPI) => {
+// export const updateCar = createAsyncThunk(
+//   'updateCar',
+//   async (args, thunkAPI) => {
 
-    const fetchUrl = 'http://localhost:4000/api/cars/update';
-    const response = await fetch(fetchUrl, {
-    });
-    let car = await response.json();
-    return car;
-  }
-);
+//     const fetchUrl = 'http://localhost:4000/api/cars/update';
+//     const response = await fetch(fetchUrl, {
+//     });
+//     let car = await response.json();
+//     return car;
+//   }
+// );
 
 // export const createCar = createAsyncThunk(
 //   'createCar',
@@ -68,7 +68,16 @@ export const carSlice = createSlice({
     //   // state = action.payload;
     // },
     [updateCar.fulfilled]: (state, action) => {
-      state = action.payload;
+      const cars = [...state.cars].map((car) => {
+        if(car._id === action.payload._id){
+          car = action.payload
+        }
+        return car
+      })
+      console.log(action.payload)
+      state.cars = cars
+      console.log(state.cars)
     },
   },
 });
+

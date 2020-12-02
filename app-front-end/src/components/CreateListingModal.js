@@ -13,11 +13,12 @@ import {
   } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { useSelector, useDispatch } from 'react-redux'
-import {createCar} from '../store/actions/cars'
+import {createCar,updateCar} from '../store/actions/cars'
 import ImageUploading from 'react-images-uploading';
 import { compressImageFile } from 'frontend-image-compress'
 import Alert from '@material-ui/lab/Alert';
 import {createListingValidation} from '../helperFunctions/inputValidation'
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -29,9 +30,6 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   }));
-
-
-
 
 export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
 
@@ -45,7 +43,6 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
         price: '0',
         // img:[],
     }
-
     const initalImageState = [
         {data_url: "https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png", name:'placeholder',file: null},
         {data_url: "https://westville-nj.com/wp-content/uploads/2014/09/placeholder.png", name:'placeholder',file: null},
@@ -60,7 +57,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
     const [images, setImages] = useState(initalImageState);
     const maxNumber = 4;
     const [errMsg, setErrMsg] = useState('');
-
+    const [imageChange , setImageChange] = useState([false,false,false,false])
     const dispatch = useDispatch();
 
     const setDataHandler = (e) => {
@@ -92,21 +89,14 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
         setSelectedDateFrom(date);
       };
     const handleSendCarData = async () => {
-        if (!id){
+
             let validation = createListingValidation(data ,selectedDateFrom,selectedDate)
             if(validation === ''){
+                setErrMsg('')
                 const formData = new FormData();
                 formData.append(
                     'data',
                     JSON.stringify(data)
-                )
-                formData.append(
-                    'selectedDateFrom',
-                    selectedDateFrom
-                )
-                formData.append(
-                    'selectedDate',
-                     selectedDate
                 )
                 for (let i = 0; i < images.length; i++){
                     if(images[i].file !== null){
@@ -116,14 +106,29 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             )
                     }
                 }
-                dispatch(createCar({data ,selectedDateFrom ,selectedDate,formData}))
-                setImages(initalImageState)
+                if (!id){
+                    // send data for create
+                    formData.append(
+                        'selectedDateFrom',
+                        selectedDateFrom
+                    )
+                    formData.append(
+                        'selectedDate',
+                         selectedDate
+                        )
+                    // dispatch(createCar({data ,selectedDateFrom ,selectedDate,formData}))
+                    setImages(initalImageState)
+                    setShowCreateModal(false)
+                }else{
+                    // send data for edit
+                    console.log(formData)
+                    dispatch(updateCar({formData}))
+                }
             }else{
                 setErrMsg(validation)
             }
-        }
-    }
 
+    }
 
     //////////create menuitem from 1950 to current year +1
     const carYear = [<MenuItem key = {0} value={'----'}>{'----'}</MenuItem>]
@@ -223,24 +228,6 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                         </Select>
                     </FormControl>
                     <TextField  className ='color' style={{marginTop:'8px'}} label="Color" name='color' value={data.color} onChange={(e)=>{setDataHandler(e.target)}}/>
-                    {/* <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label">Color</InputLabel>
-                        <Select
-                            
-                            id="Color"
-                            value={data.color}
-                            onChange={(e)=>{setDataHandler(e.target)}}
-                            name='color'
-                            defaultValue={10}
-                            >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl> */}
-                    
-                   
-
 
                 </div>
                 <TextField
@@ -316,7 +303,6 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             isDragging,
                             dragProps,
                             }) => (
-                            // write your building UI
                             <div className="upload__image-wrapper">
                                 {imageList.map((image, index) => (
                                 <div key={index} className="image-item">

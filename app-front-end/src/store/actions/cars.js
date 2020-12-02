@@ -19,7 +19,6 @@ export const fetchCars = createAsyncThunk(
     async (car, thunkAPI) => {
         const token = thunkAPI.getState().user.token;
         const createUrl = `${process.env.REACT_APP_API_URL}/api/cars/create`;
-        console.log(car.formData.values().next())
         const response = await fetch(createUrl, {
             method: 'POST',
             headers: {
@@ -35,5 +34,25 @@ export const fetchCars = createAsyncThunk(
         return jsonData.car
     }
   );
+
+  export const updateCar = createAsyncThunk(
+    'updateCar',
+    async (car, thunkAPI) => {
+        const token = thunkAPI.getState().user.token;
+        const createUrl = `${process.env.REACT_APP_API_URL}/api/cars/update`;
+        console.log(car)
+        const response = await fetch(createUrl, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            body: car.formData,
+      });
+      let jsonData = await response.json();
+        return jsonData.car
+        console.log(jsonData)
+    }
+  );
+  
   
     

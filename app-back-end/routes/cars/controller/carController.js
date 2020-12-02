@@ -38,12 +38,24 @@ module.exports = {
         };
     },
     updateCar: async(req,res,next) => {
-        const {make,model,year,vehicleClass,door,color,price,description} = req.body;
+        const {make,model,year,vehicleClass,door,color,price,description,img,_id} = JSON.parse(req.body.data);
         try{
+            let car = await Cars.updateOne({_id}, {make,model,year,vehicleClass,door,color,price,description});
+            let car2 = await Cars.findById(_id)
+            
+            return res.status(200).json({
+                status: 'success',
+                message: 'Car been updated',
+                car: car2
+              });
             
         }
         catch(err){
-
+            console.log(err)
+            return res.status(500).json({
+                status: 'error',
+                message: 'Internal Server Error'
+              });
         };
     },
     createCar: async(req,res,next) => {
