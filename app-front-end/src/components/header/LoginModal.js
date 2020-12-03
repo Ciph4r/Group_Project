@@ -33,7 +33,8 @@ export const LoginModal = ({openLogin , closeLoginHandler , loginHandler}) => {
         setErrMsg(jsonData.message);
       } else {
         // set token and auto login 
-        dispatch(setToken({ token: jsonData.token }));
+        console.log(jsonData)
+        dispatch(setToken({ token: jsonData.token, user_id: jsonData.user }));
         closeLoginHandler();
       }
     }
@@ -56,6 +57,7 @@ export const LoginModal = ({openLogin , closeLoginHandler , loginHandler}) => {
                 <TextField
                     label="Password"
                     value={password}
+                    type = 'password'
                     onChange={e => setPassword(e.target.value)}
                 />
             </div>

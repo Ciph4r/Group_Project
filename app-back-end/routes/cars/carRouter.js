@@ -7,7 +7,7 @@ const {} = require('./middleware/requestValidation')
 
 router.get('/', allCars)
 router.get('/car/:id',singleCar)
-router.put('/update',updateCar)
+router.put('/update', authenticateToken,updateCar)
 router.post('/create', authenticateToken ,createCar)
 router.post('/img',uploadImage)
 

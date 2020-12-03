@@ -116,7 +116,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                         'selectedDate',
                          selectedDate
                         )
-                    // dispatch(createCar({data ,selectedDateFrom ,selectedDate,formData}))
+                    dispatch(createCar({data ,selectedDateFrom ,selectedDate,formData}))
                     setImages(initalImageState)
                     setShowCreateModal(false)
                 }else{

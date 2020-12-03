@@ -50,7 +50,7 @@ export const fetchCars = createAsyncThunk(
       });
       let jsonData = await response.json();
         return jsonData.car
-        console.log(jsonData)
+        
     }
   );
   

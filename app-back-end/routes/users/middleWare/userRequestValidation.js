@@ -10,8 +10,7 @@ module.exports = {
             phone,
             email,
             password} = req.body
-                let user = Users.findOne({email})
-                console.log(user)
+                let user = await Users.findOne({email})
                 if (!email||!password || !firstName || !lastName){
                     return res.status(400).json({
                         status: 'error',
@@ -31,6 +30,7 @@ module.exports = {
                       });
                     }
                 if(user){
+                    
                     return res.status(409).json({
                         status: 'error',
                         message: 'Email Already Exist!'

@@ -42,13 +42,38 @@ module.exports = {
         try{
             let car = await Cars.updateOne({_id}, {make,model,year,vehicleClass,door,color,price,description});
             let car2 = await Cars.findById(_id)
-            
+        if(req.files){
+            let filesKey = Object.keys(req.files)
+            let replaceImg = []
+            for(let i = 0 ; i< filesKey.length ; i++){
+                replaceImg.push(filesKey[i].charAt(7))
+            }
+            for (let i = 0 ; i < filesKey.length ; i++){
+                let image = req.files[filesKey[i]]
+    
+                let s3 = new AWS.S3({
+                    AWS_Access_Key_ID: process.env.AWS_ACCESS_KEY_ID,
+                    AWS_Secret_Access_Key: process.env.AWS_SECRET_ACCESS_KEY
+                })
+                let bucketName = 'groundrtr'
+                let keyName = `cars/${car2._id}/${uuidv4()}_${image.name}`
+                var objectParams = {
+                    Bucket: bucketName,
+                    Key: keyName,
+                    Body: image.data,
+                    ACL: 'public-read'
+                };
+                var uploadPromise = await s3.putObject(objectParams).promise();
+                let url = `https://${bucketName}.s3.amazonaws.com/${keyName}`
+                car2.img[replaceImg[i]] = url
+                }
+            }
+            await car2.save()
             return res.status(200).json({
                 status: 'success',
                 message: 'Car been updated',
                 car: car2
               });
-            
         }
         catch(err){
             console.log(err)
@@ -107,8 +132,13 @@ module.exports = {
                 let url = `https://${bucketName}.s3.amazonaws.com/${keyName}`
                 newCar.img.push(url)
             }
+            for (let i = filesKey.length ; i < 4 ; i++){
+                newCar.img.push('https://groundrtr.s3.amazonaws.com/default/placeholder.png')
+            }
         }else{
-            newCar.img.push('https://groundrtr.s3.amazonaws.com/default/placeholder.png')
+            for (let i = 0 ; i < 4 ; i++){
+                newCar.img.push('https://groundrtr.s3.amazonaws.com/default/placeholder.png')
+            }
         }
         await newCar.save()
             return res.status(200).json({

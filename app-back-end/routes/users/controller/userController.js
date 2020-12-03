@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Inbox = require('../../inbox/models/Inbox')
 const jwt = require('jsonwebtoken');
 const { comparePassword, createUser } = require('../middleWare/auth');
 const { createJwtToken } = require('../middleWare/token');
@@ -8,6 +9,9 @@ module.exports = {
     try {
       let newUser = await createUser(req.body);
       let savedUser = await newUser.save();
+      let newInbox = await new Inbox()
+      newInbox.owner = savedUser._id
+      let savedInbox = await newInbox.save()
       let jwtToken = await jwt.sign(
         { id: savedUser._id },
         process.env.SECRET_KEY,
@@ -19,6 +23,7 @@ module.exports = {
         status: 'success',
         message: 'Successfully signed up',
         token: jwtToken,
+        user: savedUser._id
       });
       // res.status(200).json({
       //   message: 'Successfully signed up',
@@ -63,6 +68,7 @@ module.exports = {
         status: 'success',
         message: 'Successfully logged in',
         token: jwtToken,
+        user: user._id
       });
     } catch (error) {
       return res.status(500).json({
