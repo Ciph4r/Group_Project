@@ -16,6 +16,8 @@ const CarSchema = new mongoose.Schema({
     description:{type: String},
     active : {type:Boolean , default:true},
     dateList: {type:Array},
+    rating: {type: Array},
+    reviews: {type: Array},
     timestamp: {type:String , default: ()=> moment().format('MMMM Do YYYY, h:mm:ss a')},
 })
 

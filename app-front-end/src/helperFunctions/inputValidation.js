@@ -1,7 +1,3 @@
-
-
-
-
 module.exports = {
     createListingValidation : (listing,date,date2) => {
         let validation = ''
