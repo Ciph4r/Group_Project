@@ -77,6 +77,8 @@ export default function MessageBox({messagesData , userInbox_id}) {
           launcher={()=>{}}
           showTimeStamp= {false}
           
-        />
+        >
+          <h1>sdasda</h1>
+          </Widget>
     );
 }

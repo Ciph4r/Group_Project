@@ -15,25 +15,38 @@ export default function Inbox () {
     const [mailCount, setMailCount] =useState(0);
     const [openMail,setOpenMail] = useState(false)
     const [messagesData,setMessages] = useState({})
-    const closeMailHandler = () => setOpenMail(false)
-    const openMailHandler = () => setOpenMail(true)
+    const [chatWidget , setChatWidget] =useState(false)
     const dispatch = useDispatch()
+
+    const closeMailHandler = () => {
+        // also close chat widget  might change later to have chat persistent
+        setChatWidget(false)
+        toggleWidget()
+        setOpenMail(false)
+    }
+    const openMailHandler = () => setOpenMail(true)
+    
 
     const OpenMessageHandler = (inbox) =>{
         if (inbox.read === false){
         dispatch(changetoRead(inbox.id));
         }
-        toggleWidget()
+        if(!chatWidget){
+            setChatWidget(true)
+            toggleWidget()
+        }
+        
     }
 
     const loadNotification = () => {
         let num = 0
-        for (let i = 0; i < userInbox.inboxItems.length; i++) {
-            console.log(userInbox.inboxItems[i].read)
-            if (userInbox.inboxItems[i].read.[userInbox._id] === false){
-                num++
-            }
-          }
+        if(userInbox){
+            for (let i = 0; i < userInbox.inboxItems.length; i++) {
+                if (userInbox.inboxItems[i].read.[userInbox._id] === false){
+                    num++
+                }
+              }
+        }
           setMailCount(num)
     }
  

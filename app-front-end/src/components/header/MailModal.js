@@ -1,4 +1,4 @@
-import {React} from 'react'
+import React from 'react'
 import Modal from 'react-modal'
 import '../../css/mailModal.scss'
 import {InboxItem} from './InboxItem'
@@ -8,8 +8,33 @@ import {useDispatch} from 'react-redux'
 
 export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id , OpenMessageHandler,setMessages}) => {
     const dispatch = useDispatch()
+    console.log(userInbox)
+    
+    let InboxContent;
+    if (userInbox.length === 0 ) {
+        InboxContent= (
+            <React.Fragment>
+                <h1>Your Inbox Is Empty</h1>
+            </React.Fragment>
+      );
+    } else {
+        InboxContent = (
+        <React.Fragment>
+            {userInbox.map((inbox, idx) => (
+            <InboxItem 
+            onClick = {() => {
+            setMessages(inbox)
+            OpenMessageHandler(inbox)
+            }}
+            key = {idx} 
+            data = {inbox}
+            userInbox_id = {userInbox_id}
+            />
+            ))}
+        </React.Fragment>
 
-
+        );
+    }
 
     return (
             <Modal isOpen={openMail} className='modal' 
@@ -20,6 +45,9 @@ export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id 
                      <span className='close-modal-btn' onClick={closeMailHandler}><h2>x</h2></span>
                 </div>
                 <div className='modal-content'>
+                {InboxContent}
+                </div>
+                {/* <div className='modal-content'>
                          {userInbox.map((inbox, idx) => (
                              <InboxItem 
                               onClick = {() => {
@@ -31,7 +59,7 @@ export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id 
                               userInbox_id = {userInbox_id}
                              />
                          ))}
-                 </div>
+                 </div> */}
             </Modal>
 
     )
