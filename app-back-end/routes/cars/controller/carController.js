@@ -84,7 +84,6 @@ module.exports = {
         };
     },
     createCar: async(req,res,next) => {
-        
         const {make,model,year,vehicleClass,door,color,price,description,img} = JSON.parse(req.body.data);
         try{
             const user = await User.findOne({_id: req.user.id})

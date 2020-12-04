@@ -1,5 +1,4 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { compressImageFile } from 'frontend-image-compress'
 
 
 export const fetchCars = createAsyncThunk(
@@ -22,11 +21,8 @@ export const fetchCars = createAsyncThunk(
         const response = await fetch(createUrl, {
             method: 'POST',
             headers: {
-                // 'Content-Type': 'application/json',
-                // 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${token}`,
               },
-            // body: JSON.stringify(car.data,car.selectedDateFrom ,car.selectedDate),
             body: car.formData,
             
       });

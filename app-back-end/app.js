@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/cars' , carRouter)
-app.use('/inbox' , inboxRouter)
+app.use('/api/inbox' , inboxRouter)
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));

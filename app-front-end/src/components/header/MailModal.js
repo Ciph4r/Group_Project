@@ -6,7 +6,7 @@ import {changetoRead} from '../../store/actions/inbox'
 import {useDispatch} from 'react-redux'
 
 
-export const MailModal = ({openMail, closeMailHandler , inbox,OpenMessageHandler}) => {
+export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id , OpenMessageHandler,setMessages}) => {
     const dispatch = useDispatch()
 
 
@@ -20,11 +20,15 @@ export const MailModal = ({openMail, closeMailHandler , inbox,OpenMessageHandler
                      <span className='close-modal-btn' onClick={closeMailHandler}><h2>x</h2></span>
                 </div>
                 <div className='modal-content'>
-                         {inbox.map((inbox, idx) => (
+                         {userInbox.map((inbox, idx) => (
                              <InboxItem 
-                              onClick = {() => OpenMessageHandler(inbox)}
+                              onClick = {() => {
+                                setMessages(inbox)
+                                OpenMessageHandler(inbox)
+                            }}
                               key = {idx} 
                               data = {inbox}
+                              userInbox_id = {userInbox_id}
                              />
                          ))}
                  </div>

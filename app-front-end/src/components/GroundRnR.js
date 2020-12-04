@@ -15,7 +15,7 @@ import MessageBox from './messageBox/MessageBox'
 
 
 
-console.log('gg')
+
   export default function GroundRnR (){
     
 
