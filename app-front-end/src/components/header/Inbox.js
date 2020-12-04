@@ -61,7 +61,7 @@ export default function Inbox () {
                     <MailIcon style={{ color: '#d9d9d9' }}/>
                 </Badge>
             </div>
-            <MessageBox messagesData = {messagesData}/>
+            <MessageBox messagesData = {messagesData} userInbox_id = {userInbox._id}/>
         </div>
 
     )

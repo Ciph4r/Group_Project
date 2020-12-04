@@ -45,6 +45,7 @@ module.exports = {
             let existingMsg = await Message.findOne({ $or: [ {user: senderInbox._id , user_b: receiverInbox._id}, { user: receiverInbox._id , user_b: senderInbox._id} ] })
             let messageItem = {
                 timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
+                userInbox_id: senderInbox._id,
                 name: currentUser.firstName,
                 messageText: req.body.messageText
         }
