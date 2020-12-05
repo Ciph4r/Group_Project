@@ -2,6 +2,55 @@
     background-color: #293d3d;
     color: #d9d9d9;
   }
-  .rcw-message > .rcw-response {
+  .rcw-message{
+
+    .userresponseMsg{
+      
+      background-color: #7CFC00;
+      margin-left: auto;
+      border-radius: 25px 0px 0px 25px;
+      width: 50%;
+      min-width: 150px;
+  
+      min-height: 80px;
+      
+      .usertime{
+        color: blue;
+        text-align: right;
+        margin-right: 5px;
+      }
+      .usermsg{
+        font-size: 1.2em;
+      }
+    }
+    .userhr{
+      margin-bottom: 5px;
+      border: .1px solid white;
+    }
+
+    .responseMsg{
+      
+      background-color: grey;
+      color: white;
+      margin-right: auto;
+      border-radius: 0px 25px 25px 0px;
+      width: 50%;
+      min-width: 150px;
+
+      min-height: 80px;
+      
+      .time{
+        color: lightblue;
+        text-align: left;
+        margin-left: 5px;
+      }
+      .msg{
+        font-size: 1.2em;
+      }
+    }
+    // .hr{
+    //   margin-bottom: 5px;
+    //   border: .1px solid white;
+    // }
     
   }

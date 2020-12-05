@@ -23,15 +23,35 @@ export default function MessageBox({messagesData , userInbox_id}) {
         console.log(messageList)
         // Now send the message throught the backend API
       };
-
+      console.log(date)
       // preload msg
       const preLoadMsg = () => {
         
         const CurrentDate = ({date}) => {
           return new Date().getDate() !== new Date(date).getDate()
-              ? new moment(date).format('LT')
-              : new moment(date).format('ddd LT');
+              ? new moment(date,'MMMM Do YYYY, h:mm:ss a').format('LT')
+              : new moment(date,'MMMM Do YYYY, h:mm:ss a').format('ddd LT');
+
       };
+      const ResponseMsg = (message) => {
+        console.log(message)
+        let timestamp = new moment(message.timestamp,'MMMM Do YYYY, h:mm:ss a').format('LT')
+        return (<div className = 'responseMsg'>
+                  <div className = 'time'>{timestamp}</div>
+                  <hr className = 'userhr'/>
+                  <div className = 'msg'> {message.messageText}</div>
+                </div>
+        )}
+
+        const UserResponseMsg = (message) => {
+          let timestamp = new moment(message.timestamp,'MMMM Do YYYY, h:mm:ss a').format('LT')
+          return (<div className = 'userresponseMsg'>
+                    <div className = 'usertime'>{timestamp}</div>
+                    <hr className = 'userhr'/>
+                    <div className = 'usermsg'>{message.messageText}</div>
+                  </div>
+          )}
+      
         // checks user && user_b to see who the sender is
         let sender = ""
         if (user === userInbox_id){
@@ -43,14 +63,23 @@ export default function MessageBox({messagesData , userInbox_id}) {
         for (let i = 0 ; i < messageList.length ; i++){
         // checks whos sending the message
           if (sender === messageList[i].userInbox_id){
-            addResponseMessage(messageList[i].messageText);
-            renderCustomComponent(CurrentDate, {date: '2020-12-04T02:30:54-03:00'});
+            // addResponseMessage(messageList[i].messageText);
+            // renderCustomComponent(CurrentDate, {date: messageList[i].timestamp});
+            renderCustomComponent(ResponseMsg, messageList[i])
           }else{
-            addUserMessage(messageList[i].messageText);
-            renderCustomComponent(CurrentDate, {date: '2020-12-04T02:30:54-03:00'});
+            // addUserMessage(messageList[i].messageText);
+            // renderCustomComponent(
+            //   CurrentDate, {date: messageList[i].timestamp }
+            renderCustomComponent(UserResponseMsg, messageList[i])
+              // );
           }
         }
       }
+
+      // const custom userMsg = () =>{
+
+      // }
+
 
       // sets data and clears all previous message
   useEffect(() => {
