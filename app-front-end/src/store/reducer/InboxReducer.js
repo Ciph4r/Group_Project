@@ -22,7 +22,7 @@ export const inboxSlice = createSlice({
     [sendMsg.fulfilled]: (state, action) => {
 
       // find the index of the message._id
-      let index = 0
+      let index = null
       for (let i = 0 ; i < state.inbox.inboxItems.length ; i++ ){
         if (state.inbox.inboxItems.[i]._id === action.payload._id){
           index = i
@@ -32,7 +32,17 @@ export const inboxSlice = createSlice({
       state.inbox.inboxItems[index] = action.payload
       },
       [setToRead.fulfilled]: (state, action) => {
-        // state.inbox = action.payload;
+
+        const {inbox_id , message_id} = action.payload
+
+        console.log(inbox_id , message_id)
+        let index = null
+        for (let i = 0 ; i < state.inbox.inboxItems.length ; i++ ){
+          if (state.inbox.inboxItems.[i]._id === message_id){
+            index = i
+          }
+        }
+        state.inbox.inboxItems[index].read[inbox_id] = true
         },
   },
 });

@@ -12,30 +12,29 @@ import MailIcon from '@material-ui/icons/Mail';
 export default function Inbox () {
     const userInbox = useSelector((state) => state.inbox.inbox)
     const [mailCount, setMailCount] =useState(0);
-    const [openMail,setOpenMail] = useState(false)
+    const [openInbox,setOpenInbox] = useState(false)
     const [messages_id,setMessages_id] = useState({})
     const [chatWidget , setChatWidget] =useState(false)
     const dispatch = useDispatch()
-    const closeMailHandler = () => {
+    const closeInboxHandler = () => {
         // also close chat widget  might change later to have chat persistent
         setChatWidget(false)
         toggleWidget()
-        setOpenMail(false)
+        setOpenInbox(false)
     }
-    const openMailHandler = () => setOpenMail(true)
-    
+    const openInboxHandler = () => setOpenInbox(true)
+    // const setMessages_idHandler = (id) => setMessages_id(id)
 
     const OpenMessageHandler = (message) =>{
-
         if (!message.read[userInbox._id]){
-            // console.log(message._id)
             dispatch(setToRead(message._id))
+            setMailCount(mailCount-1)
         }
         if(!chatWidget){
             setChatWidget(true)
             toggleWidget()
         }
-        
+        setMessages_id(message._id)
     }
     // console.log(!userInbox.inboxItems.length)
     const loadNotification = () => {
@@ -54,22 +53,22 @@ export default function Inbox () {
     useEffect(() => {
         loadNotification()
         dispatch(fetchInbox())
-      },[mailCount]);
+      },[]);
 
 
     return (
         <div>
             {/* <MailModal closeMailHandler= {closeMailHandler} openMail={openMail} inbox = {inboxItem} messageRead= {messageHandler}> */}
             <MailModal 
-            closeMailHandler= {closeMailHandler} 
-            openMail={openMail} 
+            closeInboxHandler= {closeInboxHandler} 
+            openInbox={openInbox} 
             userInbox = {userInbox.inboxItems} 
             OpenMessageHandler={OpenMessageHandler}
             userInbox_id = {userInbox._id}
-            setMessages_id = {setMessages_id}
+            // setMessages_id = {setMessages_id}
             >
             </MailModal>
-            <div className="notification" onClick={openMailHandler}>
+            <div className="notification" onClick={openInboxHandler}>
                 <Badge color="secondary" badgeContent={mailCount}>
                     <MailIcon style={{ color: '#d9d9d9' }}/>
                 </Badge>

@@ -103,15 +103,24 @@ module.exports = {
     },
     msgRead: async(req,res,next) => {
         try{
-            const {_d} = req.body
             const userInbox = await Inbox.findOne({owner: req.user.id})
-            const messageItem = await Message.findOne({_id})
-            messageItem.read[userInbox._id] = true
-             
-              return res.status(200).json({
-                status: 'success',
-                message: 'Message Read',
-              });
+            const messageItem = await Message.findOne({_id: req.params.id})
+
+            //check if user is participant in this message
+            if(`${userInbox._id}` === `${messageItem.user}` || `${userInbox._id}` === `${messageItem.user_b}`){
+                messageItem.read[userInbox._id] = true
+                console.log(userInbox._id)
+                console.log(messageItem.read)
+                // const savedMessage = await messageItem.save()
+                return res.status(200).json({
+                  status: 'success',
+                  message: 'Message Read',
+                  payload : {message_id : messageItem._id , inbox_id: userInbox._id}
+                });
+            }
+
+
+
         }
         catch(err){
             return res.status(500).json({
