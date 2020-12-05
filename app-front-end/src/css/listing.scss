@@ -108,23 +108,46 @@
     .modal-content{
         display: flex;
         flex-direction: column;
-        padding: 1.5rem 1rem;
+        padding: 0 1rem;
+
+      .make-model {
+        display: flex;
+        justify-content: space-between;
+
+        .MuiFormControl-root {
+          width: 45%;
+        }
+      }
+
         .car-option{
             display: flex;
             flex-direction: row;
- 
         }
         .calender{
             display: flex;
             flex-direction: column;
             .calender-header{
                 text-align: center;
+
+                h3 {
+                  margin: 1rem 0 0;
+                }
             }
             .calender-content{
                 display: flex;
                 flex-direction: row;
             }
         }
+
+        .price-input {
+          display: flex;
+          align-items: flex-end;
+
+          .dollar {
+            padding: 7px;
+          }
+        }
+
         .upload__image-wrapper{
             margin-top: 50px;
             display: flex;

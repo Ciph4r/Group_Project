@@ -37,10 +37,10 @@ export default function Listing(props) {
                 {carData.map((data, key) => (
                 <ListingCard data={data} modalType = {modalType} key = {key} setShowCreateModal = {setShowCreateModal}/>
                                     // ListingCard(data ,modalType ,key ,setShowCreateModal)
-                ))};
+                ))}
              </div>
              : 
-             <h1>You have No Listing</h1>};
+             <h1>You have No Listing</h1>}
              </div>
         </div>
       

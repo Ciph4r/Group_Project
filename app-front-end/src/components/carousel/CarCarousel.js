@@ -10,7 +10,7 @@ export default function CarCarousel(props) {
 
   return (
     <div className="carousel">
-      <Carousel animation="slide" interval="8000" timeout={800}>
+      <Carousel animation="slide" interval="8000" timeout={800} strictIndexing={false}>
         {carData.map((item, i) => (
           <CarouselItem key={i} item={item} />
         ))}
