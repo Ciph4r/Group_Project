@@ -21,11 +21,14 @@
     }
     span{
         font-size: 1.5rem;
-        cursor: pointer;
         height: 15px;
         h2{
             color: white;
             margin-top: -16px;
+        }
+        h2:hover{
+            cursor: pointer;
+            color: red;
         }
     }
     .modal-content{

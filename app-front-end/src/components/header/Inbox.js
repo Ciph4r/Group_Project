@@ -2,7 +2,7 @@ import {React , useState ,  useEffect} from 'react'
 import {MailModal} from './MailModal'
 import { useSelector} from 'react-redux'
 import MessageBox from '../messageBox/MessageBox'
-import {changetoRead, fetchInbox} from '../../store/actions/inbox'
+import {changetoRead, fetchInbox, setToRead} from '../../store/actions/inbox'
 import {useDispatch} from 'react-redux'
 import { toggleWidget } from 'react-chat-widget';
 import Badge from '@material-ui/core/Badge';
@@ -16,7 +16,6 @@ export default function Inbox () {
     const [messages_id,setMessages_id] = useState({})
     const [chatWidget , setChatWidget] =useState(false)
     const dispatch = useDispatch()
-    console.log(messages_id)
     const closeMailHandler = () => {
         // also close chat widget  might change later to have chat persistent
         setChatWidget(false)
@@ -26,9 +25,11 @@ export default function Inbox () {
     const openMailHandler = () => setOpenMail(true)
     
 
-    const OpenMessageHandler = (inbox) =>{
-        if (inbox.read === false){
-        dispatch(changetoRead(inbox.id));
+    const OpenMessageHandler = (message) =>{
+
+        if (!message.read[userInbox._id]){
+            // console.log(message._id)
+            dispatch(setToRead(message._id))
         }
         if(!chatWidget){
             setChatWidget(true)
@@ -36,10 +37,10 @@ export default function Inbox () {
         }
         
     }
-
+    // console.log(!userInbox.inboxItems.length)
     const loadNotification = () => {
         let num = 0
-        if(userInbox.length > 0){
+        if(userInbox.inboxItems.length > 0){
             for (let i = 0; i < userInbox.inboxItems.length; i++) {
                 if (userInbox.inboxItems[i].read.[userInbox._id] === false){
                     num++
@@ -52,7 +53,7 @@ export default function Inbox () {
 
     useEffect(() => {
         loadNotification()
-        dispatch(fetchInbox('fetching'))
+        dispatch(fetchInbox())
       },[mailCount]);
 
 

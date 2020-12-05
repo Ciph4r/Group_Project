@@ -8,25 +8,25 @@ import {useDispatch} from 'react-redux'
 
 export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id , OpenMessageHandler,setMessages_id}) => {
     const dispatch = useDispatch()
-
+    console.log(userInbox)
     let InboxContent;
-    if (!userInbox) {
+    if (userInbox.length < 1){
         InboxContent= (
             <React.Fragment>
-                <h1>Your Inbox Is Empty</h1>
+                <h1 style ={{textAlign:'center'}}>Your Inbox Is Empty</h1>
             </React.Fragment>
       );
     } else {
         InboxContent = (
         <React.Fragment>
-            {userInbox.map((inbox, idx) => (
+            {userInbox.map((message, idx) => (
             <InboxItem 
             onClick = {() => {
-            setMessages_id(inbox._id)
-            OpenMessageHandler(inbox)
+            setMessages_id(message._id)
+            OpenMessageHandler(message)
             }}
             key = {idx} 
-            data = {inbox}
+            data = {message}
             userInbox_id = {userInbox_id}
             />
             ))}
@@ -46,49 +46,8 @@ export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id 
                 <div className='modal-content'>
                 {InboxContent}
                 </div>
-                {/* <div className='modal-content'>
-                         {userInbox.map((inbox, idx) => (
-                             <InboxItem 
-                              onClick = {() => {
-                                setMessages(inbox)
-                                OpenMessageHandler(inbox)
-                            }}
-                              key = {idx} 
-                              data = {inbox}
-                              userInbox_id = {userInbox_id}
-                             />
-                         ))}
-                 </div> */}
             </Modal>
 
     )
 }
 
-
-
-
-
-
-// export const MailModal = ({openMail, closeMailHandler}) => {
-//     return (
-//         <div className='modal'
-//         style={{
-//             opacity: openMail ? '1' : '0'
-//         }}
-//         >
-//             <div className='modal-header'>
-//                 <h2>dfsdfsdf</h2>
-//                 <span className='close-modla-btn' onClick={closeMailHandler}>x</span>
-//             </div>
-//             <div className='moda-content'>
-//                 <h1>sadfsfsdfsdfsdfsdf</h1>
-//                 <h1>sadfsfsdfsdfsdfsdf</h1>
-//                 <h1>sadfsfsdfsdfsdfsdf</h1>
-//                 <h1>sadfsfsdfsdfsdfsdf</h1>
-//                 <h1>sadfsfsdfsdfsdfsdf</h1>
-
-//             </div>
-//         </div>
-
-//     )
-// }
