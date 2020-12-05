@@ -158,9 +158,10 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
             </div>
             <div className='modal-content'>
             {errMsg && <Alert className ='error' severity="error">{errMsg}</Alert>}
-                <TextField  label="Maker" name='make' value={data.make} onChange={(e)=>{setDataHandler(e.target)}}/>
+                <div className="make-model">
+                <TextField  label="Make" name='make' value={data.make} onChange={(e)=>{setDataHandler(e.target)}}/>
                 <TextField  label="Model" name='model' value={data.model} onChange={(e)=>{setDataHandler(e.target)}}/>
-                <hr/>
+                </div>
                 <div className='car-option'>
                     <FormControl className={classes.formControl}>
                         <InputLabel >Year</InputLabel>
@@ -214,7 +215,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                 <TextField
                     label="Description"
                     multiline
-                    rows={4}
+                    rows={3}
                     defaultValue=""
                     name='description'
                     value={data.description}
@@ -259,7 +260,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                 </div>
 
                 <div className='price-input'>
-                    <TextField  type="number" label="Price Per Day" value={data.price}  name='price' onChange={(e)=>{setDataHandler(e.target)}}  />
+                    <div className="dollar">&#36;</div><TextField  type="number" label="Price Per Day" value={data.price}  name='price' onChange={(e)=>{setDataHandler(e.target)}}  />
                 </div>
                 <div className='img-upload'>
                 <ImageUploading
