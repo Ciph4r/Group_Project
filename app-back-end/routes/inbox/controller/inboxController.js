@@ -35,20 +35,25 @@ module.exports = {
         }
     },
     sendMsg: async(req,res,next) => {
+        console.log(req.params.id)
         try{
-            const currentUser = await User.findOne({_id: req.user.id})
-            const recievingUser = await User.findOne({_id: req.params.id})
-            const senderInbox = await Inbox.findOne({owner: req.user.id})
-            // const senderInbox = await Inbox.findOne({owner: req.body.user})
-            const receiverInbox = await Inbox.findOne({owner: req.params.id})
-            //find if msg exist between users
-            let existingMsg = await Message.findOne({ $or: [ {user: senderInbox._id , user_b: receiverInbox._id}, { user: receiverInbox._id , user_b: senderInbox._id} ] })
-            let messageItem = {
-                timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
-                userInbox_id: senderInbox._id,
-                name: currentUser.firstName,
-                messageText: req.body.messageText
-        }
+                const currentUser = await User.findOne({_id: req.user.id})
+            
+                const senderInbox = await Inbox.findOne({owner: req.user.id})
+                // const senderInbox = await Inbox.findOne({owner: req.body.user})
+                const receiverInbox = await Inbox.findOne({_id: req.params.id})
+
+                const recievingUser = await User.findOne({_id: receiverInbox.owner})
+                
+
+                //find if msg exist between users
+                let existingMsg = await Message.findOne({ $or: [ {user: senderInbox._id , user_b: receiverInbox._id}, { user: receiverInbox._id , user_b: senderInbox._id} ] })
+                let messageItem = {
+                    timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
+                    userInbox_id: senderInbox._id,
+                    name: currentUser.firstName,
+                    messageText: req.body.messageText
+                }
 
             if(existingMsg){
 

@@ -24,17 +24,20 @@ export const fetchInbox = createAsyncThunk(
     async (args, thunkAPI) => {
         console.log(args)
         const token = thunkAPI.getState().user.token;
-        const createUrl = `${process.env.REACT_APP_API_URL}/api/inbox/sendmsg/:${args.id}`;
+        const createUrl = `${process.env.REACT_APP_API_URL}/api/inbox/sendmsg/${args.id}`;
+        console.log(createUrl)
         const response = await fetch(createUrl, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
               },
+              body: JSON.stringify({messageText:args.messageText})
+              
       });
       let jsonData = await response.json();
-        // return jsonData.inbox
-        console.log(jsonData)
+        return jsonData.msg
+        console.log(jsonData.msg)
     }
   );
 

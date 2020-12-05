@@ -6,12 +6,11 @@ import {changetoRead} from '../../store/actions/inbox'
 import {useDispatch} from 'react-redux'
 
 
-export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id , OpenMessageHandler,setMessages}) => {
+export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id , OpenMessageHandler,setMessages_id}) => {
     const dispatch = useDispatch()
-    console.log(userInbox)
-    
+
     let InboxContent;
-    if (userInbox.length === 0 ) {
+    if (!userInbox) {
         InboxContent= (
             <React.Fragment>
                 <h1>Your Inbox Is Empty</h1>
@@ -23,7 +22,7 @@ export const MailModal = ({openMail, closeMailHandler , userInbox, userInbox_id 
             {userInbox.map((inbox, idx) => (
             <InboxItem 
             onClick = {() => {
-            setMessages(inbox)
+            setMessages_id(inbox._id)
             OpenMessageHandler(inbox)
             }}
             key = {idx} 

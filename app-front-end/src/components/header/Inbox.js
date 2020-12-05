@@ -11,13 +11,12 @@ import MailIcon from '@material-ui/icons/Mail';
 
 export default function Inbox () {
     const userInbox = useSelector((state) => state.inbox.inbox)
-    const user = useSelector((state) => state.user.user_id)
     const [mailCount, setMailCount] =useState(0);
     const [openMail,setOpenMail] = useState(false)
-    const [messagesData,setMessages] = useState({})
+    const [messages_id,setMessages_id] = useState({})
     const [chatWidget , setChatWidget] =useState(false)
     const dispatch = useDispatch()
-
+    console.log(messages_id)
     const closeMailHandler = () => {
         // also close chat widget  might change later to have chat persistent
         setChatWidget(false)
@@ -40,7 +39,7 @@ export default function Inbox () {
 
     const loadNotification = () => {
         let num = 0
-        if(userInbox){
+        if(userInbox.length > 0){
             for (let i = 0; i < userInbox.inboxItems.length; i++) {
                 if (userInbox.inboxItems[i].read.[userInbox._id] === false){
                     num++
@@ -66,7 +65,7 @@ export default function Inbox () {
             userInbox = {userInbox.inboxItems} 
             OpenMessageHandler={OpenMessageHandler}
             userInbox_id = {userInbox._id}
-            setMessages = {setMessages}
+            setMessages_id = {setMessages_id}
             >
             </MailModal>
             <div className="notification" onClick={openMailHandler}>
@@ -74,7 +73,12 @@ export default function Inbox () {
                     <MailIcon style={{ color: '#d9d9d9' }}/>
                 </Badge>
             </div>
-            <MessageBox messagesData = {messagesData} userInbox_id = {userInbox._id}/>
+            {chatWidget ? 
+            <MessageBox messages_id ={messages_id} messagesData = {messages_id} userInbox_id = {userInbox._id}/>
+            :
+            null
+            }
+            
         </div>
 
     )
