@@ -2,13 +2,15 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Rating from '@material-ui/lab/Rating';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFavorites } from '../store/actions/users';
 import '../css/card.scss';
 
-export default function Card({ data, carId }) {
+export default function Card({ data, carId, openModalHandler }) {
   const { img, year, make, model, price, description } = data;
   const [value, setValue] = React.useState(3);
   const favorites = useSelector(state => state.user.favorites);
+  const dispatch = useDispatch();
 
   return (
     <div className="card">
@@ -19,12 +21,20 @@ export default function Card({ data, carId }) {
               ? 'card-fav-icon active'
               : 'card-fav-icon'
           }
+          onClick={() => {
+            dispatch(toggleFavorites(data._id));
+          }}
         >
           <FavoriteIcon />
         </IconButton>
         <img src={img[0]} alt="..." />
       </div>
-      <div className="card-body">
+      <div
+        className="card-body"
+        onClick={() => {
+          openModalHandler();
+        }}
+      >
         <div className="car-info-left">
           <h3 className="year-make">
             {year} {make}

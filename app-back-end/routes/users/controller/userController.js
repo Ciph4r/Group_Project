@@ -78,4 +78,17 @@ module.exports = {
     let user = await User.findOne({ _id: req.user.id });
     return res.status(200).json(user.favorite);
   },
+  toggleFavorites: async (req, res) => {
+    let user = await User.findOne({ _id: req.user.id });
+    let carId = req.body.carId;
+    let userHasFav = user.favorite.includes(carId);
+    if (userHasFav) {
+      let favorites = user.favorite.filter(favCarId => carId != favCarId);
+      user.favorite = favorites;
+    } else {
+      user.favorite = user.favorite.concat(carId);
+    }
+    user = await user.save();
+    return res.status(200).json(user.favorite);
+  },
 };

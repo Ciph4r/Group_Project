@@ -36,11 +36,10 @@ export default function Home() {
             key={data._id}
             onClick={() => {
               setCarId(data._id);
-              openModalHandler();
               /// add fetch update data
             }}
           >
-            <Card key={key} data={data} carId={carId}/>
+            <Card key={key} data={data} carId={carId} openModalHandler={openModalHandler}/>
           </div>
         ))}
       </div>

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchFavorites } from '../actions/users';
+import { fetchFavorites, toggleFavorites } from '../actions/users';
 
 export const userSlice = createSlice({
   name: 'auth',
@@ -23,6 +23,9 @@ export const userSlice = createSlice({
   },
   extraReducers: {
     [fetchFavorites.fulfilled]: (state, action) => {
+      state.favorites = action.payload;
+    },
+    [toggleFavorites.fulfilled]: (state, action) => {
       state.favorites = action.payload;
     },
   },

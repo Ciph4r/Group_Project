@@ -14,3 +14,21 @@ export const fetchFavorites = createAsyncThunk(
     return jsonData;
   }
 );
+
+export const toggleFavorites = createAsyncThunk(
+  'toggleFavorites',
+  async (carId, thunkAPI) => {
+    const token = thunkAPI.getState().user.token;
+    const fetchUrl = `${process.env.REACT_APP_API_URL}/users/toggle-favorites`;
+    const response = await fetch(fetchUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ carId }),
+    });
+    let jsonData = await response.json();
+    return jsonData;
+  }
+);
