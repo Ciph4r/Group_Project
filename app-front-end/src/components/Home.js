@@ -7,6 +7,7 @@ import CardModal from './CardModal';
 import '../css/home.scss';
 import { useSelector, useDispatch } from 'react-redux'
 import{fetchCars} from '../store/actions/cars'
+import { fetchFavorites } from '../store/actions/users';
 
 export default function Home() {
   const carData = useSelector((state) => state.car.cars)
@@ -20,6 +21,7 @@ export default function Home() {
 
   useEffect(()=> {
     dispatch(fetchCars())
+    dispatch(fetchFavorites());
 },[]);
   return (
     <div className="home">

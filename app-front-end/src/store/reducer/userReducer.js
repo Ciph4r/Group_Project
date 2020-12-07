@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchFavorites } from '../actions/users';
 
 export const userSlice = createSlice({
   name: 'auth',
   initialState: {
     token: null,
     user_id: null,
+    favorites: [],
   },
   reducers: {
     setToken: (state, { payload }) => {
@@ -17,6 +19,11 @@ export const userSlice = createSlice({
     logout: (state, { payload }) => {
       state.token = null;
       state.user_id = null;
+    },
+  },
+  extraReducers: {
+    [fetchFavorites.fulfilled]: (state, action) => {
+      state.favorites = action.payload;
     },
   },
 });

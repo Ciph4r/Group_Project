@@ -2,16 +2,24 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Rating from '@material-ui/lab/Rating';
+import { useSelector } from 'react-redux';
 import '../css/card.scss';
 
-
-export default function Card({data , carId}) {
-  const { img, year, make, model, price , description} = data;
+export default function Card({ data, carId }) {
+  const { img, year, make, model, price, description } = data;
   const [value, setValue] = React.useState(3);
+  const favorites = useSelector(state => state.user.favorites);
+
   return (
     <div className="card">
       <div className="card-img">
-        <IconButton className="card-fav-icon">
+        <IconButton
+          className={
+            favorites.indexOf(data._id) >= 0
+              ? 'card-fav-icon active'
+              : 'card-fav-icon'
+          }
+        >
           <FavoriteIcon />
         </IconButton>
         <img src={img[0]} alt="..." />
