@@ -12,7 +12,7 @@ module.exports = {
               if (err) {
                 return res.status(500).json({
                     status: 'error',
-                    message: 'DataBase Error'
+                    message: err.message
                   });
               }
               return res.status(200).json({
@@ -20,35 +20,38 @@ module.exports = {
                 message: 'InboxItem Sent',
                 inbox
               });
-              console.log(inbox);
-              console.log('_______________________________')
-              // prints "The author is Ian Fleming"
             });
 
         }
         catch(err){
-            console.log(err)
             return res.status(500).json({
                 status: 'error',
-                message: 'Internal Server Error'
+                message: err.message
               });
         }
     },
     sendMsg: async(req,res,next) => {
-        try{
-            const currentUser = await User.findOne({_id: req.user.id})
-            const recievingUser = await User.findOne({_id: req.params.id})
-            const senderInbox = await Inbox.findOne({owner: req.user.id})
-            // const senderInbox = await Inbox.findOne({owner: req.body.user})
-            const receiverInbox = await Inbox.findOne({owner: req.params.id})
-            //find if msg exist between users
-            let existingMsg = await Message.findOne({ $or: [ {user: senderInbox._id , user_b: receiverInbox._id}, { user: receiverInbox._id , user_b: senderInbox._id} ] })
-            let messageItem = {
-                timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
-                userInbox_id: senderInbox._id,
-                name: currentUser.firstName,
-                messageText: req.body.messageText
-        }
+        try{    
+                const currentUser = await User.findOne({_id: req.user.id})
+                const senderInbox = await Inbox.findOne({owner: req.user.id})
+                const receiverInbox = await Inbox.findOne({_id: req.params.id})
+                const recievingUser = await User.findOne({_id: receiverInbox.owner})
+                
+                if(receiverInbox._id === senderInbox._id ){
+                    return res.status(500).json({
+                        status: 'error',
+                        message: 'Cant Send A message to yourself'
+                      });
+                }
+
+                //find if msg exist between users
+                let existingMsg = await Message.findOne({ $or: [ {user: senderInbox._id , user_b: receiverInbox._id}, { user: receiverInbox._id , user_b: senderInbox._id} ] })
+                let messageItem = {
+                    timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
+                    userInbox_id: senderInbox._id,
+                    name: currentUser.firstName,
+                    messageText: req.body.messageText
+                }
 
             if(existingMsg){
 
@@ -61,8 +64,6 @@ module.exports = {
                 return res.status(200).json({
                     status: 'success',
                     message: 'Message Sent',
-                    senderInbox: senderInbox , 
-                    receiverInbox: receiverInbox,
                     msg: saveExistingMsg
                   });
             }
@@ -90,16 +91,40 @@ module.exports = {
             return res.status(200).json({
                 status: 'success',
                 message: 'Message Sent',
-                senderInbox: saveSenderInbox , 
-                receiverInbox: saveReceiverInbox,
                 msg: saveMsg
               });
         }
         catch(err){
-            console.log(err)
             return res.status(500).json({
                 status: 'error',
-                message: 'Internal Server Error'
+                message: err.message
+              });
+        }
+    },
+    msgRead: async(req,res,next) => {
+        try{
+            const userInbox = await Inbox.findOne({owner: req.user.id})
+            const messageItem = await Message.findOne({_id: req.params.id})
+
+            //check if user is participant in this message
+            if(`${userInbox._id}` === `${messageItem.user}` || `${userInbox._id}` === `${messageItem.user_b}`){
+                messageItem.read[userInbox._id] = true
+                console.log(userInbox._id)
+                console.log(messageItem.read)
+                const savedMessage = await messageItem.save()
+                return res.status(200).json({
+                  status: 'success',
+                  message: 'Message Read',
+                  payload : {message_id : messageItem._id , inbox_id: userInbox._id}
+                });
+            }
+
+
+        }
+        catch(err){
+            return res.status(500).json({
+                status: 'error',
+                message: err.message
               });
         }
     },

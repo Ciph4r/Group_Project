@@ -4,82 +4,62 @@ import { useSelector, useDispatch } from 'react-redux'
 import 'react-chat-widget/lib/styles.css';
 import '../../css/chatWindow.scss'
 import moment from 'moment'
+import {sendMsg} from '../../store/actions/inbox'
+
 
 let logo = 'https://i.guim.co.uk/img/media/7a633730f5f90db3c12f6efc954a2d5b475c3d4a/0_138_5544_3327/master/5544.jpg?width=1920&quality=85&auto=format&fit=max&s=28e44fd4e328c9c30918ca277fb38308'
 
-export default function MessageBox({messagesData , userInbox_id}) {
+export default function MessageBox({userInbox_id ,messages_id}) {
+    const messagesData = useSelector((state) => state.inbox.inbox.inboxItems.filter(items => items._id === messages_id))
     const [messageList , setMessageList] = useState()
-
-    const {timestamp , user , user_b, username, user_b_name ,messages ,date ,read } = messagesData
-
-
-   
-    console.log(moment().format())
-
-
+    const {timestamp , user , user_b, username, user_b_name ,messages ,date ,read } = messagesData[0]
+    const dispatch = useDispatch()
+    // checks user && user_b to see who the sender is
+    let sender = ""
+    if (user === userInbox_id){
+        sender = user_b
+    }else{
+        sender = user
+    }
 
     const handleNewUserMessage = (newMessage) => {
+        dispatch(sendMsg({messageText: newMessage , id:sender}))
         console.log(`New message incoming! ${newMessage}`);
         console.log(messageList)
         // Now send the message throught the backend API
       };
-      console.log(date)
+
       // preload msg
       const preLoadMsg = () => {
-        
-        const CurrentDate = ({date}) => {
-          return new Date().getDate() !== new Date(date).getDate()
-              ? new moment(date,'MMMM Do YYYY, h:mm:ss a').format('LT')
-              : new moment(date,'MMMM Do YYYY, h:mm:ss a').format('ddd LT');
-
-      };
-      const ResponseMsg = (message) => {
-        console.log(message)
-        let timestamp = new moment(message.timestamp,'MMMM Do YYYY, h:mm:ss a').format('LT')
-        return (<div className = 'responseMsg'>
-                  <div className = 'time'>{timestamp}</div>
-                  <hr className = 'userhr'/>
-                  <div className = 'msg'> {message.messageText}</div>
-                </div>
-        )}
+        const ResponseMsg = (message) => {
+          let timestamp = new moment(message.timestamp,'MMMM Do YYYY, h:mm:ss a').format('LT')
+          return (<div className = 'responseMsg'>
+                    <div className = 'time'>{timestamp}</div>
+                    <div className = 'msg'> {message.messageText}</div>
+                  </div>
+          )}
 
         const UserResponseMsg = (message) => {
           let timestamp = new moment(message.timestamp,'MMMM Do YYYY, h:mm:ss a').format('LT')
           return (<div className = 'userresponseMsg'>
                     <div className = 'usertime'>{timestamp}</div>
-                    <hr className = 'userhr'/>
                     <div className = 'usermsg'>{message.messageText}</div>
                   </div>
           )}
       
-        // checks user && user_b to see who the sender is
-        let sender = ""
-        if (user === userInbox_id){
-            sender = user_b
-        }else{
-            sender = user
-        }
+        
+
         // loops through messagelist
         for (let i = 0 ; i < messageList.length ; i++){
         // checks whos sending the message
           if (sender === messageList[i].userInbox_id){
-            // addResponseMessage(messageList[i].messageText);
-            // renderCustomComponent(CurrentDate, {date: messageList[i].timestamp});
             renderCustomComponent(ResponseMsg, messageList[i])
           }else{
-            // addUserMessage(messageList[i].messageText);
-            // renderCustomComponent(
-            //   CurrentDate, {date: messageList[i].timestamp }
             renderCustomComponent(UserResponseMsg, messageList[i])
               // );
           }
         }
       }
-
-      // const custom userMsg = () =>{
-
-      // }
-
 
       // sets data and clears all previous message
   useEffect(() => {
@@ -105,7 +85,7 @@ export default function MessageBox({messagesData , userInbox_id}) {
           subtitle="And my cool subtitle"
           launcher={()=>{}}
           showTimeStamp= {false}
-          
+          showCloseButton = {false}
         >
           <h1>sdasda</h1>
           </Widget>
