@@ -111,14 +111,13 @@ module.exports = {
                 messageItem.read[userInbox._id] = true
                 console.log(userInbox._id)
                 console.log(messageItem.read)
-                // const savedMessage = await messageItem.save()
+                const savedMessage = await messageItem.save()
                 return res.status(200).json({
                   status: 'success',
                   message: 'Message Read',
                   payload : {message_id : messageItem._id , inbox_id: userInbox._id}
                 });
             }
-
 
 
         }

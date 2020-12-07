@@ -123,10 +123,9 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
     carYear.push(<MenuItem key = {i+1} value={i}>{i}</MenuItem>)
       }
     carYear.push(<MenuItem key = {0} value={'----'}>{'----'}</MenuItem>)
-    
-      const classes = useStyles();
+    const classes = useStyles();
 
-
+  
 
       useEffect(()=> {
             if(id){
@@ -145,6 +144,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
           }else{
             setData({...initialStateData})
           }
+          // eslint-disable-next-line react-hooks/exhaustive-deps
      },[id])
 
 
@@ -169,8 +169,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             className='year-select'
                             name='year'
                             id="Year"
-                            value={data.year}
-                            // defaultValue={1950}
+                            value={data.year}                           
                             onChange={(e)=>{setDataHandler(e.target)}}
                             >
                            {carYear.reverse()}
@@ -182,7 +181,6 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             id="Door"
                             name='door'
                             value={data.door}
-                            // defaultValue={2}
                             onChange={(e)=>{setDataHandler(e.target)}}
                             >
                             <MenuItem value={'----'}>----</MenuItem>
@@ -198,8 +196,7 @@ export const CreateListingModal = ({showCreateModal,setShowCreateModal,id}) => {
                             id="VehicleClass"
                             value={data.vehicleClass}
                             onChange={(e)=>{setDataHandler(e.target)}}
-                            name='vehicleClass'
-                            defaultValue={'Sedan'}
+                            name='vehicleClass'                        
                             >
                             <MenuItem value={'----'}>----</MenuItem>
                             <MenuItem value={'sedan'}>Sedan</MenuItem>
