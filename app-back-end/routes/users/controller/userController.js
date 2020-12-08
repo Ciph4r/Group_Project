@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Inbox = require('../../inbox/models/Inbox');
+const Car = require('../../cars/models/Car');
 const jwt = require('jsonwebtoken');
 const { comparePassword, createUser } = require('../middleWare/auth');
 const { createJwtToken } = require('../middleWare/token');
@@ -66,6 +67,7 @@ module.exports = {
         message: 'Successfully logged in',
         token: jwtToken,
         user: user._id,
+        favorite: user.favorite,
       });
     } catch (error) {
       return res.status(500).json({
@@ -76,7 +78,10 @@ module.exports = {
   },
   fetchFavorites: async (req, res) => {
     let user = await User.findOne({ _id: req.user.id });
-    return res.status(200).json(user.favorite);
+    let cars = await Car.find({ _id: { $in: user.favorite } });
+
+
+    return res.status(200).json(cars);
   },
   toggleFavorites: async (req, res) => {
     let user = await User.findOne({ _id: req.user.id });

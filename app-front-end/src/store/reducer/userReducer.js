@@ -7,11 +7,13 @@ export const userSlice = createSlice({
     token: null,
     user_id: null,
     favorites: [],
+    favoriteDetails: [],
   },
   reducers: {
     setToken: (state, { payload }) => {
       state.token = payload.token;
       state.user_id = payload.user_id;
+      state.favorites = payload.favorite;
     },
     // setUser_id: (state, { payload }) => {
     //   state.user_Id = payload.token;
@@ -23,7 +25,7 @@ export const userSlice = createSlice({
   },
   extraReducers: {
     [fetchFavorites.fulfilled]: (state, action) => {
-      state.favorites = action.payload;
+      state.favoriteDetails = action.payload;
     },
     [toggleFavorites.fulfilled]: (state, action) => {
       state.favorites = action.payload;

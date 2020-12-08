@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/register', validateRegister, register);
 router.post('/login',login)
-router.get('/fetch-favorites', authenticateToken, fetchFavorites);
 router.post('/toggle-favorites', authenticateToken, toggleFavorites);
+router.get('/fetch-favorites', authenticateToken, fetchFavorites);
 
 module.exports = router;

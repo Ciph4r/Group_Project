@@ -34,7 +34,7 @@ export const LoginModal = ({openLogin , closeLoginHandler , loginHandler}) => {
       } else {
         // set token and auto login 
         console.log(jsonData)
-        dispatch(setToken({ token: jsonData.token, user_id: jsonData.user }));
+        dispatch(setToken({ token: jsonData.token, user_id: jsonData.user, favorite: jsonData.favorite }));
         closeLoginHandler();
       }
     }

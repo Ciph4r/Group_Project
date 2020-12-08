@@ -4,10 +4,10 @@ import Search from './Search';
 import Filter from './Filter';
 import CarCarousel from './carousel/CarCarousel';
 import CardModal from './CardModal';
-import '../css/home.scss';
 import { useSelector, useDispatch } from 'react-redux'
-import{fetchCars} from '../store/actions/cars'
-import { fetchFavorites } from '../store/actions/users';
+import { fetchCars } from '../store/actions/cars'
+import '../css/home.scss';
+
 
 export default function Home() {
   const carData = useSelector((state) => state.car.cars)
@@ -21,14 +21,14 @@ export default function Home() {
 
   useEffect(()=> {
     dispatch(fetchCars())
-    dispatch(fetchFavorites());
 },[]);
+
   return (
     <div className="home">
       <Search />
       <Filter />
       <CarCarousel />
- 
+
       <div className="home-content">
         {carData.map((data, key) => (
           <div
