@@ -23,12 +23,50 @@ export function ListingCard({data , modalType,setShowCreateModal}){
       setAnchorEl(null);
     };
 
-    let {img,year,make,model,price,_id} = data
+    let {img,year,make,model,price,_id ,dateList , dateLookUp} = data
+
+    // fills calander
+    const tileContent = ({ date, view }) => {
+        const todayDate = date.getDate()
+        const todayMonth = date.getMonth()
+        const todayYear = date.getFullYear()
+        const dateKey = `${todayDate}/${todayMonth}/${todayYear}`
+        
+        if (dateKey in dateLookUp){
+            if(dateLookUp[dateKey].booked === false){
+                return <p className = 'days_open'>Open</p>
+            }else{
+                return <p className = 'days_open'>Booked</p>
+            }
+        } 
+        return <p className = 'days_close'>Closed</p>
+    }
+
+    
+    /// set classname for color
+    const titleClassName = ({ date, view }) => {
+        const todayDate = date.getDate()
+        const todayMonth = date.getMonth()
+        const todayYear = date.getFullYear()
+        const dateKey = `${todayDate}/${todayMonth}/${todayYear}`
+
+        if (dateKey in dateLookUp){
+            if(dateLookUp[dateKey].booked === false){
+                return 'open'
+            }
+        }
+        return 'closed'
+    }
 
     return(
         <div className='listing-card card'>
             <div className='calender'>
-                <Calendar onChange={onChange}value={value}/>
+                <Calendar 
+                onChange={onChange}
+                value={value}
+                tileContent={tileContent}
+                tileClassName = {titleClassName}
+                />
             </div>
             <div className='card-group'>
               <div className='img'>

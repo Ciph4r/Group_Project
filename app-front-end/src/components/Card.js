@@ -16,11 +16,11 @@ export default function Card({ data, carId, openModalHandler }) {
     <div className="card">
       <div className="card-img">
         <IconButton
-          className={
-            favorites.indexOf(data._id) >= 0
-              ? 'card-fav-icon active'
-              : 'card-fav-icon'
-          }
+          // className={
+          //   favorites.indexOf(data._id) >= 0
+          //     ? 'card-fav-icon active'
+          //     : 'card-fav-icon'
+          // }
           onClick={() => {
             dispatch(toggleFavorites(data._id));
           }}

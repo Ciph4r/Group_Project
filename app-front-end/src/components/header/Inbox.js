@@ -27,8 +27,9 @@ export default function Inbox () {
 
     const OpenMessageHandler = (message) =>{
         if (!message.read[userInbox._id]){
-            dispatch(setToRead(message._id))
             setMailCount(mailCount-1)
+            setMessages_id(message._id)
+            dispatch(setToRead(message._id))
         }
         if(!chatWidget){
             setChatWidget(true)

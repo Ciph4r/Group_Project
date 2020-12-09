@@ -37,9 +37,7 @@ export const carSlice = createSlice({
         }
         return car
       })
-      console.log(action.payload)
       state.cars = cars
-      console.log(state.cars)
     },
   },
 });

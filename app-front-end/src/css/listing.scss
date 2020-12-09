@@ -185,3 +185,20 @@
 .MuiMenu-paper {
     max-height: calc(20% - 96px) !important ; 
 }
+
+.react-calendar__tile {
+   .days_open{
+       color: white;
+       background-color: green;
+   }
+   .days_close{
+    color: white;
+}
+
+}
+.open{
+    background-color: green !important;
+}
+.closed{
+    background-color: grey !important; 
+}

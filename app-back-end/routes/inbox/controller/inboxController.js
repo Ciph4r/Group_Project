@@ -34,9 +34,17 @@ module.exports = {
         try{    
                 const currentUser = await User.findOne({_id: req.user.id})
                 const senderInbox = await Inbox.findOne({owner: req.user.id})
-                const receiverInbox = await Inbox.findOne({_id: req.params.id})
-                const recievingUser = await User.findOne({_id: receiverInbox.owner})
-                
+                let receiverInbox
+                let recievingUser
+
+                if(req.params.user !== 'null'){
+                    recievingUser = await User.findOne({_id: req.params.user})
+                    receiverInbox = await Inbox.findOne({owner: recievingUser._id})
+                }else{
+                    receiverInbox = await Inbox.findOne({_id: req.params.id})
+                    recievingUser = await User.findOne({_id: receiverInbox.owner})
+                }
+
                 if(receiverInbox._id === senderInbox._id ){
                     return res.status(500).json({
                         status: 'error',
@@ -109,9 +117,10 @@ module.exports = {
             //check if user is participant in this message
             if(`${userInbox._id}` === `${messageItem.user}` || `${userInbox._id}` === `${messageItem.user_b}`){
                 messageItem.read[userInbox._id] = true
-                console.log(userInbox._id)
                 console.log(messageItem.read)
-                const savedMessage = await messageItem.save()
+                messageItem.markModified('read')
+                messageItem.save()
+                
                 return res.status(200).json({
                   status: 'success',
                   message: 'Message Read',

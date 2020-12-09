@@ -8,6 +8,20 @@ export const fetchCars = createAsyncThunk(
         const fetchUrl = `${process.env.REACT_APP_API_URL}/api/cars/`;
         const response = await fetch(fetchUrl);
         let cars = await response.json();
+        
+        for(let i = 0 ; i < cars.cars.length ; i++){
+          const dateList = cars.cars[i].dateList
+          let dateLookUp ={}
+
+          for (let j = 0 ; j < dateList.length ; j++){
+            let listingdate = new Date(dateList[j].date)
+            const dateKey = `${listingdate.getDate()}/${listingdate.getMonth()}/${listingdate.getFullYear()}`
+            dateLookUp[dateKey] = dateList[j]
+          }
+          cars.cars[i] = {
+            dateLookUp,...cars.cars[i]
+            }
+        }
         return cars;
   
     }
