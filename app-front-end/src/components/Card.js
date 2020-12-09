@@ -4,6 +4,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Rating from '@material-ui/lab/Rating';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorites } from '../store/actions/users';
+import { capitalize } from '../helperFunctions/capitalize';
 import '../css/card.scss';
 
 export default function Card({ data, carId, openModalHandler }) {
@@ -37,9 +38,9 @@ export default function Card({ data, carId, openModalHandler }) {
       >
         <div className="car-info-left">
           <h3 className="year-make">
-            {year} {make}
+            {year} {capitalize(make)}
           </h3>
-          <h3 className="model">{model}</h3>
+          <h3 className="model">{capitalize(model)}</h3>
         </div>
         <div className="car-info-right">
           <h4 className="price">${price}</h4>

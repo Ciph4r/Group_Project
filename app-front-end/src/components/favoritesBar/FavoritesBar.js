@@ -3,10 +3,9 @@ import { fetchFavorites } from '../../store/actions/users';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card';
 import CardModal from '../CardModal';
-// import '../../css/favoritesBar.scss';
 
 
-export default function FavoritesBar() {
+export default function HistoryBar() {
   const carData = useSelector(state => state.user.favoriteDetails);
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
@@ -19,10 +18,10 @@ export default function FavoritesBar() {
   }, []);
 
   return (
-    <div className="favorites-bar">
+    <div className="history-bar">
       <div className="content">
         <div className="items">
-          <h3>Favorites</h3>
+          <h3>You've Viewed:</h3>
           {carData.map((data, key) => (
             <div className="box" key={key} onClick={openModalHandler}>
               <img src={data.img[0]} alt="Thumbnail" />
