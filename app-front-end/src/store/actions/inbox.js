@@ -21,7 +21,7 @@ export const fetchInbox = createAsyncThunk(
     'sendMsg',
     async (args, thunkAPI) => {
         const token = thunkAPI.getState().user.token;
-        const createUrl = `${process.env.REACT_APP_API_URL}/api/inbox/sendmsg/${args.id}`;
+        const createUrl = `${process.env.REACT_APP_API_URL}/api/inbox/sendmsg/${args.id}/${args.user}`;
         const response = await fetch(createUrl, {
             method: 'POST',
             headers: {
@@ -42,7 +42,7 @@ export const fetchInbox = createAsyncThunk(
     'setToRead',
     async (args, thunkAPI) => {
         const token = thunkAPI.getState().user.token;
-        const createUrl = `${process.env.REACT_APP_API_URL}/api/inbox//read/${args}`;
+        const createUrl = `${process.env.REACT_APP_API_URL}/api/inbox/read/${args}`;
         const response = await fetch(createUrl, {
             method: 'POST',
             headers: {

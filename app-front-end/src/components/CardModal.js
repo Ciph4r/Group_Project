@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Modal from 'react-modal';
 import ModalCarousel from './ModalCarousel';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -7,6 +7,7 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { makeStyles } from '@material-ui/core/styles';
 import '../css/cardModal.scss';
 import { useSelector} from 'react-redux'
+import MsgModal from './MsgModal';
 
 const useStyles = makeStyles(theme => ({
   cardModal: {
@@ -18,11 +19,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function CardModal({ openModal, closeModal,carId }) {
+export default function CardModal({ openModal, closeModal, carId }) {
   const carData = useSelector((state) => state.car.cars.find(car => car._id === `${carId}`))
   const classes = useStyles();
-  console.log(carData)
-  const { img, year, make, model, price,description } = carData;
+  const { img, year, make, model, price,description ,owner } = carData;
+  const [msgModal,SetMsgModal] = useState(false)
+
+
 
   return (
     <Modal isOpen={openModal} className={classes.cardModal} ariaHideApp={false}>
@@ -54,7 +57,7 @@ export default function CardModal({ openModal, closeModal,carId }) {
             <div className="card-icons">
               <div className="card-icon-group">
                 <IconButton aria-label="message">
-                  <ChatIcon fontSize="large" />
+                  <ChatIcon fontSize="large" onClick={()=> {SetMsgModal(true)}}/>
                 </IconButton>
                 <span>Message Owner</span>
               </div>
@@ -71,6 +74,7 @@ export default function CardModal({ openModal, closeModal,carId }) {
           <h1>Ratings will go here</h1>
         </div>
       </div>
+      <MsgModal openModal = {msgModal} closeModal = {SetMsgModal} id = {owner}/>
     </Modal>
   );
 }
