@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './header/Header';
-import HistoryBar from './historyBar/HistoryBar';
+import FavoritesBar from './favoritesBar/FavoritesBar';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import '../css/layout.scss';
@@ -17,7 +17,7 @@ export default function Layout(props) {
   if (sidebarToggle) {
     sideBar = (
       <React.Fragment>
-        <HistoryBar />
+        <FavoritesBar />
       </React.Fragment>
     );
   } else {
@@ -35,7 +35,7 @@ export default function Layout(props) {
       <div className="page-item">
         <div className="page-content">
           {props.children}
-          <div className="sidebar-toggle">
+          {/* <div className="sidebar-toggle">
             {sidebarToggle ? (
               <ArrowForwardIosIcon
                 className="arrow"
@@ -47,9 +47,9 @@ export default function Layout(props) {
                 onClick={() => setSidebarToggle(true)}
               />
             )}
-          </div>
+          </div> */}
         </div>
-        {sideBar}
+        {/* {sideBar} */}
       </div>
     </div>
   );

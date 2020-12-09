@@ -5,7 +5,6 @@ import Card from './Card';
 import CardModal from './CardModal';
 import '../css/favorites.scss';
 
-
 export default function Favorties() {
   const carData = useSelector(state => state.user.favoriteDetails);
   const dispatch = useDispatch();
@@ -18,35 +17,46 @@ export default function Favorties() {
     dispatch(fetchFavorites());
   }, []);
 
-  return (
-    <div className="favorites-main">
-      <h1>Favorites</h1>
-      <div className="favorites-content">
-        {carData.map((data, key) => (
-          <div
-            className="box"
-            key={data._id}
-            onClick={() => {
-              setCarId(data._id);
-              /// add fetch update data
-            }}
-          >
-            <Card
-              key={key}
-              data={data}
-              carId={carId}
-              openModalHandler={openModalHandler}
-            />
-          </div>
-        ))}
-        {carId !== null && (
-          <CardModal
-            closeModal={closeModalHandler}
-            carId={carId}
-            openModal={openModal}
-          />
-        )}
+  if (!carData.length) {
+    return (
+      <div className="favorites-main">
+        <h1>Favorites</h1>
+        <div className="favorites-content">
+          <h3>Your favorite listings will show here.</h3>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="favorites-main">
+        <h1>Favorites</h1>
+        <div className="favorites-content">
+          {carData.map((data, key) => (
+            <div
+              className="box"
+              key={data._id}
+              onClick={() => {
+                setCarId(data._id);
+                /// add fetch update data
+              }}
+            >
+              <Card
+                key={key}
+                data={data}
+                carId={carId}
+                openModalHandler={openModalHandler}
+              />
+            </div>
+          ))}
+          {carId !== null && (
+            <CardModal
+              closeModal={closeModalHandler}
+              carId={carId}
+              openModal={openModal}
+            />
+          )}
+        </div>
+      </div>
+    );
+  }
 }

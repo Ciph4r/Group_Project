@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+  width: 100%;
 
-.favorites-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: 2rem;
+  .favorites-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 2rem;
+  }
 }

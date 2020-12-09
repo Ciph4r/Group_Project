@@ -40,6 +40,7 @@ export default function Filter() {
           <MenuItem value="Sedan">Sedan</MenuItem>
           <MenuItem value="Truck">Truck</MenuItem>
           <MenuItem value="SUV">SUV</MenuItem>
+          <MenuItem value="Van">Van</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
