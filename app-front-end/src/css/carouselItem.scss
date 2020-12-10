@@ -44,6 +44,7 @@
   }
   .carousel-item-body {
     width: 50%;
+    height: 12rem;
     margin: 1rem;
 
     .carousel-item-header {
@@ -77,7 +78,10 @@
     .carousel-item-description {
       text-indent: 10px;
       text-align: left;
+      text-overflow: ellipsis; 
+      overflow: hidden;
       margin: 1rem 0 0;
+      height: 8rem;
     }
   }
 }

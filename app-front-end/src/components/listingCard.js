@@ -32,7 +32,7 @@ export function ListingCard({data , modalType,setShowCreateModal}){
         const todayYear = date.getFullYear()
         const dateKey = `${todayDate}/${todayMonth}/${todayYear}`
         
-        if (dateKey in dateLookUp){
+        if (dateLookUp && dateKey in dateLookUp){
             if(dateLookUp[dateKey].booked === false){
                 return <p className = 'days_open'>Open</p>
             }else{
@@ -50,7 +50,7 @@ export function ListingCard({data , modalType,setShowCreateModal}){
         const todayYear = date.getFullYear()
         const dateKey = `${todayDate}/${todayMonth}/${todayYear}`
 
-        if (dateKey in dateLookUp){
+        if (dateLookUp && dateKey in dateLookUp){
             if(dateLookUp[dateKey].booked === false){
                 return 'open'
             }

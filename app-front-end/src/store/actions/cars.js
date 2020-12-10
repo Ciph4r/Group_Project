@@ -4,11 +4,11 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 export const fetchCars = createAsyncThunk(
     'fetchCars',
     async (args, thunkAPI) => {
-  
-        const fetchUrl = `${process.env.REACT_APP_API_URL}/api/cars/`;
+        const {searchTerm, filterPrice, filterSize} = thunkAPI.getState().car
+        const fetchUrl = `${process.env.REACT_APP_API_URL}/api/cars/?name=${searchTerm}&size=${filterSize}&priceLT=${filterPrice.priceLT}&priceGT=${filterPrice.priceGT}`;
         const response = await fetch(fetchUrl);
         let cars = await response.json();
-        
+
         for(let i = 0 ; i < cars.cars.length ; i++){
           const dateList = cars.cars[i].dateList
           let dateLookUp ={}

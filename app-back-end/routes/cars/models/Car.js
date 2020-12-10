@@ -22,11 +22,21 @@ const CarSchema = new mongoose.Schema({
     default: () => moment().format('MMMM Do YYYY, h:mm:ss a'),
   },
 });
+
 CarSchema.index({
   name: 'text',
   make: 'text',
   model: 'text',
   description: 'text',
 });
+
+// CarSchema.pre('save', function (next) {
+//   // capitalize
+//   this.make.charAt(0).toUpperCase() + this.name.slice(1);
+//   this.model.charAt(0).toUpperCase() + this.name.slice(1);
+//   this.color.charAt(0).toUpperCase() + this.name.slice(1);
+//   this.description.charAt(0).toUpperCase() + this.name.slice(1);
+//   next();
+// });
 
 module.exports = mongoose.model('Car', CarSchema);
