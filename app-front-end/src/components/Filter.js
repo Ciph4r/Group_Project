@@ -27,10 +27,10 @@ export default function Filter() {
   return (
     <div className="filter">
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Size</InputLabel>
+        <InputLabel id="simple-select-outlined-label">Size</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
+          labelId="simple-select-outlined-label"
+          id="simple-select-outlined"
           value={size}
           onChange={event => {
             dispatch(setFilterSize(event.target.value));
@@ -48,10 +48,10 @@ export default function Filter() {
         </Select>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Price</InputLabel>
+        <InputLabel id="simple-select-outlined-label">Price</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
+          labelId="simple-select-outlined-label"
+          id="simple-select-outlined"
           value={JSON.stringify(price)}
           onChange={event => {
             let filterPrice = JSON.parse(event.target.value);
