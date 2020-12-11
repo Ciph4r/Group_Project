@@ -1,205 +1,209 @@
-.listing-card{
+.listing-card {
+  display: flex;
+  width: 85%;
+
+  .calender {
+    margin: auto;
+  }
+
+  .card-group {
     display: flex;
-    flex-direction: row;
-    width: 85%;
-    min-height: 300px;
-    min-width: 840px;
-    
-    .calender{
-        
-        margin: auto;
-    }
-    .card-group{
-        display: flex;
-        flex-direction: row;
-        .img{
-            img{
-                max-width: 100%;
-                min-height: 100%;
-                
-            }
-        }
-        .card-content{
-        text-align: center;
-        width: 100%;
-        }
-    }
-    .msg-options{
-        display: flex;
-        .option-btn{
-            background-color: #d9d9d9;
-            display: flex;
-            align-items: center;
-        }
+    .img {
+      img {
+        max-width: 100%;
+        min-height: 100%;
+      }
     }
 
+    .card-content {
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .msg-options {
+    display: flex;
+    .option-btn {
+      background-color: #d9d9d9;
+      display: flex;
+      align-items: center;
+    }
+  }
 }
 
-
-
-.listing{
+.listing {
   width: 100%;
-    .content{
-        padding-top: 100px;
-        .header{
-            border-radius: 90px 90px 90px 90px;
-            background: rgb(217,217,217);
-            background: -moz-radial-gradient(circle, rgba(217,217,217,1) 41%, rgba(255,255,255,0) 100%);
-            background: -webkit-radial-gradient(circle, rgba(217,217,217,1) 41%, rgba(255,255,255,0) 100%);
-            background: radial-gradient(circle, rgba(217,217,217,1) 41%, rgba(255,255,255,0) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d9d9d9",endColorstr="#ffffff",GradientType=1);
-        }
-        .main-content{
 
-        }
-    }
+  .header {
+    border-radius: 90px 90px 90px 90px;
+    background: rgb(217, 217, 217);
+    background: -moz-radial-gradient(
+      circle,
+      rgba(217, 217, 217, 1) 41%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background: -webkit-radial-gradient(
+      circle,
+      rgba(217, 217, 217, 1) 41%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background: radial-gradient(
+      circle,
+      rgba(217, 217, 217, 1) 41%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d9d9d9",endColorstr="#ffffff",GradientType=1);
+  }
+  // .main-content {
+  // }
 }
 
-
-
-
-
-.create-listing{
-    margin-top: 100px;
-    button{
-        background-color: #293d3d;
-        color: #d9d9d9;
-        width: 8rem;
-        height: 3rem;
-    }
-    button:hover{
-        background-color: lightgrey;
-        color: #293d3d ;
-    }
-}
-.main-content{
-    padding-top: 100px;
-}
-
-
-
-.create-listing-modal{
-    width: 500px;
+.create-listing {
+  margin: 3rem;
+  button {
+    background-color: #293d3d;
+    color: #d9d9d9;
+    width: 8rem;
+    height: 3rem;
+  }
+  button:hover {
     background-color: lightgrey;
-    margin: 4rem auto;
+    color: #293d3d;
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.create-listing-modal {
+  width: 500px;
+  background-color: lightgrey;
+  margin: 4rem auto;
+  border: none;
+
+  .modal-header {
     border: none;
-    .modal-header{
-        border: none;
-        background-color: #293d3d;
-        color: #d9d9d9;
-        padding: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 20px;
-        h2{
-            text-align: center;
-            font-size: 1.8rem;
-            
-        }
-        .close-modal-btn{
-            
-        }
-        .close-modal-btn:hover{
-            cursor: pointer;
-            color: red;
-        }
+    background-color: #293d3d;
+    color: #d9d9d9;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 20px;
 
+    h2 {
+      text-align: center;
+      font-size: 1.8rem;
     }
-    .modal-content{
-        display: flex;
-        flex-direction: column;
-        padding: 0 1rem;
+    // .close-modal-btn {
+    // }
 
-      .make-model {
-        display: flex;
-        justify-content: space-between;
+    .close-modal-btn:hover {
+      cursor: pointer;
+      color: red;
+    }
+  }
 
-        .MuiFormControl-root {
-          width: 45%;
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+
+    .make-model {
+      display: flex;
+      justify-content: space-between;
+
+      .MuiFormControl-root {
+        width: 45%;
+      }
+    }
+
+    .car-option {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .calender {
+      display: flex;
+      flex-direction: column;
+
+      .calender-header {
+        text-align: center;
+
+        h3 {
+          margin: 1rem 0 0;
         }
       }
-
-        .car-option{
-            display: flex;
-            flex-direction: row;
-        }
-        .calender{
-            display: flex;
-            flex-direction: column;
-            .calender-header{
-                text-align: center;
-
-                h3 {
-                  margin: 1rem 0 0;
-                }
-            }
-            .calender-content{
-                display: flex;
-                flex-direction: row;
-            }
-        }
-
-        .price-input {
-          display: flex;
-          align-items: flex-end;
-
-          .dollar {
-            padding: 7px;
-          }
-        }
-
-        .upload__image-wrapper{
-            margin-top: 50px;
-            display: flex;
-            flex-direction: row;
-            img{
-                padding: 5px 5px;
-                width: 110px;
-                height: 110px;
-            }
-            img:hover{
-                transform: scale(2);
-                transition: .5s;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            }
-        }
+      .calender-content {
+        display: flex;
+        flex-direction: row;
+      }
     }
-    .create-btn{
-        background-color: #293d3d;
-        width: 50%;
-        height: 40px;
-        margin: auto;
-        color: white;
-        border-radius: 180px 180px 180px 180px;
-        h2{
-            text-align: center;
-    }   
-        }
-    .create-btn:hover{
-        background: white;
-        color: #293d3d;
-        cursor: pointer;
-    }    
+
+    .price-input {
+      display: flex;
+      align-items: flex-end;
+
+      .dollar {
+        padding: 7px;
+      }
+    }
+
+    .upload__image-wrapper {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: row;
+      img {
+        padding: 5px 5px;
+        width: 110px;
+        height: 110px;
+      }
+      img:hover {
+        transform: scale(2);
+        transition: 0.5s;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+  .create-btn {
+    background-color: #293d3d;
+    width: 50%;
+    height: 40px;
+    margin: auto;
+    color: white;
+    border-radius: 180px 180px 180px 180px;
+    h2 {
+      text-align: center;
+    }
+  }
+  .create-btn:hover {
+    background: white;
+    color: #293d3d;
+    cursor: pointer;
+  }
 }
 
 .MuiMenu-paper {
-    max-height: calc(20% - 96px) !important ; 
+  max-height: calc(20% - 96px) !important ;
 }
 
 .react-calendar__tile {
-   .days_open{
-       color: white;
-       background-color: green;
-   }
-   .days_close{
+  .days_open {
     color: white;
+    background-color: green;
+  }
+  .days_close {
+    color: white;
+  }
 }
-
+.open {
+  background-color: green !important;
 }
-.open{
-    background-color: green !important;
-}
-.closed{
-    background-color: grey !important; 
+.closed {
+  background-color: grey !important;
 }
