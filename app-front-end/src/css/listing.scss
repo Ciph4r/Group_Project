@@ -63,15 +63,19 @@
 
 .create-listing {
   margin: 3rem;
+
   button {
     background-color: #293d3d;
     color: #d9d9d9;
+    outline: none;
     width: 8rem;
     height: 3rem;
   }
+
   button:hover {
     background-color: lightgrey;
     color: #293d3d;
+    cursor: pointer;
   }
 }
 
@@ -87,7 +91,9 @@
   width: 500px;
   background-color: lightgrey;
   margin: 4rem auto;
-  border: none;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 0.5rem;
 
   .modal-header {
     border: none;
