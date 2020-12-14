@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 120,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
+    margin: theme.spacing(2),
   },
 }));
 
@@ -25,7 +25,7 @@ export default function Filter() {
   const dispatch = useDispatch();
 
   return (
-    <div className="filter">
+    <div className="filter" style={{ marginBottom: '1rem' }}>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="simple-select-outlined-label">Size</InputLabel>
         <Select

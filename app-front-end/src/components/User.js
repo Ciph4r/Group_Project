@@ -9,6 +9,8 @@ import TextMaskCustom from '../helperFunctions/textMaskCuston'
 import ImageUploading from 'react-images-uploading';
 import { compressImageFile } from 'frontend-image-compress';
 
+
+
 TextMaskCustom.propTypes = {
     inputRef: PropTypes.func.isRequired,
   };

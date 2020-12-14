@@ -7,6 +7,7 @@ import '../css/favorites.scss';
 
 export default function Favorties() {
   const carData = useSelector(state => state.user.favoriteDetails);
+  const token = useSelector(state => state.user.token);
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const closeModalHandler = () => setOpenModal(false);
@@ -17,12 +18,12 @@ export default function Favorties() {
     dispatch(fetchFavorites());
   }, []);
 
-  if (!carData.length) {
+  if (!token) {
     return (
       <div className="favorites-main">
         <h1>Favorites</h1>
         <div className="favorites-content">
-          <h3>Your favorite listings will show here.</h3>
+          <h3>Login to see your favorites</h3>
         </div>
       </div>
     );
