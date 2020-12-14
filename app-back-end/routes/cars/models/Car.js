@@ -23,6 +23,15 @@ const CarSchema = new mongoose.Schema({
   },
 });
 
+// CarSchema.pre('save', function (next) {
+//   // capitalize
+//   this.make.charAt(0).toUpperCase() + this.make.slice(1);
+//   this.model.charAt(0).toUpperCase() + this.model.slice(1);
+//   this.color.charAt(0).toUpperCase() + this.color.slice(1);
+//   this.description.charAt(0).toUpperCase() + this.description.slice(1);
+//   next();
+// });
+
 CarSchema.index({
   name: 'text',
   make: 'text',
@@ -30,13 +39,5 @@ CarSchema.index({
   description: 'text',
 });
 
-// CarSchema.pre('save', function (next) {
-//   // capitalize
-//   this.make.charAt(0).toUpperCase() + this.name.slice(1);
-//   this.model.charAt(0).toUpperCase() + this.name.slice(1);
-//   this.color.charAt(0).toUpperCase() + this.name.slice(1);
-//   this.description.charAt(0).toUpperCase() + this.name.slice(1);
-//   next();
-// });
 
 module.exports = mongoose.model('Car', CarSchema);
