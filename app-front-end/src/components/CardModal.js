@@ -70,9 +70,9 @@ export default function CardModal({ openModal, closeModal, carId }) {
             </div>
           </div>
         </div>
-        <div className="card-modal-ratings">
+        {/* <div className="card-modal-ratings">
           <h1>Ratings will go here</h1>
-        </div>
+        </div> */}
       </div>
       <MsgModal openModal = {msgModal} closeModal = {SetMsgModal} id = {owner}/>
     </Modal>
