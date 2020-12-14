@@ -21,6 +21,7 @@ export function ListingCard({data , modalType,setShowCreateModal}){
     let {img,year,make,model,price,_id ,dateList , dateLookUp} = data
 
 
+
     return(
         <div className='listing-card card'>
             <div className='calender'>

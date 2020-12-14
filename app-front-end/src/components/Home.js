@@ -18,10 +18,10 @@ export default function Home() {
   const dispatch = useDispatch();
 
 
-
   useEffect(()=> {
     dispatch(fetchCars())
 },[]);
+
 
   return (
     <div className="home">

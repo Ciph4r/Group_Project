@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCars } from '../store/actions/cars';
+import { setFilterSize, setFilterPrice } from '../store/reducer/carReducer';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -17,22 +20,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function Filter() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
-
-  const handleChange = event => {
-    setAge(event.target.value);
-  };
+  const size = useSelector(state => state.car.filterSize);
+  const price = useSelector(state => state.car.filterPrice);
+  const dispatch = useDispatch();
 
   return (
     <div className="filter">
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Size</InputLabel>
+        <InputLabel id="simple-select-outlined-label">Size</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={age}
-          onChange={handleChange}
-          label="Age"
+          labelId="simple-select-outlined-label"
+          id="simple-select-outlined"
+          value={size}
+          onChange={event => {
+            dispatch(setFilterSize(event.target.value));
+            dispatch(fetchCars());
+          }}
+          label="Size"
         >
           <MenuItem value="">
             <em>None</em>
@@ -44,20 +48,50 @@ export default function Filter() {
         </Select>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Price</InputLabel>
+        <InputLabel id="simple-select-outlined-label">Price</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={age}
-          onChange={handleChange}
-          label="Age"
+          labelId="simple-select-outlined-label"
+          id="simple-select-outlined"
+          value={JSON.stringify(price)}
+          onChange={event => {
+            let filterPrice = JSON.parse(event.target.value);
+            dispatch(setFilterPrice(filterPrice));
+            dispatch(fetchCars());
+          }}
+          label="Price"
         >
-          <MenuItem value="">
+          <MenuItem
+            value={JSON.stringify({
+              priceLT: '',
+              priceGT: '',
+            })}
+          >
             <em>None</em>
           </MenuItem>
-          <MenuItem value={1}>Under $100</MenuItem>
-          <MenuItem value={2}>$100 - $200</MenuItem>
-          <MenuItem value={3}>Over $200</MenuItem>
+          <MenuItem
+            value={JSON.stringify({
+              priceLT: 100,
+              priceGT: '',
+            })}
+          >
+            Under $100
+          </MenuItem>
+          <MenuItem
+            value={JSON.stringify({
+              priceLT: 200,
+              priceGT: 100,
+            })}
+          >
+            $100 - $200
+          </MenuItem>
+          <MenuItem
+            value={JSON.stringify({
+              priceLT: '',
+              priceGT: 200,
+            })}
+          >
+            Over $200
+          </MenuItem>
         </Select>
       </FormControl>
     </div>

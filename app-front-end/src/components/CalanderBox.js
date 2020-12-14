@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import '../css/listing.scss';
 import 'react-calendar/dist/Calendar.css';
-import {CreateListingModal} from './CreateListingModal'
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { useSelector, useDispatch } from 'react-redux'
 
 
 export function CalanderBox ({dateLookUp}){
@@ -23,7 +17,7 @@ export function CalanderBox ({dateLookUp}){
             if(dateLookUp[dateKey].booked === false){
                 return <p className = 'days_open'>Open</p>
             }else{
-                return <p className = 'days_open'>Booked</p>
+                return <p className = 'days_booked'>Booked</p>
             }
         } 
         return <p className = 'days_close'>Closed</p>
@@ -40,6 +34,9 @@ export function CalanderBox ({dateLookUp}){
         if (dateKey in dateLookUp){
             if(dateLookUp[dateKey].booked === false){
                 return 'open'
+            }
+            if(dateLookUp[dateKey].booked === true){
+                return 'booked'
             }
         }
         return 'closed'

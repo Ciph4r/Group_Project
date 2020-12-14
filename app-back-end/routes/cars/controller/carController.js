@@ -146,6 +146,7 @@ module.exports = {
         description,
       });
       // PUSH FROM TO DATE TO INTO DATE ARRAY
+
       const dateFrom = Date.parse(req.body.selectedDateFrom);
       const dateTo = Date.parse(req.body.selectedDate);
       for (let i = dateFrom; i <= dateTo; i += 86400000) {
@@ -153,7 +154,16 @@ module.exports = {
           date: i,
           booked: false,
         });
+      
+          let listingdate = new Date(i)
+          const dateKey = `${listingdate.getDate()}/${listingdate.getMonth()}/${listingdate.getFullYear()}`
+          newCar.dateLookUp[dateKey] = {
+            date: i,
+            booked: false,
+          }
       }
+
+          
       // AWS
       if (req.files) {
         let filesKey = Object.keys(req.files);
@@ -195,6 +205,7 @@ module.exports = {
         car: newCar,
       });
     } catch (err) {
+      console.log(err)
       return res.status(500).json({
         status: 'error',
         message: err.message,
@@ -222,5 +233,35 @@ module.exports = {
       message: 'Upload Complete',
       url: `https://${bucketName}.s3.amazonaws.com/${keyName}`,
     });
+  },
+  bookCar: async (req, res, next) => {
+    try {
+      // let user = await User.findOne({ _id: req.user.id });
+      let car = await Cars.findById(req.params.id);
+      let {from, to} = req.body.bookingDate
+      
+      
+      for (let i = from ; i < to ; i += 86400000){
+        let listingdate = new Date(i)
+        const dateKey = `${listingdate.getDate()}/${listingdate.getMonth()}/${listingdate.getFullYear()}`
+        car.dateLookUp[dateKey].booked = true
+        car.dateLookUp[dateKey].user = req.user.id
+
+      }
+
+      car.markModified('dateLookUp')
+      await car.save()
+      return res.status(200).json({
+        status: 'success',
+        message: 'Date Booked',
+        car,
+      });
+
+    } catch (err) {
+      return res.status(500).json({
+        status: 'error',
+        message: err.message,
+      });
+    }
   },
 };
