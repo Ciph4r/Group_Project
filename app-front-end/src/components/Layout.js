@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './header/Header';
-import FavoritesBar from './favoritesBar/FavoritesBar';
+// import FavoritesBar from './favoritesBar/FavoritesBar';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import '../css/layout.scss';
@@ -17,7 +17,7 @@ export default function Layout(props) {
   if (sidebarToggle) {
     sideBar = (
       <React.Fragment>
-        <FavoritesBar />
+        {/* <FavoritesBar /> */}
       </React.Fragment>
     );
   } else {
