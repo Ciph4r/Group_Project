@@ -63,7 +63,7 @@ export default function Listing(props) {
       >
         <h1>My Listings</h1>
         <div style={{ margin: '2rem' }}>
-          <h3>Your listings will show here.</h3>
+          <h3>Login to see your listings</h3>
         </div>
       </div>
     );

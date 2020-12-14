@@ -30,7 +30,7 @@ return (
     <div className = 'spacers'></div>
     <Link to="/booking"> <MenuBookIcon/> Booking</Link>
     <div className = 'spacers'></div>
-    <Link to="/favorites"> <FavoriteIcon/> Favorties</Link>
+    <Link to="/favorites"> <FavoriteIcon/> Favorites</Link>
   </div>
 )
 

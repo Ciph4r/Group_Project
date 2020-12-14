@@ -23,7 +23,7 @@ export default function Favorties() {
       <div className="favorites-main">
         <h1>Favorites</h1>
         <div className="favorites-content">
-          <h3>Your favorites will show here.</h3>
+          <h3>Login to see your favorites</h3>
         </div>
       </div>
     );
