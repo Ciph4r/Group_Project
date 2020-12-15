@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchCars, createCar, updateCar } from '../actions/cars';
+import { fetchCars, createCar, updateCar , bookCar } from '../actions/cars';
 
 export const carSlice = createSlice({
   name: 'cars',
@@ -47,8 +47,19 @@ export const carSlice = createSlice({
       });
       state.cars = cars;
     },
+    [bookCar.fulfilled]: (state, action) => {
+      const cars = [...state.cars].map(car => {
+        if (car._id === action.payload.car._id) {
+          car = action.payload;
+        }
+        return car;
+      });
+      state.cars = cars;
+    },
   },
 });
+
+
 
 export const {
   setSearchTerm,

@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import '../css/cardModal.scss';
 import { useSelector} from 'react-redux'
 import MsgModal from './MsgModal';
+import BookingModal from './BookingModal'
 
 const useStyles = makeStyles(theme => ({
   cardModal: {
@@ -24,8 +25,7 @@ export default function CardModal({ openModal, closeModal, carId }) {
   const classes = useStyles();
   const { img, year, make, model, price,description ,owner } = carData;
   const [msgModal,SetMsgModal] = useState(false)
-
-
+  const [bookingModal, setBookingModal] = useState (false)
 
   return (
     <Modal isOpen={openModal} className={classes.cardModal} ariaHideApp={false}>
@@ -63,7 +63,7 @@ export default function CardModal({ openModal, closeModal, carId }) {
               </div>
               <div className="card-icon-group">
                 <IconButton aria-label="schedule">
-                  <CalendarTodayIcon fontSize="large" />
+                  <CalendarTodayIcon fontSize="large" onClick={() => {setBookingModal(true)}}/>
                 </IconButton>
                 <span>Schedule Car</span>
               </div>
@@ -75,7 +75,7 @@ export default function CardModal({ openModal, closeModal, carId }) {
         </div> */}
       </div>
       <MsgModal openModal = {msgModal} closeModal = {SetMsgModal} id = {owner}/>
+      <BookingModal openModal = {bookingModal} closeModal = {setBookingModal} carData = {carData}/>
     </Modal>
   );
 }
-// Modal.setAppElement('body')

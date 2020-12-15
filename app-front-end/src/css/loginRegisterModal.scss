@@ -54,3 +54,16 @@
 .error{
     white-space: pre-line;
 }
+.bookingModal{
+    width: 600px !important;
+    .calender_book{
+        display: flex;
+        flex-direction: row;
+        .date_picker{
+            margin-left: 20px;
+        }
+        .total_price{
+            text-align: center;
+        }
+    }
+}

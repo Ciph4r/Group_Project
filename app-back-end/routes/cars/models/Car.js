@@ -17,6 +17,7 @@ const CarSchema = new mongoose.Schema({
   dateList: { type: Array },
   rating: { type: Array },
   reviews: { type: Array },
+  dateLookUp: {type: Object, default: {}},
   timestamp: {
     type: String,
     default: () => moment().format('MMMM Do YYYY, h:mm:ss a'),

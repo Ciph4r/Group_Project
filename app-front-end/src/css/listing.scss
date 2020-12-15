@@ -209,10 +209,18 @@
   .days_close {
     color: white;
   }
+  .days_booked{
+    background-color: lightblue;
+    color: blue;
+  }
 }
 .open {
   background-color: green !important;
 }
 .closed {
   background-color: grey !important;
+}
+.booked{
+  background-color: lightblue !important;
+
 }
