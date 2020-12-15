@@ -97,6 +97,7 @@
 
   .modal-header {
     border: none;
+    border-radius: 0.4rem 0.4rem 0 0;
     background-color: #293d3d;
     color: #d9d9d9;
     padding: 1rem;
@@ -209,7 +210,7 @@
   .days_close {
     color: white;
   }
-  .days_booked{
+  .days_booked {
     background-color: lightblue;
     color: blue;
   }
@@ -220,7 +221,6 @@
 .closed {
   background-color: grey !important;
 }
-.booked{
+.booked {
   background-color: lightblue !important;
-
 }
