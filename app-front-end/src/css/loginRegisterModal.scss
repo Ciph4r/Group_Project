@@ -65,6 +65,27 @@
     }
     .total_price {
       text-align: center;
+
+      .price{
+        overflow: auto;
+        max-height: 300px;
+      }      
     }
   }
+}
+.react-calendar{
+  height: 300px;
+  margin-top: 150px;
+}
+.react-calendar__tile{
+  height: 4em;
+}
+.book{
+  height: 550px;
+}
+.loading{
+text-align: center;
+}
+.payed{
+  text-align: center;
 }

@@ -241,7 +241,7 @@ module.exports = {
       let {from, to} = req.body.bookingDate
       
       
-      for (let i = from ; i < to ; i += 86400000){
+      for (let i = from ; i <= to ; i += 86400000){
         let listingdate = new Date(i)
         const dateKey = `${listingdate.getDate()}/${listingdate.getMonth()}/${listingdate.getFullYear()}`
         car.dateLookUp[dateKey].booked = true

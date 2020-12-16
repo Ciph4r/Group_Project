@@ -9,6 +9,7 @@ import '../css/cardModal.scss';
 import { useSelector} from 'react-redux'
 import MsgModal from './MsgModal';
 import BookingModal from './BookingModal'
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles(theme => ({
   cardModal: {
@@ -21,14 +22,17 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function CardModal({ openModal, closeModal, carId }) {
+  const user = useSelector((state) => state.user.user_id)
   const carData = useSelector((state) => state.car.cars.find(car => car._id === `${carId}`))
   const classes = useStyles();
   const { img, year, make, model, price,description ,owner } = carData;
   const [msgModal,SetMsgModal] = useState(false)
   const [bookingModal, setBookingModal] = useState (false)
+  const [errMsg, setErrMsg] = useState('');
 
   return (
     <Modal isOpen={openModal} className={classes.cardModal} ariaHideApp={false}>
+      {errMsg && <Alert className ='error' severity="error">{errMsg}</Alert>}
       <div className="close-modal">
         <button onClick={closeModal}>close</button>
       </div>
@@ -63,7 +67,12 @@ export default function CardModal({ openModal, closeModal, carId }) {
               </div>
               <div className="card-icon-group">
                 <IconButton aria-label="schedule">
-                  <CalendarTodayIcon fontSize="large" onClick={() => {setBookingModal(true)}}/>
+                  <CalendarTodayIcon fontSize="large" onClick={() => {
+                    if (owner === user){
+                      return setErrMsg(`You Can't Book A car You're Hosting`)
+                    }
+                    setBookingModal(true)
+                    }}/>
                 </IconButton>
                 <span>Schedule Car</span>
               </div>

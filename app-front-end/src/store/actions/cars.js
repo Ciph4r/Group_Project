@@ -51,23 +51,23 @@ export const fetchCars = createAsyncThunk(
     }
   );
 
-  export const bookCar = createAsyncThunk(
-    'bookCar',
-    async (args, thunkAPI) => {
-        const token = thunkAPI.getState().user.token;
-        const createUrl = `${process.env.REACT_APP_API_URL}/api/cars/bookCar/${args._id}`;
-        const response = await fetch(createUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify({bookingDate : args.date})
+  // export const bookCar = createAsyncThunk(
+  //   'bookCar',
+  //   async (args, thunkAPI) => {
+  //       const token = thunkAPI.getState().user.token;
+  //       const createUrl = `${process.env.REACT_APP_API_URL}/api/cars/bookCar/${args._id}`;
+  //       const response = await fetch(createUrl, {
+  //           method: 'POST',
+  //           headers: {
+  //               'Content-Type': 'application/json',
+  //               Authorization: `Bearer ${token}`,
+  //             },
+  //             body: JSON.stringify({bookingDate : args.date})
               
-      });
-        let jsonData = await response.json();
-        return jsonData
-    }
-  );
+  //     });
+  //       let jsonData = await response.json();
+  //       return jsonData
+  //   }
+  // );
   
     
