@@ -117,7 +117,6 @@ module.exports = {
             //check if user is participant in this message
             if(`${userInbox._id}` === `${messageItem.user}` || `${userInbox._id}` === `${messageItem.user_b}`){
                 messageItem.read[userInbox._id] = true
-                console.log(messageItem.read)
                 messageItem.markModified('read')
                 messageItem.save()
                 

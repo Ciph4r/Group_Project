@@ -83,9 +83,7 @@ const pushHistory = (id) => {
   useEffect(() => {
     const getHistory = JSON.parse(localStorage.getItem("history"))
     setHistory(getHistory)
-    console.log(history)
-    console.log(getHistory)
-    console.log('gg')
+
   }, [])
 
 

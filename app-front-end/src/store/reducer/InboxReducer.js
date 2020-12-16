@@ -32,10 +32,7 @@ export const inboxSlice = createSlice({
       state.inbox.inboxItems[index] = action.payload
       },
       [setToRead.fulfilled]: (state, action) => {
-
         const {inbox_id , message_id} = action.payload
-
-        console.log(inbox_id , message_id)
         let index = null
         for (let i = 0 ; i < state.inbox.inboxItems.length ; i++ ){
           if (state.inbox.inboxItems.[i]._id === message_id){

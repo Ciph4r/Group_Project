@@ -18,7 +18,7 @@ export function ListingCard({data , modalType,setShowCreateModal}){
       setAnchorEl(null);
     };
 
-    let {img,year,make,model,price,_id ,dateList , dateLookUp} = data
+    let {img,year,make,model,price,_id ,dateLookUp} = data
 
 
 

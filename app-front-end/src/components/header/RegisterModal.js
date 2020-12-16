@@ -27,7 +27,7 @@ export const RegisterModal = ({ openRegister, closeRegisterHandler }) => {
       },
       body: JSON.stringify({ firstName, lastName, email, password }),
     });
-    // console.log(response);
+
     let jsonData = await response.json();
     //place error in  message
     if (jsonData.status === 'error') {

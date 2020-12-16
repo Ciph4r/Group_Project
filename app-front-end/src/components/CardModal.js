@@ -32,11 +32,13 @@ export default function CardModal({ openModal, closeModal, carId }) {
 
   return (
     <Modal isOpen={openModal} className={classes.cardModal} ariaHideApp={false}>
-      {errMsg && <Alert className ='error' severity="error">{errMsg}</Alert>}
+
       <div className="close-modal">
+        
         <button onClick={closeModal}>close</button>
       </div>
       <div className="card-modal">
+      {errMsg && <Alert className ='error' severity="error">{errMsg}</Alert>}
         <div className="card-modal-main">
           <div className="card-modal-col1">
             <ModalCarousel img = {img}/>

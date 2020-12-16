@@ -24,8 +24,6 @@ export default function MessageBox({userInbox_id ,messages_id}) {
 
     const handleNewUserMessage = (newMessage) => {
         dispatch(sendMsg({messageText: newMessage , id:sender , user:'null'}))
-        console.log(`New message incoming! ${newMessage}`);
-        console.log(messageList)
         // Now send the message throught the backend API
       };
 

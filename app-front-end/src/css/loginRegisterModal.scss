@@ -60,6 +60,10 @@
   .calender_book {
     display: flex;
     flex-direction: row;
+    .react-calendar{
+      height: 300px;
+      margin-top: 150px;
+    }
     .date_picker {
       margin-left: 20px;
     }
@@ -73,10 +77,7 @@
     }
   }
 }
-.react-calendar{
-  height: 300px;
-  margin-top: 150px;
-}
+
 .react-calendar__tile{
   height: 4em;
 }
@@ -88,4 +89,8 @@ text-align: center;
 }
 .payed{
   text-align: center;
+}
+
+.booking{
+
 }

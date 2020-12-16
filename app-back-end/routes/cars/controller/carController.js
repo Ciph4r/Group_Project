@@ -236,17 +236,24 @@ module.exports = {
   },
   bookCar: async (req, res, next) => {
     try {
-      // let user = await User.findOne({ _id: req.user.id });
+      let user = await User.findOne({ _id: req.user.id });
       let car = await Cars.findById(req.params.id);
       let {from, to} = req.body.bookingDate
-      
+      console.log(user._id)
+      console.log(car.owner)
+
+      if(`${user._id}` === `${car.owner}`){
+        return res.status(500).json({
+          status: 'error',
+          message: 'You Are Hosting This Car',
+        });
+      }
       
       for (let i = from ; i <= to ; i += 86400000){
         let listingdate = new Date(i)
         const dateKey = `${listingdate.getDate()}/${listingdate.getMonth()}/${listingdate.getFullYear()}`
         car.dateLookUp[dateKey].booked = true
-        car.dateLookUp[dateKey].user = req.user.id
-
+        car.dateLookUp[dateKey].user = user._id
       }
 
       car.markModified('dateLookUp')

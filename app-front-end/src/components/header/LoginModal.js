@@ -26,14 +26,14 @@ export const LoginModal = ({openLogin , closeLoginHandler , loginHandler}) => {
         },
         body: JSON.stringify({email, password }),
       });
-      // console.log(response);
+ 
       let jsonData = await response.json();
       //place error in  message
       if (jsonData.status === 'error') {
         setErrMsg(jsonData.message);
       } else {
         // set token and auto login 
-        console.log(jsonData)
+
         dispatch(setToken({ token: jsonData.token, user_id: jsonData.user, favorite: jsonData.favorite }));
         closeLoginHandler();
       }

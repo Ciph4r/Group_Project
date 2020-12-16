@@ -38,7 +38,6 @@ export const fetchCars = createAsyncThunk(
     async (car, thunkAPI) => {
         const token = thunkAPI.getState().user.token;
         const createUrl = `${process.env.REACT_APP_API_URL}/api/cars/update`;
-        console.log(car)
         const response = await fetch(createUrl, {
             method: 'PUT',
             headers: {

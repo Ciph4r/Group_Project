@@ -17,7 +17,6 @@ import React,{useState} from 'react';
 
             }
         }
-        console.log(priceStat)
         if (priceStat.length<1) {
             return (
                 <div>

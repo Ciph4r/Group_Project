@@ -37,7 +37,6 @@ export default function Inbox () {
         }
         setMessages_id(message._id)
     }
-    // console.log(!userInbox.inboxItems.length)
     const loadNotification = () => {
         let num = 0
         if(userInbox.inboxItems.length > 0){
