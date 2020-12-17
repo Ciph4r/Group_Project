@@ -122,7 +122,7 @@ export default function User(){
         history.push('/notFound')
       }
     return (
-        <div className='content'>
+        <div className='content-user'>
             {errMsg && <Alert className ='error' severity="error">{errMsg}</Alert>}
             {successMsg && <Alert className ='success' severity="success">{successMsg}</Alert>}
                 <ImageUploading
