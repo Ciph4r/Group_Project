@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema({
     type:Array
   },
   profilePic:{
-    type: String,
+    type: String, default:'https://groundrtr.s3.amazonaws.com/default/placeholder.png'
   },
   active:{
     type:Boolean,

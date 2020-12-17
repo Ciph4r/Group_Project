@@ -9,6 +9,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/reducer/userReducer';
 
+
 export default function Account({ logoutHandler }) {
   const history = useHistory();
 
@@ -55,7 +56,9 @@ export default function Account({ logoutHandler }) {
         {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
         <MenuItem
           onClick={() => {
-            dispatch(logout());
+            dispatch(logout())
+            history.push('/');
+
           }}
         >
           <ExitToAppIcon /> Logout

@@ -213,27 +213,6 @@ module.exports = {
     }
   },
 
-  uploadImage: async (req, res) => {
-    let s3 = new AWS.S3({
-      AWS_Access_Key_ID: process.env.AWS_ACCESS_KEY_ID,
-      AWS_Secret_Access_Key: process.env.AWS_SECRET_ACCESS_KEY,
-    });
-    console.log(req.files);
-    let bucketName = 'groundrtr';
-    let keyName = '1234'; //req.files.imgFile.name
-    var objectParams = {
-      Bucket: bucketName,
-      Key: keyName,
-      Body: req.files.imgFile.data,
-      ACL: 'public-read',
-    };
-    var uploadPromise = await s3.putObject(objectParams).promise();
-    console.log(uploadPromise);
-    res.status(200).json({
-      message: 'Upload Complete',
-      url: `https://${bucketName}.s3.amazonaws.com/${keyName}`,
-    });
-  },
   bookCar: async (req, res, next) => {
     try {
       let user = await User.findOne({ _id: req.user.id });

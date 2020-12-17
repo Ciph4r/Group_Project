@@ -16,14 +16,18 @@ export default function MessageBox({userInbox_id ,messages_id}) {
     const dispatch = useDispatch()
     // checks user && user_b to see who the sender is
     let sender = ""
+    let senderName =''
     if (user === userInbox_id){
         sender = user_b
+        senderName = user_b_name
     }else{
         sender = user
+        senderName = username
     }
 
     const handleNewUserMessage = (newMessage) => {
         dispatch(sendMsg({messageText: newMessage , id:sender , user:'null'}))
+ 
         // Now send the message throught the backend API
       };
 
@@ -79,8 +83,8 @@ export default function MessageBox({userInbox_id ,messages_id}) {
         <Widget
           handleNewUserMessage={handleNewUserMessage}
           profileAvatar={logo}
-          title="My new awesome title"
-          subtitle="And my cool subtitle"
+          title= {senderName}
+          subtitle=""
           launcher={()=>{}}
           showTimeStamp= {false}
           showCloseButton = {false}

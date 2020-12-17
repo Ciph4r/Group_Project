@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {allCars, singleCar, updateCar, createCar , bookCar , uploadImage} = require('./controller/carController');
+const {allCars, singleCar, updateCar, createCar , bookCar } = require('./controller/carController');
 const {authenticateToken} = require('../../middleware/authToken')
 const {} = require('./middleware/requestValidation');
 

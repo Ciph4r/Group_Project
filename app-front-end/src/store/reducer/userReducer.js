@@ -8,12 +8,14 @@ export const userSlice = createSlice({
     user_id: null,
     favorites: [],
     favoriteDetails: [],
+    profilePic:''
   },
   reducers: {
     setToken: (state, { payload }) => {
       state.token = payload.token;
       state.user_id = payload.user_id;
       state.favorites = payload.favorite;
+      state.profilePic = payload.profilePic;
     },
     // setUser_id: (state, { payload }) => {
     //   state.user_Id = payload.token;
@@ -22,6 +24,10 @@ export const userSlice = createSlice({
       state.token = null;
       state.user_id = null;
       state.favorites = [];
+      state.profilePic = ''
+    },
+    updateUser: (state,  { payload }) => {
+      state.profilePic = payload.profilePic
     },
   },
   extraReducers: {
@@ -34,4 +40,4 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setToken, logout } = userSlice.actions;
+export const { setToken, logout ,updateUser} = userSlice.actions;

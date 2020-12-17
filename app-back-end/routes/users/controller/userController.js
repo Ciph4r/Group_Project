@@ -4,6 +4,8 @@ const Car = require('../../cars/models/Car');
 const jwt = require('jsonwebtoken');
 const { comparePassword, createUser } = require('../middleWare/auth');
 const { createJwtToken } = require('../middleWare/token');
+const AWS = require('aws-sdk');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   register: async (req, res) => {
@@ -26,21 +28,13 @@ module.exports = {
         token: jwtToken,
         user: savedUser._id,
       });
-      // res.status(200).json({
-      //   message: 'Successfully signed up',
-      //   token: jwtToken,
-      // });
+
     } catch (error) {
       return res.status(500).json({
         status: 'error',
         message: error.message,
       });
-      // let errorMessage =
-      //   error.code == 11000 ? 'Email Already Exist!' : error.message;
 
-      // res.status(409).json({
-      //   message: errorMessage,
-      // });
     }
   },
   login: async (req, res) => {
@@ -67,6 +61,7 @@ module.exports = {
         message: 'Successfully logged in',
         token: jwtToken,
         user: user._id,
+        profilePic: user.profilePic,
         favorite: user.favorite,
       });
     } catch (error) {
@@ -96,4 +91,70 @@ module.exports = {
     user = await user.save();
     return res.status(200).json(user.favorite);
   },
+  updateUser: async (req,res) => {
+    try{
+      let user = await User.findOne({ _id: req.user.id });
+      const {firstName,lastName,phone,email,password , newPassword} = JSON.parse(req.body.data)
+      let comparedPassword = await comparePassword(password, user.password);
+      if (comparedPassword === 409) {
+        return res.status(409).json({
+          status: 'error',
+          message: 'Check your password',
+        });
+      }
+      if(firstName) user.firstName = firstName
+      if(lastName)user.lastName = lastName
+      if(newPassword)user.password = newPassword
+    
+      if (req.files) {
+        let image = req.files['images[0]'];
+
+        let s3 = new AWS.S3({
+          AWS_Access_Key_ID: process.env.AWS_ACCESS_KEY_ID,
+          AWS_Secret_Access_Key: process.env.AWS_SECRET_ACCESS_KEY,
+        });
+        let bucketName = 'groundrtr';
+        let keyName = `users/${user._id}/${uuidv4()}_${image.name}`;
+        var objectParams = {
+          Bucket: bucketName,
+          Key: keyName,
+          Body: image.data,
+          ACL: 'public-read',
+        };
+        var uploadPromise = await s3.putObject(objectParams).promise();
+        let url = `https://${bucketName}.s3.amazonaws.com/${keyName}`;
+        user.profilePic = url;
+      }
+      let savedUser = await user.save()
+      
+      return res.status(200).json({
+        status: 'success',
+        profilePic: savedUser.profilePic,
+      });
+    }
+    catch(err){
+      console.log(err)
+      return res.status(500).json({
+        status: 'error',
+        message: err.message,
+      });
+    }
+  },
+  getUser: async (req,res) => {
+    try{
+      let user = await User.findOne({ _id: req.user.id });
+
+
+      return res.status(200).json({
+        status: 'success',
+        user,
+      });
+    }
+    catch(err){
+      return res.status(500).json({
+        status: 'error',
+        message: err.message,
+      });
+    }
+  }
 };

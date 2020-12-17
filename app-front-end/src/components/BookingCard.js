@@ -5,10 +5,14 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {CalanderBox} from './CalanderBox'
+import MsgModal from './MsgModal';
+import BookingDates from './BookingDates'
 
-export function ListingCard({data , modalType,setShowCreateModal}){
 
+
+export function BookingCard({data ,user_Id}){
+
+    const [msgModal,SetMsgModal] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -18,15 +22,13 @@ export function ListingCard({data , modalType,setShowCreateModal}){
       setAnchorEl(null);
     };
 
-    let {img,year,make,model,price,_id ,dateLookUp} = data
-
-
+    let {img,year,make,model,price,_id ,dateLookUp,owner} = data
 
     return(
-        <div className='listing-card card'>
-            <div className='calender'>
-
-                <CalanderBox dateLookUp = {dateLookUp}/>
+        <div className='listing-card card booking-card'>
+            <div className='dateBooked'>
+                    <BookingDates date = {dateLookUp} user = {user_Id}/>
+                {/* <CalanderBox dateLookUp = {dateLookUp}/> */}
             </div>
             <div className='card-group'>
               <div className='img'>
@@ -40,8 +42,8 @@ export function ListingCard({data , modalType,setShowCreateModal}){
                       <h3 className="model">{model}</h3>
                   </div>
                   <div className="car-info">
-                      <h4 className="price">${price}</h4>
-                      <span>per day</span>
+                      {/* <h4 className="price">${price}</h4>
+                      <span>per day</span> */}
                   </div>
               </div>
             </div>
@@ -59,10 +61,11 @@ export function ListingCard({data , modalType,setShowCreateModal}){
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={()=> modalType(_id)}>Edit</MenuItem>
-                        <MenuItem onClick={() => {console.log(_id)}}>Delete</MenuItem>
+                        <MenuItem onClick={() => {SetMsgModal(true)}}>Message Host</MenuItem>
+                        <MenuItem onClick={() => {console.log(_id)}}>Cancel Reservation</MenuItem>
                     </Menu>    
                 </div>
+                <MsgModal openModal = {msgModal} closeModal = {SetMsgModal} id = {owner}/>
         </div>
     )
 }

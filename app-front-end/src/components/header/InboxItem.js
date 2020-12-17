@@ -3,14 +3,14 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import { useSelector} from 'react-redux'
 
 
 
 
 
 export const InboxItem = ({data, userInbox_id ,onClick} ) => {
-
+    const userpic = useSelector(state => state.user.profilePic)
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -21,7 +21,7 @@ export const InboxItem = ({data, userInbox_id ,onClick} ) => {
       setAnchorEl(null);
     };
 
-    
+ 
     // const {img, receiver , date, messages ,read } = data
     const {timestamp , user , user_b, username, user_b_name ,messages ,date ,read} = data
     
@@ -32,8 +32,6 @@ export const InboxItem = ({data, userInbox_id ,onClick} ) => {
         sender = user_b_name
     }
 
-    ///sender img
-    const img = 'https://static.scientificamerican.com/sciam/cache/file/92E141F8-36E4-4331-BB2EE42AC8674DD3_source.jpg'
 
 
     
@@ -49,7 +47,7 @@ export const InboxItem = ({data, userInbox_id ,onClick} ) => {
             </div>
 
             <div className={!read.[userInbox_id] ? 'content' : 'content read'}  >
-                <img  src={img} alt="Thumbnail"  />
+                <img  src={userpic} alt="Thumbnail"  />
                 <div className= 'msg-content'>
                     <h4>{messages.[messages.length-1].messageText.length > 30 ? messages.[messages.length -1].messageText.slice(0,30) + ' ...' : messages.[messages.length -1].messageText}</h4>
                 </div>

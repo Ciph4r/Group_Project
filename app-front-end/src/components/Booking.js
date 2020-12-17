@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ListingCard } from './listingCard';
+import { BookingCard } from './BookingCard';
 import 'react-calendar/dist/Calendar.css';
 import '../css/listing.scss';
 
@@ -24,9 +24,10 @@ const cars = useSelector(state => state.car.cars).filter((car) => {
             {cars.length > 0 ? (
               <div className="main-content">
                 {cars.map((data, key) => (
-                  <ListingCard
+                  <BookingCard
                     data={data}
                     key={key}
+                    user_Id = {user}
                   />
 
                 ))}

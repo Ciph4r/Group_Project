@@ -33,8 +33,8 @@ export const LoginModal = ({openLogin , closeLoginHandler , loginHandler}) => {
         setErrMsg(jsonData.message);
       } else {
         // set token and auto login 
-
-        dispatch(setToken({ token: jsonData.token, user_id: jsonData.user, favorite: jsonData.favorite }));
+        console.log(jsonData)
+        dispatch(setToken({ token: jsonData.token, user_id: jsonData.user, favorite: jsonData.favorite, profilePic: jsonData.profilePic }));
         closeLoginHandler();
       }
     }

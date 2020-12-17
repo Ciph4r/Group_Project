@@ -226,3 +226,19 @@
 .booked {
   background-color: lightblue !important;
 }
+
+//bookingpage
+.booking-card:hover{
+  cursor: default;
+
+}
+// bookingDates
+.bookingDates{
+  
+  .booked_header{
+    background-color: lightgrey;
+  }
+  .dates{
+    margin-top: 75px;
+  }
+}
