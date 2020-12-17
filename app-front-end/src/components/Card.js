@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Rating from '@material-ui/lab/Rating';
@@ -7,10 +7,19 @@ import { toggleFavorites } from '../store/actions/users';
 import '../css/card.scss';
 
 export default function Card({ data, carId, openModalHandler }) {
-  const { img, year, make, model, price, description } = data;
-  const [value, setValue] = React.useState(3);
+  const { img, year, make, model, price, reviews } = data;
+  const [value, setValue] = useState(0);
   const favorites = useSelector(state => state.user.favorites);
   const dispatch = useDispatch();
+  useEffect(() => {
+    let star = 0
+    for (const review of reviews){
+      console.log(review)
+      star += review.star
+    }
+    console.log(reviews.length)
+    setValue(star/reviews.length)
+  }, [])
 
   return (
     <div className="card">

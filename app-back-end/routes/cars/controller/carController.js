@@ -250,4 +250,32 @@ module.exports = {
       });
     }
   },
+  review: async (req,res,next) => {
+    let user = await User.findOne({ _id: req.user.id });
+    let car = await Cars.findById(req.params.id);
+    try{
+      const {star,message,tittle} = req.body.reviewData
+      let carReview = {
+      star,
+      message,
+      tittle,
+      owner: user._id,
+      ownerName: `${user.firstName[0].toUpperCase() + user.firstName.slice(1,user.firstName.length)} ${user.lastName[0].toUpperCase()}`,
+      time: moment().format('MMMM Do YYYY, h:mm:ss a')
+      }
+      await car.save()
+      return res.status(200).json({
+        status: 'success',
+        message: 'Date Booked',
+        carReview,
+        car_id: car._id
+      });
+
+    }catch (err) {
+      return res.status(500).json({
+        status: 'error',
+        message: err.message,
+      });
+    }
+  }
 };

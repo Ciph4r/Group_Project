@@ -10,6 +10,8 @@ import { useSelector} from 'react-redux'
 import MsgModal from './MsgModal';
 import BookingModal from './BookingModal'
 import Alert from '@material-ui/lab/Alert';
+import ReviewCard from './ReviewCard'
+import ReviewModal from './ReviewModal'
 
 const useStyles = makeStyles(theme => ({
   cardModal: {
@@ -24,18 +26,24 @@ const useStyles = makeStyles(theme => ({
 export default function CardModal({ openModal, closeModal, carId }) {
   const user = useSelector((state) => state.user.user_id)
   const carData = useSelector((state) => state.car.cars.find(car => car._id === `${carId}`))
+  const token = useSelector(state => state.user.token);
   const classes = useStyles();
   const [msgModal,SetMsgModal] = useState(false)
+  const [reviewModal,SetReviewModal] = useState(false)
   const [bookingModal, setBookingModal] = useState (false)
   const [errMsg, setErrMsg] = useState('');
-  const { img, year, make, model, price,description ,owner } = carData;
+  const { img, year, make, model, price,description ,owner, reviews } = carData;
+
 
   return (
     <Modal isOpen={openModal} className={classes.cardModal} ariaHideApp={false}>
 
       <div className="close-modal">
         
-        <button onClick={closeModal}>close</button>
+        <button onClick={()=>{
+          setErrMsg('')
+          closeModal()
+        }}>close</button>
       </div>
       <div className="card-modal">
       {errMsg && <Alert className ='error' severity="error">{errMsg}</Alert>}
@@ -70,9 +78,9 @@ export default function CardModal({ openModal, closeModal, carId }) {
               <div className="card-icon-group">
                 <IconButton aria-label="schedule">
                   <CalendarTodayIcon fontSize="large" onClick={() => {
-                    // if (owner === user){
-                    //   return setErrMsg(`You Can't Book A car You're Hosting`)
-                    // }
+                    if (owner === user){
+                      return setErrMsg(`You Can't Book A Car You're Hosting`)
+                    }
                     setBookingModal(true)
                     }}/>
                 </IconButton>
@@ -80,12 +88,23 @@ export default function CardModal({ openModal, closeModal, carId }) {
               </div>
             </div>
           </div>
+
         </div>
-        {/* <div className="card-modal-ratings">
-          <h1>Ratings will go here</h1>
-        </div> */}
+        <div className='reveiw-btn' onClick = {()=> {
+          if(!token){
+            return setErrMsg(`Login To Leave a Review`)
+          }
+          if (owner === user){
+            return setErrMsg(`You Can't Review A Car You're Hosting`)
+          }
+          SetReviewModal(true)
+          }}>
+              <h3>Leave Review</h3>
+        </div>    
+          <ReviewCard carReview = {reviews}/>
       </div>
       <MsgModal openModal = {msgModal} closeModal = {SetMsgModal} id = {owner}/>
+      <ReviewModal openModal = {reviewModal} closeModal = {SetReviewModal} car_id = {carData._id} />
       <BookingModal openModal = {bookingModal} closeModal = {setBookingModal} carData = {carData}/>
     </Modal>
   );

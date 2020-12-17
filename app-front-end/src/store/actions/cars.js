@@ -49,6 +49,26 @@ export const fetchCars = createAsyncThunk(
         return jsonData.car
     }
   );
+  export const sendReview = createAsyncThunk(
+    'sendReview',
+    async (args, thunkAPI) => {
+        const token = thunkAPI.getState().user.token;
+        const createUrl = `${process.env.REACT_APP_API_URL}/api/cars/review/${args.id}`;
+        const response = await fetch(createUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({reviewData:args.reviewData})
+              
+      });
+      let jsonData = await response.json();
+      
+        return jsonData
+
+    }
+  );
 
   // export const bookCar = createAsyncThunk(
   //   'bookCar',
