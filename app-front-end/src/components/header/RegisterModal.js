@@ -20,7 +20,7 @@ export const RegisterModal = ({ openRegister, closeRegisterHandler }) => {
       return setErrMsg('All field must be filled')
     }
     // send data to backend
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

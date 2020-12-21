@@ -64,7 +64,7 @@ export default function User(){
                     )
             }
         }
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/users/update`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/update`, {
             method: 'POST',
             headers: {
               Authorization: `Bearer ${token}`,
@@ -85,7 +85,7 @@ export default function User(){
       }
 
       const getUser = async()=>{
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

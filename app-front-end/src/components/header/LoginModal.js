@@ -19,7 +19,7 @@ export const LoginModal = ({openLogin , closeLoginHandler , loginHandler}) => {
         return setErrMsg('All field must be filled')
       }
       // send data to backend
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
