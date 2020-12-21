@@ -22,32 +22,32 @@ import MessageBox from './messageBox/MessageBox'
         return (
                 <Router>
                     <Switch>
-                        <Route exact path="/">
+                        <Route exact path="/groundrnr">
                             <Layout>
                                 <Home/>
                             </Layout>
                         </Route>
 
-                        <Route path="/booking">
+                        <Route path="/groundrnr/booking">
                             <Layout>
                                 <Booking/>
                             </Layout>
                         </Route>
 
-                        <Route path="/listing">
+                        <Route path="/groundrnr/listing">
                             <Layout>
                                 <Listing/>
                             </Layout>
                         </Route>
 
-                        <Route path="/favorites">
+                        <Route path="/groundrnr/favorites">
                             <Layout>
                                 <Favorties/>
                             </Layout>
                         </Route>
 
                         
-                        <Route path="/user">
+                        <Route path="/groundrnr/user">
                             <Layout>
                                 <User/>
                             </Layout>
