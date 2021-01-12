@@ -51,7 +51,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://davidcodedesign.com/groundrnr",
+  "homepage": "https://groundrnr.davidcodedesign.com/",
   "eslintConfig": {
     "extends": [
       "react-app",

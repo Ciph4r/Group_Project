@@ -28,26 +28,26 @@ import MessageBox from './messageBox/MessageBox'
                             </Layout>
                         </Route>
 
-                        <Route path="/groundrnr/booking">
+                        <Route path="/booking">
                             <Layout>
                                 <Booking/>
                             </Layout>
                         </Route>
 
-                        <Route path="/groundrnr/listing">
+                        <Route path="/listing">
                             <Layout>
                                 <Listing/>
                             </Layout>
                         </Route>
 
-                        <Route path="/groundrnr/favorites">
+                        <Route path="/favorites">
                             <Layout>
                                 <Favorties/>
                             </Layout>
                         </Route>
 
                         
-                        <Route path="/groundrnr/user">
+                        <Route path="/user">
                             <Layout>
                                 <User/>
                             </Layout>
