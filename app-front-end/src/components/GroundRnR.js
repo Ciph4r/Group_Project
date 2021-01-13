@@ -22,7 +22,7 @@ import MessageBox from './messageBox/MessageBox'
         return (
                 <Router>
                     <Switch>
-                        <Route exact path="/">
+                        <Route path="/">
                             <Layout>
                                 <Home/>
                             </Layout>
